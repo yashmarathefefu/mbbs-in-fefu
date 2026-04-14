@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog & News - FEFU Medical Hub</title>
+    <meta name="description"
+        content="Stay updated with the latest news, admission guides, and student life stories from Far Eastern Federal University (FEFU), Russia.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/ui/sidebar.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            overflow-y: auto !important;
+        }
+
+        .blog-hero {
+            padding: 80px 0 40px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px 0;
+        }
+
+        .blog-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.05));
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            background: var(--bg-secondary);
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .blog-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-card-image img {
+            transform: scale(1.1);
+        }
+
+        .blog-card-content {
+            padding: 24px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(167, 139, 250, 0.1);
+            color: #a78bfa;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .blog-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.3;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .blog-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted, rgba(255, 255, 255, 0.4));
+        }
+
+        .read-more {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 8px;
+        }
+
+        /* Loading State */
+        .blog-skeleton {
+            height: 400px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+            border-radius: 24px;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-hero {
+                padding: 80px 0 40px;
+            }
+
+            .section-title {
+                font-size: 2.2rem !important;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .blog-card {
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation (Sidebar) -->
+    <aside class="sidebar-desktop" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span class="sidebar-label-container" style="font-weight: 600; color: #fff; font-size:1.1rem;">FEFU
+                Medical</span>
+        </div>
+
+        <nav class="sidebar-links mt-8">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Home</span></span>
+            </a>
+            <a href="index.html#about" class="sidebar-link">
+                <i data-lucide="building-2" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">About FEFU</span></span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Gallery</span></span>
+            </a>
+            <a href="blog.html" class="sidebar-link active">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Blog</span></span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Hostels</span></span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Admission</span></span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Contact</span></span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Mobile Sidebar Top Bar -->
+    <div class="sidebar-mobile">
+        <div class="sidebar-logo">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+        </div>
+        <button id="sidebar-menu-toggle" aria-label="Open menu"
+            style="background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+            <i data-lucide="menu" class="sidebar-icon"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+            <div class="sidebar-logo">
+                <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                    style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+                </div>
+                <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+            </div>
+            <button id="sidebar-close-toggle" aria-label="Close menu"
+                style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+                <i data-lucide="x" class="sidebar-icon"></i>
+            </button>
+        </div>
+        <nav class="sidebar-links" style="overflow-y:auto; flex-grow: 1;">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Home</span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Gallery</span>
+            </a>
+            <a href="blog.html" class="sidebar-link active">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Blog</span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Hostels</span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Admission</span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <section class="blog-hero">
+            <div class="container">
+                <h1 class="section-title">FEFU Medical Blog</h1>
+                <p class="section-subtitle">Latest insights, guides, and news for future medical students</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="blog-grid">
+                    <!-- Blog Card: Safety in Russia -->
+                    <a href="blogs/is-mbbs-in-russia-safe-2026.html" style="text-decoration: none; color: inherit;">
+                        <article class="blog-card animate-on-scroll">
+                            <div class="blog-badge">Safety</div>
+                            <div class="blog-content">
+                                <h3 class="blog-title">Is it safe for Indian students to do MBBS in Russia? Is MBBS in
+                                    Russia Safe in 2026?</h3>
+                                <p class="blog-excerpt">
+                                    For any Indian parent, safety is the #1 concern. We explore why Vladivostok and
+                                    FEFU's 328-acre island campus offer the highest security for international students
+                                    in 2026.
+                                </p>
+                                <div class="blog-footer">
+                                    <span>March 9, 2026</span>
+                                    <div class="read-more">Read Guide <i data-lucide="arrow-right"
+                                            style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Blog Card: MBBS in Russia -->
+                    <a href="blogs/mbbs-in-russia-fefu-2026.html" style="text-decoration: none; color: inherit;">
+                        <article class="blog-card">
+                            <div class="blog-card-content">
+                                <span class="blog-category">Admissions</span>
+                                <h2 class="blog-title">Top 10 NMC-Approved Medical Universities in Russia for Indian
+                                    Students (2026)</h2>
+                                <p class="blog-excerpt">A comprehensive, counselor-led guide comparing the top 10
+                                    NMC-approved Russian medical universities — including fees, Indian student presence,
+                                    and why Far Eastern Federal University (FEFU) is emerging as the #1 choice for 2026.
+                                </p>
+                                <div class="blog-footer">
+                                    <span>March 9, 2026</span>
+                                    <span class="read-more">Read More <i data-lucide="arrow-right"
+                                            style="width: 16px; height: 16px;"></i></span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 FEFU Medical Consultancy. All rights reserved.</p>
+            <p><a href="index.html" style="color: var(--primary-color);">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="components/ui/sidebar-vanilla.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+    <script src="tracker.js"></script>
+</body>
+
+</html>

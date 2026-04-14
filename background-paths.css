@@ -1,0 +1,690 @@
+/* ====================================
+   HERO SECTION — Premium B&W Design
+   ==================================== */
+
+/* Hero Base */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+/* Make the inner container fill the hero section height */
+.hero-section>.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Visibility classes */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Noise Grain (DISABLED — too expensive on most devices)
+.hero-grain { ... }
+*/
+.hero-grain {
+    display: none;
+}
+
+/* Radial Glow behind content */
+.hero-radial-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Static Stars Background (CSS-only) */
+.hero-stars-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    /* Generate tiny static white dots using box-shadow */
+    background: transparent;
+    opacity: 0.9;
+    transform-origin: center center;
+}
+
+[data-theme="dark"] .hero-stars-layer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow:
+        10vw 15vh #fff, 20vw 80vh #fff, 30vw 25vh #fff, 40vw 60vh #fff,
+        50vw 10vh #fff, 60vw 90vh #fff, 70vw 35vh #fff, 80vw 70vh #fff,
+        90vw 20vh #fff, 15vw 50vh #fff, 25vw 5vh #fff, 35vw 95vh #fff,
+        45vw 40vh #fff, 55vw 75vh #fff, 65vw 15vh #fff, 75vw 85vh #fff,
+        85vw 30vh #fff, 95vw 65vh #fff, 5vw 45vh #fff, 8vw 85vh #fff,
+        18vw 22vh #fff, 28vw 68vh #fff, 38vw 12vh #fff, 48vw 88vh #fff,
+        58vw 42vh #fff, 68vw 78vh #fff, 78vw 8vh #fff, 88vw 52vh #fff,
+        98vw 92vh #fff, 12vw 72vh #fff, 32vw 48vh #fff, 52vw 28vh #fff,
+        72vw 58vh #fff, 92vw 38vh #fff, 22vw 32vh #fff, 42vw 82vh #fff,
+        62vw 62vh #fff, 82vw 18vh #fff, 3vw 12vh #fff, 13vw 33vh #fff,
+        23vw 55vh #fff, 33vw 77vh #fff, 43vw 99vh #fff, 53vw 21vh #fff,
+        63vw 44vh #fff, 73vw 66vh #fff, 83vw 88vh #fff, 93vw 10vh #fff,
+        2vw 95vh #fff, 11vw 76vh #fff, 21vw 57vh #fff, 31vw 38vh #fff,
+        41vw 19vh #fff, 51vw 80vh #fff, 61vw 61vh #fff, 71vw 42vh #fff,
+        81vw 23vh #fff, 91vw 4vh #fff, 7vw 30vh #fff, 17vw 60vh #fff,
+        27vw 90vh #fff, 37vw 20vh #fff, 47vw 50vh #fff, 57vw 80vh #fff,
+        67vw 10vh #fff, 77vw 40vh #fff, 87vw 70vh #fff, 97vw 15vh #fff,
+        24vw 85vh #fff, 54vw 35vh #fff, 84vw 55vh #fff, 36vw 2vh #fff;
+    border-radius: 50%;
+}
+
+[data-theme="light"] .hero-stars-layer {
+    display: none;
+}
+
+/* ---- Hero Content ---- */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: clamp(64px, 10dvh, 120px);
+    padding-bottom: clamp(40px, 6dvh, 80px);
+    padding-left: 16px;
+    padding-right: 16px;
+    /* Flexbox: main text centers, stats push to bottom */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #a3c2fa;
+    /* Soft sky blue restored */
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    border: 1px solid rgba(163, 194, 250, 0.6);
+    /* Brighter blue border */
+    /* Sky blue border tint */
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+}
+
+/* Title */
+#animated-hero-title {
+    font-size: clamp(2.1rem, 5vw + 1rem, 5.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+
+    /* Premium white-to-blue gradient, higher opacity */
+    background: linear-gradient(170deg, #ffffff 10%, #bfdbff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Shadow hidden by default — GSAP reveals it after globe animation */
+    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
+/* Word & Letter Anim Wrappers */
+.anim-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.anim-letter {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Subtitle */
+.hero-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 1.0);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    opacity: 0;
+    transform: translateY(20px);
+    /* Shadow hidden by default — GSAP reveals it after globe animation */
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* ---- CTA Row ---- */
+.hero-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Primary Button */
+.btn-discover-wrap {
+    display: inline-block;
+    padding: 1px;
+    border-radius: 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    transition: box-shadow 0.3s ease;
+}
+
+.btn-discover-wrap:hover {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.btn-discover {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 1.15rem;
+    border: none;
+    background: #fff;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light Sweep Beam */
+.btn-discover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: skewX(-25deg);
+    transition: none;
+    animation: lightSweep 4s infinite cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+}
+
+@keyframes lightSweep {
+    0% {
+        left: -150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+.btn-discover:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.btn-discover:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+}
+
+.btn-discover .btn-text {
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+}
+
+.btn-discover:hover .btn-text {
+    opacity: 1;
+}
+
+.btn-discover .btn-arrow {
+    margin-left: 0.75rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.btn-discover:hover .btn-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Ghost / Secondary Button */
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 1.15rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.btn-ghost:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.08);
+    transition-duration: 0.1s;
+}
+
+/* ---- Stats Row ---- */
+.hero-stats-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    /* Push stats to the bottom of the hero container */
+    margin-top: auto;
+}
+
+.hero-stat {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.25rem 2rem;
+    border-radius: 1.25rem;
+    min-width: 160px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-stat:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hero-stat-number {
+    display: inline;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+
+.hero-stat-plus {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 0.25rem;
+}
+
+
+
+/* ---- FEFU Title Shimmer ---- */
+@keyframes titleShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Individual letter spans get the gradient text effect */
+.fefu-main-letter,
+.fefu-rest-word {
+    background: linear-gradient(90deg,
+            #ffffff 0%,
+            #ffffff 35%,
+            #c0d4ff 50%,
+            #ffffff 65%,
+            #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleShimmer 5s ease-in-out 4s infinite;
+}
+
+/* ========================================
+   TABLET (769px – 1024px) — Desktop-copy, just scaled
+   ======================================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    .hero-section {
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    .hero-section>.container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .hero-content {
+        max-width: 90%;
+        /* Wider container — uses more of the tablet's horizontal space */
+        padding-top: clamp(80px, 12dvh, 120px);
+        padding-bottom: clamp(60px, 8dvh, 100px);
+        padding-left: clamp(24px, 5vw, 48px);
+        padding-right: clamp(24px, 5vw, 48px);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #animated-hero-title {
+        font-size: clamp(60px, 9vw, 92px);
+        /* Larger university name */
+        line-height: 1.05;
+        margin-bottom: 20px;
+        /* Clear spacing below title */
+    }
+
+    .hero-subtitle {
+        font-size: clamp(17px, 2.8vw, 22px);
+        /* Slightly bigger subtitle */
+        line-height: 1.6;
+        max-width: 85%;
+        margin-top: 4px;
+        margin-bottom: 28px;
+        /* Clear gap before CTA buttons */
+    }
+
+    .hero-eyebrow {
+        font-size: 17px;
+        /* Slightly bigger eyebrow */
+        padding: 10px 28px;
+        margin-bottom: 20px;
+        /* Space between eyebrow and title */
+    }
+
+    .hero-cta-row {
+        gap: clamp(12px, 2vw, 20px);
+        margin-bottom: 0px;
+    }
+
+    .btn-discover,
+    .btn-ghost {
+        font-size: 16px;
+        padding: 14px 28px;
+    }
+
+    .hero-stats-row {
+        gap: clamp(12px, 2vw, 16px);
+        /* Fixed margin-top matching dark mode's computed 555.050 total margin,
+           ensuring consistent placement in both themes */
+        margin-top: 455px;
+        margin-bottom: 100px;
+    }
+
+    .hero-stat {
+        padding: 18px 24px;
+        min-width: 140px;
+    }
+
+    .hero-stat-number {
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    }
+
+    .hero-stat-label {
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   MOBILE (≤768px) — Desktop-copy approach
+   Only font-size, padding, and gap scaled down.
+   Layout stays identical to desktop.
+   ======================================== */
+@media (max-width: 768px) {
+
+    .hero-section {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    .hero-section>.container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        /* DO NOT CENTER VERTICALLY */
+        height: 100%;
+        padding: 0 16px;
+    }
+
+    .hero-radial-glow {
+        width: 400px;
+        height: 400px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 110px;
+        padding-bottom: 140px;
+        gap: 24px;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .hero-content::before {
+        display: none;
+    }
+
+    .hero-eyebrow {
+        margin-bottom: 8px;
+        font-size: 15px;
+        letter-spacing: 2px;
+        padding: 9px 20px;
+        border-radius: 999px;
+    }
+
+    #animated-hero-title {
+        font-size: 46px;
+        font-weight: 700;
+        line-height: 1.15;
+        max-width: 95%;
+        margin-bottom: 0px;
+    }
+
+    .hero-subtitle {
+        max-width: 380px;
+        font-size: 17px;
+        line-height: 1.6;
+        margin-top: 8px;
+        margin-bottom: 0px;
+        padding: 0;
+    }
+
+    .hero-cta-row {
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .btn-discover {
+        padding: 13px 26px;
+        font-size: 16px;
+    }
+
+    .btn-ghost {
+        padding: 13px 26px;
+        font-size: 16px;
+    }
+
+    .hero-stats-row {
+        gap: 8px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin-top: auto;
+        width: 100%;
+    }
+
+    .hero-stat {
+        padding: 12px 10px;
+        min-width: 0;
+        flex: 1;
+        border-radius: 16px;
+    }
+
+    .hero-stat-number {
+        font-size: 20px;
+    }
+
+    .hero-stat-label {
+        font-size: 10px;
+    }
+
+    .hero-stat-plus {
+        font-size: 16px;
+    }
+
+    /* Utility toggles */
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: flex !important;
+    }
+
+    .hero-swipe-indicator.mobile-only {
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        bottom: 0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20;
+    }
+
+    .swipe-text {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.25rem;
+    }
+
+    .swipe-icon {
+        width: 18px;
+        height: 18px;
+        color: rgba(255, 255, 255, 0.8);
+        animation: swipeUpBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes swipeUpBounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+            opacity: 0.3;
+        }
+
+        50% {
+            transform: translateY(-6px);
+            opacity: 1;
+        }
+    }
+}
+
+/* ========================================
+   SMALL PHONES (≤400px) — Just smaller fonts
+   ======================================== */
+@media (max-width: 400px) {
+    .hero-cta-row {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .btn-discover,
+    .btn-ghost {
+        font-size: 13px;
+        padding: 10px 20px;
+        width: 100%;
+    }
+
+    .hero-stats-row {
+        gap: 4px;
+    }
+
+    .hero-stat {
+        padding: 8px 6px;
+    }
+
+    .hero-stat-number {
+        font-size: 16px;
+    }
+
+    .hero-stat-label {
+        font-size: 9px;
+    }
+}

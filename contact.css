@@ -1,0 +1,511 @@
+/* ========================================
+   PREMIUM GLASSMORPHIC CONTACT FORM
+   ======================================== */
+.contact-section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+    background: radial-gradient(circle at right top, rgba(167, 139, 250, 0.1), transparent 50%),
+        radial-gradient(circle at left bottom, rgba(16, 185, 129, 0.05), transparent 50%);
+}
+
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 900px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+    }
+}
+
+.contact-form-container {
+    padding-right: 20px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .contact-form-container {
+        padding-right: 0;
+    }
+}
+
+/* ---- Form Row & Groups ---- */
+.premium-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .premium-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.premium-form .form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/* ---- Inputs & Select ---- */
+.premium-form input,
+.premium-form textarea,
+.premium-form select {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.premium-form select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a78bfa' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) center;
+    padding-right: 40px;
+}
+
+.premium-form select option {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px;
+}
+
+.premium-form textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Focus state — purple glow */
+.premium-form input:focus,
+.premium-form textarea:focus,
+.premium-form select:focus {
+    border-color: rgba(167, 139, 250, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.1);
+}
+
+/* Valid state — green border glow */
+.premium-form .form-group.is-valid input,
+.premium-form .form-group.is-valid select {
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+.premium-form .form-group.is-valid input:focus,
+.premium-form .form-group.is-valid select:focus {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+/* Invalid state — red border glow & shake */
+.premium-form .form-group.is-invalid input,
+.premium-form .form-group.is-invalid select,
+.premium-form .form-group.is-invalid textarea {
+    border-color: rgba(239, 68, 68, 0.6);
+    animation: shake 0.4s ease-in-out;
+}
+
+.premium-form .form-group.is-invalid input:focus,
+.premium-form .form-group.is-invalid select:focus,
+.premium-form .form-group.is-invalid textarea:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+/* ---- Floating Labels ---- */
+.premium-form label {
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    font-size: 16px;
+    background: transparent;
+}
+
+/* Float label up when focused or filled */
+.premium-form input:focus~label,
+.premium-form input:not(:placeholder-shown)~label,
+.premium-form textarea:focus~label,
+.premium-form textarea:not(:placeholder-shown)~label {
+    top: -10px;
+    left: 15px;
+    font-size: 12px;
+    color: rgb(167, 139, 250);
+    background: #0f0f13;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+
+/* Select label — always floating since select has a visible option */
+.premium-form .select-label {
+    top: -10px;
+    left: 15px;
+    font-size: 12px;
+    color: rgb(167, 139, 250);
+    background: #0f0f13;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+
+/* ---- Input Hint (below phone) ---- */
+.input-hint {
+    position: absolute;
+    bottom: -18px;
+    left: 4px;
+    font-size: 11px;
+    color: rgba(167, 139, 250, 0.5);
+    pointer-events: none;
+    transition: color 0.3s;
+}
+
+.form-group.is-valid .input-hint {
+    color: rgba(16, 185, 129, 0.6);
+}
+
+/* ---- Green Checkmark on Valid Input ---- */
+.form-group.is-valid::after {
+    content: '✓';
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    color: #10b981;
+    font-weight: bold;
+    font-size: 16px;
+    pointer-events: none;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: 2;
+}
+
+/* ---- Red Cross on Invalid Input ---- */
+.form-group.is-invalid::after {
+    content: '✗';
+    position: absolute;
+    right: 15px;
+    top: 18px;
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 16px;
+    pointer-events: none;
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    z-index: 2;
+}
+
+/* Don't overlap select chevron */
+.form-group.is-valid select~.select-label+.is-valid::after,
+.form-group.is-invalid select~.select-label+.is-invalid::after {
+    right: 40px;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ---- Quick Topic Chips ---- */
+.quick-topics {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.quick-topic-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+.topic-chip {
+    background: rgba(167, 139, 250, 0.08);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+}
+
+.topic-chip:hover {
+    background: rgba(167, 139, 250, 0.2);
+    border-color: rgba(167, 139, 250, 0.5);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.topic-chip.active {
+    background: rgba(167, 139, 250, 0.3);
+    border-color: rgb(167, 139, 250);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.2);
+}
+
+/* ---- Submit Button ---- */
+.premium-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--primary-color, #a78bfa), var(--primary-dark, #7c3aed));
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.5);
+    width: 100%;
+    margin-top: 10px;
+}
+
+.premium-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -5px rgba(124, 58, 237, 0.6);
+}
+
+.premium-submit-btn:active {
+    transform: translateY(0);
+}
+
+.premium-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.premium-submit-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.premium-submit-btn:hover svg {
+    transform: translate(4px, -4px);
+}
+
+/* ---- Contact Info Panel ---- */
+.contact-info-glass {
+    background: linear-gradient(145deg, rgba(167, 139, 250, 0.1), rgba(16, 185, 129, 0.05));
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-info-glass h3 {
+    font-family: var(--font-heading, "Outfit", sans-serif);
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.contact-info-glass>p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(167, 139, 250, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color, #a78bfa);
+    flex-shrink: 0;
+}
+
+.contact-info-item h4 {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.contact-info-item p {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* ---- Status Messages ---- */
+.form-status-message {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: none;
+    font-weight: 500;
+}
+
+.form-status-message.success {
+    display: block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.form-status-message.error {
+    display: block;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ---- Spinner ---- */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+}
+
+/* ---- WhatsApp Floating Button ---- */
+.whatsapp-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: #fff;
+    padding: 14px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.whatsapp-fab:hover {
+    padding-right: 20px;
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
+    transform: scale(1.05);
+}
+
+.whatsapp-label {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    transition: max-width 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.whatsapp-fab:hover .whatsapp-label {
+    max-width: 140px;
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .whatsapp-fab {
+        bottom: 22px;
+        /* 20-24px */
+        right: 18px;
+        /* 16-20px */
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 60px 0;
+    }
+
+    .contact-wrapper {
+        padding: 25px 15px;
+        border-radius: 20px;
+    }
+
+    .premium-form input,
+    .premium-form textarea,
+    .premium-form select {
+        padding: 14px 16px;
+        font-size: 15px;
+    }
+
+    .premium-form label {
+        font-size: 14px;
+        top: 14px;
+    }
+
+    .contact-info-glass {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .contact-info-item p {
+        font-size: 14px;
+    }
+}

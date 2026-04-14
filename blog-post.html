@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="post-title-meta">Blog Post - FEFU Medical</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/ui/sidebar.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        .post-hero {
+            padding: 120px 0 60px;
+            position: relative;
+        }
+
+        .post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .post-header {
+            margin-bottom: 40px;
+        }
+
+        .post-category {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(167, 139, 250, 0.1);
+            color: #a78bfa;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .post-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--text-primary, #fff);
+            line-height: 1.1;
+            margin-bottom: 24px;
+            font-family: 'Outfit', sans-serif;
+            background: var(--title-gradient, linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+            font-size: 0.95rem;
+        }
+
+        .post-featured-image {
+            width: 100%;
+            height: clamp(300px, 40vh, 500px);
+            border-radius: 32px;
+            overflow: hidden;
+            margin-bottom: 60px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .post-featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-content {
+            color: var(--text-secondary, rgba(255, 255, 255, 0.85));
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .post-content h2 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-primary, #fff);
+            font-size: 2rem;
+            margin: 50px 0 25px;
+            font-weight: 700;
+        }
+
+        .post-content p {
+            margin-bottom: 25px;
+        }
+
+        .post-content strong {
+            color: var(--text-primary, #fff);
+        }
+
+        .back-to-blog {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            color: var(--primary-color, #a78bfa);
+        }
+
+        /* Loading Spinner */
+        #post-loader {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .post-hero {
+                padding: 100px 0 30px;
+            }
+
+            .post-title {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+                margin-bottom: 20px;
+            }
+
+            .post-content {
+                font-size: 1.05rem;
+                line-height: 1.7;
+            }
+
+            .post-featured-image {
+                border-radius: 20px;
+                margin-bottom: 40px;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar (Reused) -->
+    <aside class="sidebar-desktop" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span class="sidebar-label-container" style="font-weight: 600; color: #fff; font-size:1.1rem;">FEFU
+                Medical</span>
+        </div>
+
+        <nav class="sidebar-links mt-8">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Home</span></span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Gallery</span></span>
+            </a>
+            <a href="blog.html" class="sidebar-link active">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Blog</span></span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Contact</span></span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Mobile Top Bar -->
+    <div class="sidebar-mobile">
+        <div class="sidebar-logo">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+        </div>
+        <button id="sidebar-menu-toggle"
+            style="background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+            <i data-lucide="menu" class="sidebar-icon"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+            <div class="sidebar-logo">
+                <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                    style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+                </div>
+                <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+            </div>
+            <button id="sidebar-close-toggle"
+                style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+                <i data-lucide="x" class="sidebar-icon"></i>
+            </button>
+        </div>
+        <nav class="sidebar-links" style="overflow-y:auto; flex-grow: 1;">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Home</span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Gallery</span>
+            </a>
+            <a href="blog.html" class="sidebar-link active">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Blog</span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Hostels</span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Admission</span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span style="margin-left: 1rem;">Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <div id="post-loader">
+            <div class="spinner"></div>
+        </div>
+
+        <article id="post-content-area" style="display: none;">
+            <header class="post-hero">
+                <div class="post-container">
+                    <a href="blog.html" class="back-to-blog">
+                        <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i> Back to Blog
+                    </a>
+                    <div class="post-header">
+                        <span id="post-category" class="post-category">General</span>
+                        <h1 id="post-title" class="post-title">Post Title</h1>
+                        <div class="post-meta">
+                            <span id="post-author" style="display: flex; align-items: center; gap: 6px;">
+                                <i data-lucide="user" style="width: 16px; height: 16px;"></i> FEFU Team
+                            </span>
+                            <span id="post-date" style="display: flex; align-items: center; gap: 6px;">
+                                <i data-lucide="calendar" style="width: 16px; height: 16px;"></i> Jan 01, 2024
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="post-container">
+                <div class="post-featured-image">
+                    <img id="post-image" src="" alt="">
+                </div>
+                <div id="post-body" class="post-content">
+                    <!-- Article content injected here -->
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FEFU Medical Consultancy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="components/ui/sidebar-vanilla.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script>
+        const SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
+
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        function initHighlights() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const isMobile = window.innerWidth < 768;
+
+            setTimeout(() => {
+                const highlights = document.querySelectorAll(".text-highlight");
+
+                highlights.forEach((highlight) => {
+                    ScrollTrigger.create({
+                        trigger: highlight,
+                        start: isMobile ? "top 95%" : "top 85%", // Trigger earlier on mobile for fast scrollers
+                        onEnter: () => highlight.classList.add("active"),
+                    });
+                });
+            }, 100);
+        }
+
+        async function fetchPost() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const slug = urlParams.get('slug');
+
+                if (!slug) {
+                    window.location.href = 'blog.html';
+                    return;
+                }
+
+                const { data, error } = await supabaseClient
+                    .from('blog_posts')
+                    .select('*')
+                    .eq('slug', slug)
+                    .single();
+
+                if (error || !data) throw error || new Error('Post not found');
+
+                // Update UI
+                document.title = `${data.title} - FEFU Medical`;
+                document.getElementById('post-title').innerText = data.title;
+                document.getElementById('post-category').innerText = data.category || 'General';
+                document.getElementById('post-author').innerHTML = `<i data-lucide="user" style="width: 16px; height: 16px;"></i> ${data.author || 'FEFU Team'}`;
+
+                const date = new Date(data.published_at).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('post-date').innerHTML = `<i data-lucide="calendar" style="width: 16px; height: 16px;"></i> ${date}`;
+
+                if (data.image_url) {
+                    document.getElementById('post-image').src = data.image_url;
+                    document.getElementById('post-image').alt = data.title;
+                } else {
+                    document.querySelector('.post-featured-image').style.display = 'none';
+                }
+
+                // Render content - Supporting HTML tags for highlights
+                // If content already contains <p> tags, use as is, otherwise wrap newlines
+                if (data.content.includes('<p>')) {
+                    document.getElementById('post-body').innerHTML = data.content;
+                } else {
+                    document.getElementById('post-body').innerHTML = data.content
+                        .split('\n')
+                        .map(p => p.trim() ? `<p>${p}</p>` : '')
+                        .join('');
+                }
+
+                document.getElementById('post-loader').style.display = 'none';
+                document.getElementById('post-content-area').style.display = 'block';
+
+                lucide.createIcons();
+                initHighlights(); // Start the scroll-reveal effect
+
+            } catch (err) {
+                console.error('Error:', err);
+                document.getElementById('post-loader').innerHTML = `<div class="container text-center"><p style="color: #ff4d4d;">Failed to load post. It may have been removed.</p><a href="blog.html" class="btn btn-primary" style="margin-top: 20px;">Back to Blog</a></div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchPost);
+    </script>
+    <script src="tracker.js"></script>
+</body>
+
+</html>

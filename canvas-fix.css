@@ -1,0 +1,17 @@
+/* Fix for canvas height increasing on mobile/tablet */
+.room-canvas-container canvas,
+#tree-container canvas,
+.webgl {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Ensure containers have explicit overflow handling */
+.room-canvas-container,
+#tree-container {
+    overflow: hidden;
+    position: relative;
+    line-height: 0;
+    /* Prevents inline spacing issues */
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Gallery - FEFU Medical</title>
+    <meta name="description"
+        content="Explore Far Eastern Federal University campus - facilities, dormitories, library, lecture halls, sports, and Vladivostok city views.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/ui/sidebar.css">
+    <link rel="stylesheet" href="theme.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <!-- Navigation (Sidebar) -->
+    <aside class="sidebar-desktop" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span class="sidebar-label-container" style="font-weight: 600; color: #fff; font-size:1.1rem;">FEFU
+                Medical</span>
+        </div>
+
+        <nav class="sidebar-links mt-8">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Home</span></span>
+            </a>
+            <a href="index.html#about" class="sidebar-link">
+                <i data-lucide="building-2" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">About FEFU</span></span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Gallery</span></span>
+            </a>
+            <a href="blog.html" class="sidebar-link">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Blog</span></span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Hostels</span></span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Admission</span></span>
+            </a>
+            <a href="index.html#why-us" class="sidebar-link">
+                <i data-lucide="star" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Why Us</span></span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Contact</span></span>
+            </a>
+        </nav>
+
+        <div style="margin-top:auto; margin-bottom: 1rem; padding-left: 0.5rem;">
+            <a href="#" class="sidebar-link" style="padding: 0;">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100"
+                    alt="Student Portal Profile"
+                    style="width:32px; height:32px; border-radius:50%; object-fit:cover;" />
+                <span class="sidebar-label-container"><span class="sidebar-label">Student Portal</span></span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Mobile Sidebar -->
+    <div class="sidebar-mobile">
+        <div class="sidebar-logo" style="margin-bottom:0;">
+            <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+            </div>
+            <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+        </div>
+        <button id="sidebar-menu-toggle" aria-label="Open menu"
+            style="background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+            <i data-lucide="menu" class="sidebar-icon"></i>
+        </button>
+    </div>
+
+    <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+            <div class="sidebar-logo" style="margin-bottom:0;">
+                <div class="h-5 w-6 rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0"
+                    style="background:#fff; width:24px; height:20px; display:inline-block; border-radius: 4px 8px 4px 8px;">
+                </div>
+                <span style="font-weight: 600; color: #fff; font-size:1.1rem; margin-left:12px;">FEFU Medical</span>
+            </div>
+            <button id="sidebar-close-toggle" aria-label="Close menu"
+                style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+                <i data-lucide="x" class="sidebar-icon"></i>
+            </button>
+        </div>
+        <nav class="sidebar-links" style="overflow-y:auto; flex-grow: 1;">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Home</span>
+            </a>
+            <a href="index.html#about" class="sidebar-link">
+                <i data-lucide="building-2" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">About FEFU</span>
+            </a>
+            <a href="gallery.html" class="sidebar-link active">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Gallery</span>
+            </a>
+            <a href="blog.html" class="sidebar-link">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Blog</span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link"
+                onclick="document.getElementById('sidebar-close-toggle').click()">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Hostels</span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link"
+                onclick="document.getElementById('sidebar-close-toggle').click()">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Admission</span>
+            </a>
+            <a href="index.html#why-us" class="sidebar-link"
+                onclick="document.getElementById('sidebar-close-toggle').click()">
+                <i data-lucide="star" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Why Us</span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link"
+                onclick="document.getElementById('sidebar-close-toggle').click()">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label" style="margin-left: 1rem;">Contact</span>
+            </a>
+        </nav>
+
+        <div style="margin-top:1rem;">
+            <a href="#" class="sidebar-link">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100"
+                    alt="Student Portal Profile"
+                    style="width:32px; height:32px; border-radius:50%; object-fit:cover;" />
+                <span class="sidebar-label" style="margin-left: 1rem;">Student Portal</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Gallery Page Hero -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="gallery-hero-title">Campus Gallery</h1>
+            <p class="gallery-hero-subtitle">Explore Far Eastern Federal University - Your Future Medical School</p>
+        </div>
+    </section>
+
+    <!-- Campus Gallery Section - All 63 Images -->
+    <section id="gallery" class="section gallery-section">
+        <div class="container">
+            <!-- Category Tabs -->
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-category="all">All Photos</button>
+                <button class="gallery-tab" data-category="city">City Views</button>
+                <button class="gallery-tab" data-category="nature">Campus & Nature</button>
+                <button class="gallery-tab" data-category="campus">Campus Views</button>
+                <button class="gallery-tab" data-category="hostel">Dormitories</button>
+                <button class="gallery-tab" data-category="lecture">Lecture Halls</button>
+                <button class="gallery-tab" data-category="sports">Sports</button>
+                <button class="gallery-tab" data-category="library">Library</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid-categorized">
+                <!-- City Images (19) -->
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(2).jpg"
+                        alt="Vladivostok City">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(3).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(4).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(6).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(8).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(9).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(10).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(11).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(12).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(13).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(14).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(15).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(16).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(17).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(18).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(19).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%20%20%20(20).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%201%20%20(11).jpg"
+                        alt="City View">
+                </div>
+                <div class="gallery-item-cat" data-category="city">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/city/CITY%20IMAGE%201%20%20(12).jpg"
+                        alt="City View">
+                </div>
+
+                <!-- Campus/Nature Images (16) -->
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(1).avif"
+                        alt="Campus Nature">
+                </div>
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(2).jpg"
+                        alt="Campus View">
+                </div>
+
+
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(5).jpg"
+                        alt="Campus">
+                </div>
+
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(7).jpg"
+                        alt="Campus">
+                </div>
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(8).jpg"
+                        alt="Campus">
+                </div>
+
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(10).jpg"
+                        alt="Campus">
+                </div>
+
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(12).jpg"
+                        alt="Campus">
+                </div>
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(13).jpg"
+                        alt="Campus">
+                </div>
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(14).jpg"
+                        alt="Campus">
+                </div>
+
+                <div class="gallery-item-cat" data-category="nature">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/CAMPUS%20NAUTRE%20(16).jpg"
+                        alt="Campus">
+                </div>
+
+                <!-- Campus Views -->
+                <div class="gallery-item-cat" data-category="campus">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/beautiful%20campus%202.avif"
+                        alt="FEFU Campus Summer">
+                </div>
+                <div class="gallery-item-cat" data-category="campus">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/campus/campus%20%20(1).avif"
+                        alt="FEFU Campus Building">
+                </div>
+                <div class="gallery-item-cat" data-category="campus">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/campus/campus%20%20(2).avif"
+                        alt="FEFU Campus Modern Architecture">
+                </div>
+                <div class="gallery-item-cat" data-category="campus">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/beautiful%20campus%207%20(1).avif"
+                        alt="FEFU Campus Panoramic View">
+                </div>
+                <div class="gallery-item-cat" data-category="campus">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/beautiful%20campus%207%20(2).avif"
+                        alt="FEFU Campus Aerial View">
+                </div>
+
+                <!-- Hostel Images (9) - ALL included! -->
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20IMAGE.avif"
+                        alt="Student Room">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20IMAGE%202.avif"
+                        alt="Dormitory Room">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20IMAGE%203.avif"
+                        alt="Dorm Facilities">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(2).avif"
+                        alt="Student Accommodation">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(3).avif"
+                        alt="Living Space">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(4).avif"
+                        alt="Hostel Room">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(6).avif"
+                        alt="Study Room">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(7).avif"
+                        alt="Common Area">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/ROOM%20(9).avif"
+                        alt="Residence Hall">
+                </div>
+                <!-- New Hostel Images -->
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20building.avif"
+                        alt="Hostel Building">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20room%20%20(1).avif"
+                        alt="Hostel Room 1">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20room%20(2).avif"
+                        alt="Hostel Room 2">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20room%20%20(3).avif"
+                        alt="Hostel Room 3">
+                </div>
+                <div class="gallery-item-cat" data-category="hostel">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20room%20%20(5).avif"
+                        alt="Hostel Room 5">
+                </div>
+
+                <!-- Lecture Hall Images (2) -->
+                <div class="gallery-item-cat" data-category="lecture">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/lecture%20hall/LECTURE%20HALL%20(1).avif"
+                        alt="Modern Lecture Hall">
+                </div>
+                <div class="gallery-item-cat" data-category="lecture">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/lecture%20hall/LECTURE%20HALL%20(2).avif"
+                        alt="Lecture Theatre">
+                </div>
+
+                <!-- Sports Images (2) -->
+                <div class="gallery-item-cat" data-category="sports">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/sport/SPORT%20%20(1).avif"
+                        alt="Sports Facilities">
+                </div>
+                <div class="gallery-item-cat" data-category="sports">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/sport/SPORT%20%20(2).avif"
+                        alt="Athletic Complex">
+                </div>
+
+                <!-- Library Images (2) -->
+                <div class="gallery-item-cat" data-category="library">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/library/LIBRARY%20(1).avif"
+                        alt="University Library">
+                </div>
+                <div class="gallery-item-cat" data-category="library">
+                    <img loading="lazy"
+                        src="https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/library/LIBRARY%20(2).avif"
+                        alt="Study Area">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 FEFU Medical Consultancy. All rights reserved.</p>
+            <p><a href="index.html" style="color: var(--primary-color);">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
+        <div class="lightbox-content-wrapper">
+            <div id="lightbox-counter" class="lightbox-counter">1 / 10</div>
+            <div id="lightbox-loader" class="lightbox-loader">
+                <div class="spinner"></div>
+            </div>
+            <img class="lightbox-content" id="lightbox-img" alt="Gallery Lightbox Image">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-next" aria-label="Next image">&#10095;</button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="components/ui/sidebar-vanilla.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+    <script src="tracker.js"></script>
+</body>
+
+</html>
