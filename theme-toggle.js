@@ -163,7 +163,21 @@
             applyTheme(next, true, rect);
         });
 
-        document.body.appendChild(btn);
+        function placeToggle() {
+            const mobileNav = document.querySelector('.sidebar-mobile');
+            if (window.innerWidth <= 1024 && mobileNav) {
+                mobileNav.appendChild(btn);
+            } else {
+                document.body.appendChild(btn);
+            }
+        }
+        
+        placeToggle();
+        
+        // Handle screen resizing
+        window.addEventListener('resize', () => {
+            placeToggle();
+        });
     }
 
     /* ── Init ──────────────────────────────── */
