@@ -1771,6 +1771,7 @@ html.theme-transitioning *::after {
    ======================================== */
 @media (max-width: 1024px) {
     .theme-toggle {
+        position: fixed !important;
         top: 16px;
         right: 68px;
         width: 60px;
