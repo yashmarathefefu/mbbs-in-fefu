@@ -2457,7 +2457,7 @@ body:not([data-highlight]) .text-highlight,
 
 @media (max-width: 768px) {
     .gallery-hero {
-        padding: 80px 0 30px;
+        padding: 100px 15px 30px;
     }
 
     .gallery-hero-title {
@@ -2488,6 +2488,21 @@ body:not([data-highlight]) .text-highlight,
     margin: 2rem 0;
 }
 
+@media (max-width: 768px) {
+    .gallery-tabs {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0.5rem 1rem 1rem 1rem;
+        margin: 1.5rem -1rem; /* Pull out to screen edge */
+    }
+    .gallery-tabs::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 .gallery-tab {
     padding: 0.75rem 1.5rem;
     background: transparent;
@@ -2499,6 +2514,8 @@ body:not([data-highlight]) .text-highlight,
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    flex: 0 0 auto;
 }
 
 .gallery-tab:hover {
@@ -2508,7 +2525,7 @@ body:not([data-highlight]) .text-highlight,
 }
 
 .gallery-tab.active {
-    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
     border-color: transparent;
     color: #ffffff;
     box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
