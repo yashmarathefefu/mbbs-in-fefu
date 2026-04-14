@@ -5138,6 +5138,28 @@ body:not([data-highlight]) .text-highlight,
     #tree-container {
         display: none !important;
     }
+
+    /* Position the View Gallery button neatly above the carousel on mobile */
+    .carousel-cta-overlay {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px; /* Spacing between button and the image */
+        z-index: 10;
+    }
+
+    /* Scale down the creepy button slightly for mobile */
+    .creepy-btn {
+        font-size: 13px; 
+        min-width: 9em;
+    }
+
+    .creepy-btn__cover {
+        padding: 0.45em 1em;
+    }
 }
 
 /* Small phones */

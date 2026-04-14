@@ -331,6 +331,21 @@ html.theme-transitioning *::after {
     color: #1A2530 !important;
 }
 
+[data-theme="light"] .sleek-text-path {
+    stroke: #1A2530;
+    animation: drawText 3s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards,
+               fillInTextLight 1.5s ease 2s forwards;
+}
+
+[data-theme="light"] .sidebar-logo:hover .sleek-text-path {
+    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes fillInTextLight {
+    0% { fill: transparent; stroke: #1A2530; stroke-width: 0.8px; }
+    100% { fill: #1A2530; stroke: transparent; stroke-width: 0; }
+}
+
 /* ========================================
    5. SIDEBAR (Mobile)
    ======================================== */
