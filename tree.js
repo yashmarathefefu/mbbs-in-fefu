@@ -6,7 +6,12 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 const container = document.getElementById('tree-container');
 const previewHack = document.getElementById('previewHack');
 
-if (container) {
+// Optimize: completely bypass the entire Tree 3D logic on mobile devices.
+if (window.innerWidth <= 768 || /iPhone|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (container) {
+        container.innerHTML = ''; // Clean up any residual HTML
+    }
+} else if (container) {
     const leavesVS = /*glsl*/`
         uniform sampler2D uNoiseMap;
         uniform vec3 uBoxMin, uBoxSize, uRaycast;

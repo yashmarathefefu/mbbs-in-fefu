@@ -5133,6 +5133,11 @@ body:not([data-highlight]) .text-highlight,
         width: 650px;
         height: 650px;
     }
+
+    /* Completely hide tree container on mobile to save space */
+    #tree-container {
+        display: none !important;
+    }
 }
 
 /* Small phones */
