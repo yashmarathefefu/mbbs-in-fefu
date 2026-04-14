@@ -167,8 +167,8 @@ function startLoader() {
         sessionStorage.setItem('fefu_loader_seen', 'true');
     }
 
-    // If completely bypassing, don't even init the shader or fade.
-    if (hasSeenLoader) {
+    // If completely bypassing, or if it's a mobile device (where we want to skip it), don't even init the shader or fade.
+    if (hasSeenLoader || isMobile()) {
         loaderOverlay.remove();
         document.body.style.overflow = 'auto';
         document.body.style.overflowX = 'hidden';
