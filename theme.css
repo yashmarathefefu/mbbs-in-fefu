@@ -175,6 +175,7 @@ html.theme-transitioning *::after {
         width: 100%;
         box-sizing: border-box;
     }
+
 }
 
 /* Hero text â€” keep charcoal but allow the drop-shadow above to show */
@@ -221,7 +222,7 @@ html.theme-transitioning *::after {
     text-shadow: 0 2px 12px rgba(5, 10, 30, 0.55) !important;
 }
 
-/* 2. Eyebrow â€” styled pill badge */
+/* 2. Eyebrow — styled pill badge */
 [data-theme="light"] .hero-eyebrow {
     color: #3498DB;
     font-weight: 600;
@@ -1755,10 +1756,11 @@ html.theme-transitioning *::after {
    ======================================== */
 @media (max-width: 1024px) {
     .theme-toggle {
-        top: 84px;
-        right: 18px;
+        top: 16px;
+        right: 68px;
         width: 60px;
         height: 32px;
+        z-index: 9999;
     }
 
     .theme-toggle-thumb {

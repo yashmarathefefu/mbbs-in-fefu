@@ -5121,6 +5121,14 @@ body:not([data-highlight]) .text-highlight,
 
 /* Mobile — centered, smaller globe */
 @media (max-width: 768px) {
+    .globe-container {
+        top: 0;
+        transform: translate(-50%, 0);
+        width: 140vw; /* Increased horizontal width */
+        height: 120vh;
+        height: 120dvh;
+    }
+
     .globe-canvas {
         width: 650px;
         height: 650px;

@@ -537,14 +537,14 @@
 
     .hero-eyebrow {
         margin-bottom: 8px;
-        font-size: 15px;
+        font-size: 11px;
         letter-spacing: 2px;
-        padding: 9px 20px;
+        padding: 6px 14px;
         border-radius: 999px;
     }
 
     #animated-hero-title {
-        font-size: 46px;
+        font-size: 34px;
         font-weight: 700;
         line-height: 1.15;
         max-width: 95%;
@@ -588,7 +588,7 @@
     }
 
     .hero-stat {
-        padding: 12px 10px;
+        padding: 12px 6px;
         min-width: 0;
         flex: 1;
         border-radius: 16px;
@@ -599,7 +599,8 @@
     }
 
     .hero-stat-label {
-        font-size: 10px;
+        font-size: 9.5px;
+        letter-spacing: 0;
     }
 
     .hero-stat-plus {
