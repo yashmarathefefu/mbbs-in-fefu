@@ -262,6 +262,7 @@
                 '<div class="avatar" style="background:' + color + '">' + initials + '</div>' +
                 '<div>' +
                 '<div style="font-weight:700;font-size:14px;color:#fff;">' + escHTML(r.name || '—') + '</div>' +
+                (r.device_info && r.device_info.source === 'virtual_tour_form' ? '<span class="country-badge" style="background:rgba(37,99,235,0.15);color:#60a5fa;border-color:rgba(37,99,235,0.3);">🎥 VTour</span>' : '') +
                 (r.country ? '<span class="country-badge">' + escHTML(r.country) + '</span>' : '') +
                 '</div>' +
                 '</div></td>' +
@@ -397,6 +398,7 @@
         // Device Info
         html += '<h4 style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">📊 Device & Analytics</h4>';
         html += '<div class="device-grid">';
+        if (device.source) html += '<span class="device-tag" style="background:var(--blue);color:#fff;border-color:var(--blue);">📌 Source: ' + escHTML(device.source === 'virtual_tour_form' ? 'Virtual Tour Form' : device.source) + '</span>';
         if (device.screenResolution) html += '<span class="device-tag">🖥 Screen: ' + escHTML(device.screenResolution) + '</span>';
         if (device.windowSize) html += '<span class="device-tag">📐 Window: ' + escHTML(device.windowSize) + '</span>';
         html += '<span class="device-tag">🌐 ' + parseBrowser(device.userAgent) + '</span>';

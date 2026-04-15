@@ -299,6 +299,27 @@
 
     </section>
 
+    <!-- Virtual Tour CTA Strip -->
+    <div class="vtour-cta-strip">
+        <button id="open-vtour-modal" class="premium-vtour-btn" aria-label="Open FEFU Virtual Tour">
+            <div class="vtour-btn-glow"></div>
+            <div class="vtour-btn-bg"></div>
+            <span class="vtour-btn-content">
+                <span class="vtour-btn-icon-wrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="vtour-icon">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                </span>
+                <span class="vtour-btn-text-wrap">
+                    <span class="vtour-btn-label">FEFU Virtual Tour</span>
+                    <span class="vtour-btn-sub">360° Campus Experience</span>
+                </span>
+                <span class="vtour-btn-arrow">→</span>
+            </span>
+        </button>
+    </div>
+
     <!-- About FEFU Section -->
     <section id="about" class="section about-section">
         <div class="container">
@@ -1457,6 +1478,49 @@
             }
         }
     </script>
+    <!-- Virtual Tour Modal -->
+    <div id="vtour-modal" class="vtour-modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="vtour-title">
+        <div class="vtour-modal-backdrop" id="vtour-modal-backdrop"></div>
+        <div class="vtour-modal-content">
+            <button id="vtour-close-btn" class="vtour-close-btn" aria-label="Close modal">&times;</button>
+            
+            <div class="vtour-modal-header">
+                <div class="vtour-modal-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                        <circle cx="12" cy="13" r="3"/>
+                    </svg>
+                </div>
+                <h3 id="vtour-title">360° Virtual Campus Tour</h3>
+                <p>Walk through FEFU's world-class campus from anywhere. Enter your details for instant access.</p>
+            </div>
+
+            <form id="vtourForm" class="vtour-form" novalidate>
+                <div class="vtour-form-group">
+                    <label for="vtour_name">Full Name</label>
+                    <input type="text" id="vtour_name" placeholder="e.g. Rahul Sharma" required autocomplete="name">
+                </div>
+                
+                <div class="vtour-form-group">
+                    <label for="vtour_phone">WhatsApp Number</label>
+                    <input type="tel" id="vtour_phone" placeholder="e.g. 98765 43210" required autocomplete="tel">
+                </div>
+
+                <div id="vtour-form-message" class="form-status-message"></div>
+
+                <button type="submit" class="premium-submit-btn vtour-submit-btn">
+                    <span>Unlock Virtual Tour</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+
+                <p class="vtour-trust">🔒 100% Free &bull; No Spam &bull; Instant Access</p>
+            </form>
+        </div>
+    </div>
+
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
@@ -1477,8 +1541,12 @@
         }
     }
     </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="tracker.js"></script>
+    <script src="vtour.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js" defer></script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 
 </html>
