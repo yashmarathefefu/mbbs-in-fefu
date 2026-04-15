@@ -128,6 +128,15 @@
         btn.setAttribute('aria-label', 'Toggle theme');
         btn.type = 'button';
 
+        // Fix visibility on non-homepage pages 
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || document.getElementById('globe-container')) {
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+        } else {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'all';
+        }
+
         btn.innerHTML = `
             <div class="theme-toggle-track">
                 <div class="toggle-scene-stars"></div>

@@ -14,7 +14,8 @@ body {
     overflow-x: hidden;
 }
 
-@media (min-width: 1025px) {
+/* Mouse/trackpad device — add left space for the sidebar */
+@media (pointer: fine) {
     body {
         padding-left: var(--sidebar-width-collapsed);
         transition: padding-left var(--sidebar-transition);
@@ -247,7 +248,8 @@ body {
     transition-delay: 0.35s;
 }
 
-@media (max-width: 1024px) {
+/* Touch device — hide desktop sidebar, show mobile top navbar */
+@media (pointer: coarse) {
     .sidebar-desktop {
         display: none;
     }
@@ -258,11 +260,12 @@ body {
 
     body {
         padding-top: 4rem;
+        padding-left: 0;     /* remove desktop sidebar offset */
         overflow-x: hidden;
     }
 
     /* Apply transition to all immediate children to push them smoothly */
-    body>* {
+    body > * {
         transition: transform var(--sidebar-transition);
     }
 
@@ -271,7 +274,7 @@ body {
         overflow: hidden;
     }
 
-    body.mobile-drawer-open>*:not(.sidebar-mobile-drawer) {
+    body.mobile-drawer-open > *:not(.sidebar-mobile-drawer) {
         transform: translateX(280px);
     }
 

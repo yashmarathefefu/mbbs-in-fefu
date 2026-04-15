@@ -5119,8 +5119,8 @@ body:not([data-highlight]) .text-highlight,
     pointer-events: auto;
 }
 
-/* Tablet — switch to centered full-screen container */
-@media (max-width: 1024px) {
+/* Touch devices (phones + ALL tablets in any orientation) — centered globe */
+@media (pointer: coarse) {
     .globe-container {
         left: 50%;
         top: 50%;
@@ -5136,13 +5136,35 @@ body:not([data-highlight]) .text-highlight,
     }
 }
 
-/* Mobile — centered, smaller globe */
-@media (max-width: 768px) {
+/* Desktop with mouse — full-viewport transparent wrapper, canvas is proportionally positioned */
+@media (pointer: fine) {
+    .globe-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;   /* clips canvas gracefully if window is very small */
+        transform: none;    /* GSAP animates the canvas, not the container */
+        display: block;     /* canvas uses absolute positioning inside */
+    }
+
+    .globe-canvas {
+        position: absolute;
+        left: 14%;              /* proportional — moves with viewport width */
+        top: 12%;               /* proportional — moves with viewport height */
+        width: min(1040px, 73vw);   /* scales down when window shrinks */
+        height: min(1040px, 73vw);  /* scales down when window shrinks */
+        transform-origin: center center;
+    }
+}
+
+/* Mobile phones (touch + small screen) — smaller canvas, top-anchored */
+@media (pointer: coarse) and (max-width: 768px) {
     .globe-container {
         top: 0;
         transform: translate(-50%, 0);
-        width: 140vw; /* Increased horizontal width */
-        height: 120vh;
+        width: 140vw;
         height: 120dvh;
     }
 
@@ -5164,13 +5186,13 @@ body:not([data-highlight]) .text-highlight,
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 15px; /* Spacing between button and the image */
+        margin-bottom: 15px;
         z-index: 10;
     }
 
     /* Scale down the creepy button slightly for mobile */
     .creepy-btn {
-        font-size: 13px; 
+        font-size: 13px;
         min-width: 9em;
     }
 
@@ -5179,8 +5201,8 @@ body:not([data-highlight]) .text-highlight,
     }
 }
 
-/* Small phones */
-@media (max-width: 480px) {
+/* Small phones — even smaller canvas */
+@media (pointer: coarse) and (max-width: 480px) {
     .globe-canvas {
         width: 500px;
         height: 500px;

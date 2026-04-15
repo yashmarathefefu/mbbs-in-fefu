@@ -400,92 +400,109 @@
 }
 
 /* ========================================
-   TABLET (769px – 1024px) — Desktop-copy, just scaled
+   TABLET — Any touch device larger than a phone
+   Covers all iPads (portrait + landscape), Android tablets.
+   pointer:coarse = touch screen | pointer:fine = desktop mouse
+   No pixel upper-limit — purely input-method based.
    ======================================== */
-@media (max-width: 1024px) and (min-width: 769px) {
+@media (min-width: 769px) and (pointer: coarse) {
 
     .hero-section {
         height: 100vh;
         height: 100dvh;
+        min-height: 100vh;
+        overflow: hidden;
     }
 
-    .hero-section>.container {
+    .hero-section > .container {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         height: 100%;
+        padding: 0 16px;
     }
 
     .hero-content {
-        max-width: 90%;
-        /* Wider container — uses more of the tablet's horizontal space */
-        padding-top: clamp(80px, 12dvh, 120px);
-        padding-bottom: clamp(60px, 8dvh, 100px);
-        padding-left: clamp(24px, 5vw, 48px);
-        padding-right: clamp(24px, 5vw, 48px);
-        height: 100%;
+        max-width: 440px;       /* Same lock as mobile */
+        width: 100%;
+        margin: 0 auto;
+        padding-top: 110px;
+        padding-bottom: 140px;
+        gap: 24px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        text-align: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
     }
 
     #animated-hero-title {
-        font-size: clamp(60px, 9vw, 92px);
-        /* Larger university name */
-        line-height: 1.05;
-        margin-bottom: 20px;
-        /* Clear spacing below title */
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.15;
+        max-width: 95%;
+        margin-bottom: 0px;
     }
 
     .hero-subtitle {
-        font-size: clamp(17px, 2.8vw, 22px);
-        /* Slightly bigger subtitle */
+        max-width: 380px;
+        font-size: 17px;
         line-height: 1.6;
-        max-width: 85%;
-        margin-top: 4px;
-        margin-bottom: 28px;
-        /* Clear gap before CTA buttons */
+        margin-top: 8px;
+        margin-bottom: 0px;
+        padding: 0;
     }
 
     .hero-eyebrow {
-        font-size: 17px;
-        /* Slightly bigger eyebrow */
-        padding: 10px 28px;
-        margin-bottom: 20px;
-        /* Space between eyebrow and title */
+        font-size: 11px;
+        letter-spacing: 2px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        margin-bottom: 8px;
     }
 
     .hero-cta-row {
-        gap: clamp(12px, 2vw, 20px);
+        display: flex;
+        gap: 16px;
+        margin-top: 20px;
+        flex-wrap: nowrap;
+        justify-content: center;
         margin-bottom: 0px;
     }
 
     .btn-discover,
     .btn-ghost {
-        font-size: 16px;
-        padding: 14px 28px;
+        font-size: 15px;
+        padding: 11px 18px;
     }
 
     .hero-stats-row {
-        gap: clamp(12px, 2vw, 16px);
-        /* Fixed margin-top matching dark mode's computed 555.050 total margin,
-           ensuring consistent placement in both themes */
-        margin-top: 455px;
-        margin-bottom: 100px;
+        gap: 8px;
+        flex-wrap: nowrap;
+        justify-content: center;
+        margin-top: auto;
+        width: 100%;
     }
 
     .hero-stat {
-        padding: 18px 24px;
-        min-width: 140px;
+        padding: 12px 6px;
+        min-width: 0;
+        flex: 1;
+        border-radius: 16px;
     }
 
     .hero-stat-number {
-        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        font-size: 20px;
     }
 
     .hero-stat-label {
-        font-size: 13px;
+        font-size: 9.5px;
+        letter-spacing: 0;
+    }
+
+    .hero-stat-plus {
+        font-size: 16px;
     }
 }
 
@@ -526,8 +543,9 @@
         padding-top: 110px;
         padding-bottom: 140px;
         gap: 24px;
-        max-width: 100%;
+        max-width: 440px;  /* Locks layout to 420px sweet-spot on all mobile */
         width: 100%;
+        margin: 0 auto;
         box-sizing: border-box;
     }
 
@@ -570,13 +588,13 @@
     }
 
     .btn-discover {
-        padding: 13px 26px;
-        font-size: 16px;
+        padding: 11px 18px;
+        font-size: 15px;
     }
 
     .btn-ghost {
-        padding: 13px 26px;
-        font-size: 16px;
+        padding: 11px 18px;
+        font-size: 15px;
     }
 
     .hero-stats-row {
@@ -657,35 +675,27 @@
 }
 
 /* ========================================
-   SMALL PHONES (≤400px) — Just smaller fonts
+   VERY SMALL PHONES (≤360px)
+   Scale down text/spacing only — buttons stay side-by-side.
    ======================================== */
-@media (max-width: 400px) {
-    .hero-cta-row {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
+@media (max-width: 360px) {
+    .hero-content {
+        padding-top: 90px;
+        padding-bottom: 110px;
+        gap: 18px;
     }
 
-    .btn-discover,
-    .btn-ghost {
-        font-size: 13px;
-        padding: 10px 20px;
-        width: 100%;
+    #animated-hero-title {
+        font-size: 28px;
     }
 
-    .hero-stats-row {
-        gap: 4px;
+    .hero-subtitle {
+        font-size: 15px;
+        max-width: 100%;
     }
 
-    .hero-stat {
-        padding: 8px 6px;
-    }
-
-    .hero-stat-number {
-        font-size: 16px;
-    }
-
-    .hero-stat-label {
-        font-size: 9px;
+    .hero-eyebrow {
+        font-size: 10px;
+        padding: 5px 12px;
     }
 }

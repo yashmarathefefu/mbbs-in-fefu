@@ -51,11 +51,33 @@
             position: relative;
         }
 
-        .blog-card:hover {
+                .blog-card:hover {
             transform: translateY(-10px);
             background: var(--bg-secondary);
             border-color: rgba(167, 139, 250, 0.3);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Magnetic Glow */
+        .blog-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(167, 139, 250, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .blog-card:hover::before {
+            opacity: 1;
+        }
+
+        .blog-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .blog-card-image {
@@ -324,7 +346,7 @@
                                     in 2026.
                                 </p>
                                 <div class="blog-footer">
-                                    <span>March 9, 2026</span>
+                                    <span>March 9, 2026 &bull; <span style="opacity: 0.7; font-size: 0.9em;">5 min read</span></span>
                                     <div class="read-more">Read Guide <i data-lucide="arrow-right"
                                             style="width:16px;height:16px;"></i></div>
                                 </div>
@@ -340,11 +362,11 @@
                                 <h2 class="blog-title">Top 10 NMC-Approved Medical Universities in Russia for Indian
                                     Students (2026)</h2>
                                 <p class="blog-excerpt">A comprehensive, counselor-led guide comparing the top 10
-                                    NMC-approved Russian medical universities â€” including fees, Indian student presence,
+                                    NMC-approved Russian medical universities Ã¢â‚¬â€ including fees, Indian student presence,
                                     and why Far Eastern Federal University (FEFU) is emerging as the #1 choice for 2026.
                                 </p>
                                 <div class="blog-footer">
-                                    <span>March 9, 2026</span>
+                                    <span>March 9, 2026 &bull; <span style="opacity: 0.7; font-size: 0.9em;">8 min read</span></span>
                                     <span class="read-more">Read More <i data-lucide="arrow-right"
                                             style="width: 16px; height: 16px;"></i></span>
                                 </div>
@@ -374,6 +396,19 @@
         });
     </script>
     <script src="tracker.js"></script>
+    <script>
+        // Magnetic Glow for Blog Cards
+        document.querySelectorAll('.blog-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', x + 'px');
+                card.style.setProperty('--mouse-y', y + 'px');
+            });
+        });
+    </script>
 </body>
 
 </html>
+

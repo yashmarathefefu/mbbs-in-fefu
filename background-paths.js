@@ -131,63 +131,104 @@ function startHeroTextAnimations() {
         // 2. Pause to build anticipation
         tl.to({}, { duration: 0.15 });
 
-        const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
-        const isMobile = window.innerWidth <= 768;
+        // Globe placement: purely touch vs mouse — no arbitrary pixel breakpoints
+        // pointer:coarse = any touch device (phone, tablet, iPad in any orientation)
+        // pointer:fine   = mouse/trackpad = desktop
+        const isTouchDevice = navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+        const isMobile = window.innerWidth <= 768;          // phones (touch + small screen)
+        const isTablet = isTouchDevice && !isMobile;        // any touch device larger than a phone
+        const isDesktop = !isTouchDevice;                   // mouse/trackpad device
 
         // GLOBE ANIMATION (Deep Space Zoom + Fast-to-Slow Spin)
         if (!window.globeSettings) window.globeSettings = {};
-        window.globeSettings.speed = 0.3; // FAST-TO-SLOW SPIN: Start spinning at extremely high speed
+        window.globeSettings.speed = 0.3;
 
-        // DEEP SPACE ZOOM: Start tiny, invisible, and heavily blurred deep in the Z-axis
-        gsap.set('.globe-container', {
-            x: isMobile ? 6 : (isTablet ? 10 : 73),
-            y: isMobile ? -54 : (isTablet ? -112 : "-30vh"),
-            scale: 0.1,
-            rotate: 0,
-            opacity: 0,
-            filter: "blur(20px)"
-        });
-
-        // Hide black shadow on text and theme toggle initially
+        // Shared initial states (all devices)
         gsap.set('#animated-hero-title', { filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))' });
         gsap.set('.hero-subtitle', { textShadow: '0px 0px 0px rgba(0,0,0,0)' });
         gsap.set('.theme-toggle', { opacity: 0, pointerEvents: 'none' });
+        gsap.set('.hero-stars-layer', { scale: 0.85, opacity: 0, rotate: -5 });
 
-        // DEEP SPACE STARS: Sync stars with the globe zoom
-        gsap.set('.hero-stars-layer', {
-            scale: 0.85,
-            opacity: 0,
-            rotate: -5
-        });
-
-        // Phase 1: Emerge from deep space rapidly
-        tl.to('.globe-container', {
-            opacity: 1,
-            filter: "blur(10px)",
-            scale: isMobile ? 0.4 : (isTablet ? 0.3 : 0.2),
-            duration: 0.4,
-            ease: "power2.inOut"
-        }, 'start');
-
+        // Stars Phase 1 (all devices)
         tl.to('.hero-stars-layer', {
-            opacity: 0.4,
-            scale: 0.95,
-            rotate: -2,
-            duration: 0.4,
-            ease: "power2.inOut"
+            opacity: 0.4, scale: 0.95, rotate: -2, duration: 0.4, ease: "power2.inOut"
         }, 'start');
 
-        // Phase 2: Snap into focus and rest at final grand scale
-        tl.to('.globe-container', {
-            x: isMobile ? 6 : (isTablet ? 10 : 73),
-            y: isMobile ? 214 : (isTablet ? 349 : 0),
-            scale: isMobile ? 1.46 : (isTablet ? 1.41 : 1.09),
-            rotate: 0,
-            opacity: 0.90,
-            filter: "blur(0px)",
-            duration: 1.1,
-            ease: "expo.inOut"
-        }, 'expand');
+        if (isDesktop) {
+            // ── DESKTOP: container = full viewport (transparent wrapper)
+            //    Canvas is animated directly so globe stays proportional on window resize.
+            gsap.set('.globe-container', { opacity: 0, filter: "blur(20px)" });
+            gsap.set('.globe-canvas', {
+                x: 0,           // CSS left:9% already positions it; no extra offset needed
+                y: "-30vh",     // start above, animate down into position
+                scale: 0.1,
+                rotate: 0
+            });
+
+            // Phase 1: Emerge from deep space
+            tl.to('.globe-container', {
+                opacity: 1,
+                filter: "blur(10px)",
+                duration: 0.4,
+                ease: "power2.inOut"
+            }, 'start');
+            tl.to('.globe-canvas', {
+                scale: 0.2,
+                duration: 0.4,
+                ease: "power2.inOut"
+            }, 'start');
+
+            // Phase 2: Snap into final position
+            tl.to('.globe-container', {
+                opacity: 0.90,
+                filter: "blur(0px)",
+                duration: 1.1,
+                ease: "expo.inOut"
+            }, 'expand');
+            tl.to('.globe-canvas', {
+                x: 0,
+                y: 0,
+                scale: 1.09,
+                rotate: 0,
+                duration: 1.1,
+                ease: "expo.inOut"
+            }, 'expand');
+
+        } else {
+            // ── TOUCH (tablet / mobile): container is full-screen, GSAP moves container
+            gsap.set('.globe-container', {
+                x: 6,
+                y: isMobile ? -54 : -54,
+                xPercent: -50,
+                scale: 0.1,
+                rotate: 0,
+                opacity: 0,
+                filter: "blur(20px)"
+            });
+
+            // Phase 1: Emerge from deep space
+            tl.to('.globe-container', {
+                opacity: 1,
+                filter: "blur(10px)",
+                scale: 0.4,
+                xPercent: -50,
+                duration: 0.4,
+                ease: "power2.inOut"
+            }, 'start');
+
+            // Phase 2: Snap into final position
+            tl.to('.globe-container', {
+                x: 6,
+                y: 214,
+                xPercent: -50,
+                scale: 1.46,
+                rotate: 0,
+                opacity: 0.90,
+                filter: "blur(0px)",
+                duration: 1.1,
+                ease: "expo.inOut"
+            }, 'expand');
+        }
 
         tl.to('.hero-stars-layer', {
             opacity: 0.9,

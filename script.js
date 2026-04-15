@@ -1117,13 +1117,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (galleryTabs.length > 0 && galleryItems.length > 0) {
         galleryTabs.forEach(tab => {
             tab.addEventListener('click', () => {
+                const filterValue = tab.getAttribute('data-category');
+
                 // Remove active class from all tabs
                 galleryTabs.forEach(t => t.classList.remove('active'));
 
-                // Add active class to clicked tab
-                tab.classList.add('active');
-
-                const filterValue = tab.getAttribute('data-category');
+                // Add active class to all tabs that share this category (sync top & bottom)
+                document.querySelectorAll(`.gallery-tab[data-category="${filterValue}"]`).forEach(t => {
+                    t.classList.add('active');
+                });
 
                 galleryItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
@@ -1139,8 +1141,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Ensure "All" tab triggers initial
-        const activeTab = document.querySelector('.gallery-tab.active') || document.querySelector('.gallery-tab[data-category="all"]');
+        // Ensure initially active tab triggers filtering
+        const activeTab = document.querySelector('.gallery-tab.active') || document.querySelector('.gallery-tab');
         if (activeTab) {
             activeTab.click();
         }
