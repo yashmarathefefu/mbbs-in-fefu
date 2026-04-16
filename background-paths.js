@@ -146,7 +146,6 @@ function startHeroTextAnimations() {
         // Shared initial states (all devices)
         gsap.set('#animated-hero-title', { filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))' });
         gsap.set('.hero-subtitle', { textShadow: '0px 0px 0px rgba(0,0,0,0)' });
-        gsap.set('.theme-toggle', { opacity: 0, pointerEvents: 'none' });
         gsap.set('.hero-stars-layer', { scale: 0.85, opacity: 0, rotate: -5 });
 
         // Stars Phase 1 (all devices)
@@ -249,12 +248,6 @@ function startHeroTextAnimations() {
             duration: 1.1, 
             ease: "power2.inOut"
         }, 'expand+=0.2');
-        tl.to('.theme-toggle', { 
-            opacity: 1, 
-            pointerEvents: 'auto', 
-            duration: 1.0, 
-            ease: "power2.out" 
-        }, 'expand+=0.5');
 
         // Fast-to-Slow Spin physics: Apply dramatic friction over time
         tl.to(window.globeSettings, {

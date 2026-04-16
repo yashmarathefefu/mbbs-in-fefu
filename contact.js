@@ -14,8 +14,8 @@
     }
 
     ready(function () {
-        if (typeof supabase === 'undefined' || !supabase.createClient) return;
-        var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        var sb = window.supabaseClient;
+        if (!sb) return;
 
         var form = document.getElementById('contactForm');
         if (!form) return;
@@ -326,6 +326,5 @@
             requestAnimationFrame(animate);
         }
 
-        console.log('[ContactForm] ✅ Ready');
     });
 })();

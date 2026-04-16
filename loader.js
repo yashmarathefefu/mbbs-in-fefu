@@ -158,9 +158,6 @@ function startLoader() {
     const loaderOverlay = document.getElementById('shader-loader');
     if (!loaderOverlay) return;
 
-    // Remove any previous scroll lock immediately to ensure scrolling works
-    document.body.style.overflow = 'hidden';
-
     // PERFORMANCE OPTIMIZATION: Session Storage Check
     const hasSeenLoader = sessionStorage.getItem('fefu_loader_seen') === 'true';
     if (!hasSeenLoader) {
@@ -170,12 +167,22 @@ function startLoader() {
     // If completely bypassing, or if it's a mobile device (where we want to skip it), don't even init the shader or fade.
     if (hasSeenLoader || isMobile()) {
         loaderOverlay.remove();
-        document.body.style.overflow = 'auto';
-        document.body.style.overflowX = 'hidden';
+        document.body.style.overflow = '';
         window.dispatchEvent(new Event('start-heavy-loading'));
         document.dispatchEvent(new Event('loader-finished'));
         return; // Exit immediately
     }
+
+    // Only lock scroll AFTER we've determined the loader will show
+    document.body.style.overflow = 'hidden';
+
+    // HARDFALLBACK: Force remove loader after 5 seconds max
+    setTimeout(() => {
+        if (loaderOverlay && loaderOverlay.parentNode) {
+            loaderOverlay.remove();
+            document.body.style.overflow = '';
+        }
+    }, 5000);
 
     // Initialize raw webgl shader animation ONLY for new visitors
     const shaderControls = initRawWebGLShader();
@@ -195,8 +202,7 @@ function startLoader() {
             window.dispatchEvent(new Event('start-heavy-loading'));
 
             // Re-enable scrolling explicitly
-            document.body.style.overflow = 'auto';
-            document.body.style.overflowX = 'hidden'; // Keep horizontal scroll clean
+            document.body.style.overflow = '';
 
             // Explicitly trigger opening animations of hero components
             document.dispatchEvent(new Event('loader-finished'));

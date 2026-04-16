@@ -183,7 +183,6 @@ export class CinematicHostel {
     preloadFrames() {
         if (this.preloadStarted) return;
         this.preloadStarted = true;
-        console.log('Hostel animation: Starting staggered preload...');
 
         // Divide frames into manageable batches to maintain network responsiveness
         const total = this.totalFrames;

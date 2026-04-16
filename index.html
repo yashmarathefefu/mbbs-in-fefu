@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>MBBS in Russia - FEFU Medical Consultancy</title>
     <meta name="description"
         content="Expert consultancy for MBBS studies at Far Eastern Federal University (FEFU), Russia. Your gateway to quality medical education.">
+    <meta name="keywords" content="MBBS in Russia, MBBS abroad, FEFU medical university, Far Eastern Federal University, medical education Russia, MBBS consultancy">
+    <meta name="author" content="FEFU Medical Consultancy">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://fefumedical.com">
     <meta name="theme-color" content="#000000">
 
     <!-- Open Graph / Facebook -->
@@ -49,11 +54,22 @@
             justify-content: center;
             opacity: 1;
             visibility: visible;
+            animation: loaderFallback 0.5s ease-out 5s forwards;
+        }
+
+        @keyframes loaderFallback {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                display: none;
+                pointer-events: none;
+            }
         }
 
         .shader-loader.fade-out {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
             transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
@@ -157,8 +173,6 @@
                 <span class="sidebar-label-container"><span class="sidebar-label">Contact</span></span>
             </a>
         </nav>
-
-
     </aside>
 
     <!-- Mobile Sidebar -->
@@ -175,10 +189,7 @@
                 </svg>
             </span>
         </div>
-        <button id="sidebar-menu-toggle" aria-label="Open menu"
-            style="background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;">
-            <i data-lucide="menu" class="sidebar-icon"></i>
-        </button>
+        <!-- Buttons will be positioned by JavaScript -->
     </div>
 
     <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
@@ -195,8 +206,7 @@
                     </svg>
                 </span>
             </div>
-            <button id="sidebar-close-toggle" aria-label="Close menu"
-                style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+            <button id="sidebar-close-toggle" aria-label="Close menu" style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
                 <i data-lucide="x" class="sidebar-icon"></i>
             </button>
         </div>
@@ -217,29 +227,23 @@
                 <i data-lucide="book-open" class="sidebar-icon"></i>
                 <span class="sidebar-label" style="margin-left: 1rem;">Blog</span>
             </a>
-            <a href="index.html#hostels" class="sidebar-link"
-                onclick="document.getElementById('sidebar-close-toggle').click()">
+            <a href="index.html#hostels" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="bed-double" class="sidebar-icon"></i>
                 <span class="sidebar-label" style="margin-left: 1rem;">Hostels</span>
             </a>
-            <a href="index.html#admission" class="sidebar-link"
-                onclick="document.getElementById('sidebar-close-toggle').click()">
+            <a href="index.html#admission" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="file-text" class="sidebar-icon"></i>
                 <span class="sidebar-label" style="margin-left: 1rem;">Admission</span>
             </a>
-            <a href="index.html#why-us" class="sidebar-link"
-                onclick="document.getElementById('sidebar-close-toggle').click()">
+            <a href="index.html#why-us" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="star" class="sidebar-icon"></i>
                 <span class="sidebar-label" style="margin-left: 1rem;">Why Us</span>
             </a>
-            <a href="index.html#contact" class="sidebar-link"
-                onclick="document.getElementById('sidebar-close-toggle').click()">
+            <a href="index.html#contact" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="phone" class="sidebar-icon"></i>
                 <span class="sidebar-label" style="margin-left: 1rem;">Contact</span>
             </a>
         </nav>
-
-
     </div>
 
     <!-- Hero Section -->
@@ -306,9 +310,12 @@
             <div class="vtour-btn-bg"></div>
             <span class="vtour-btn-content">
                 <span class="vtour-btn-icon-wrap">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="vtour-icon">
-                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                        <circle cx="12" cy="13" r="3"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                        class="vtour-icon">
+                        <path
+                            d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                        <circle cx="12" cy="13" r="3" />
                     </svg>
                 </span>
                 <span class="vtour-btn-text-wrap">
@@ -469,37 +476,42 @@
                 <div class="academic-content">
                     <div class="section-header left-align" style="margin-bottom: 1rem;">
                         <span class="academic-badge">🏆 Success Stories</span>
-                        <h3 style="font-family: var(--font-heading); font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 10px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">FMGE Passing Students of 2025</h3>
-                        <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.6;">Meet our recent graduates who successfully cleared the FMGE examination and are fulfilling their dreams.</p>
+                        <h3
+                            style="font-family: var(--font-heading); font-size: clamp(24px, 3vw, 32px); font-weight: 700; margin-bottom: 10px; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                            FMGE Passing Students of 2025</h3>
+                        <p style="color: var(--text-secondary); font-size: 16px; line-height: 1.6;">Meet our recent
+                            graduates who successfully cleared the FMGE examination and are fulfilling their dreams.</p>
                     </div>
-            
-            <div class="fmge-testimonials-grid">
-                <!-- Left: Image Slider Stack -->
-                <div class="fmge-images-col">
-                    <div id="fmge-images-container" class="fmge-images-container">
-                        <!-- Images dynamically inserted by JS -->
+
+                    <div class="fmge-testimonials-grid">
+                        <!-- Left: Image Slider Stack -->
+                        <div class="fmge-images-col">
+                            <div id="fmge-images-container" class="fmge-images-container">
+                                <!-- Images dynamically inserted by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Right: Content & Controls -->
+                        <div class="fmge-content-col">
+                            <div id="fmge-content-container" class="fmge-content-container">
+                                <!-- Text dynamically updated by JS -->
+                            </div>
+                            <div class="fmge-controls">
+                                <button id="fmge-prev" class="fmge-nav-btn group" aria-label="Previous Testimonial">
+                                    <i data-lucide="arrow-left"
+                                        class="transition-transform duration-300 group-hover:-rotate-12"></i>
+                                </button>
+                                <button id="fmge-next" class="fmge-nav-btn group" aria-label="Next Testimonial">
+                                    <i data-lucide="arrow-right"
+                                        class="transition-transform duration-300 group-hover:rotate-12"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Right: Content & Controls -->
-                <div class="fmge-content-col">
-                    <div id="fmge-content-container" class="fmge-content-container">
-                        <!-- Text dynamically updated by JS -->
-                    </div>
-                    <div class="fmge-controls">
-                        <button id="fmge-prev" class="fmge-nav-btn group" aria-label="Previous Testimonial">
-                            <i data-lucide="arrow-left" class="transition-transform duration-300 group-hover:-rotate-12"></i>
-                        </button>
-                        <button id="fmge-next" class="fmge-nav-btn group" aria-label="Next Testimonial">
-                            <i data-lucide="arrow-right" class="transition-transform duration-300 group-hover:rotate-12"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            </div> <!-- Close academic-content -->
+
+                </div> <!-- Close academic-content -->
             </div> <!-- Close academic-highlight -->
-            
+
         </div>
     </section>
 
@@ -943,9 +955,9 @@
                             lush forests, ocean views, and stunning landscapes. It features incredible recreational
                             infrastructure, including a 1-km promenade, parks, fountains, tennis courts, and an athletic
                             stadium.</p>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
 
@@ -955,7 +967,8 @@
             <div class="section-header">
                 <span class="admission-badge">📝 Admission</span>
                 <h2 class="section-title">Your Path to FEFU</h2>
-                <p class="section-subtitle">A clear, transparent 4-step admission process with exact timelines and zero guesswork</p>
+                <p class="section-subtitle">A clear, transparent 4-step admission process with exact timelines and zero
+                    guesswork</p>
             </div>
             <div class="admission-stepper">
                 <!-- STEP 1 -->
@@ -966,27 +979,32 @@
                     </div>
                     <div class="step-content">
                         <div class="step-icon">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/hpivxauj.json"
-                                trigger="loop"
-                                delay="2000"
-                                colors="primary:var(--step-icon-color)"
-                                style="width:32px;height:32px">
+                            <lord-icon src="https://cdn.lordicon.com/hpivxauj.json" trigger="loop" delay="2000"
+                                colors="primary:var(--step-icon-color)" style="width:32px;height:32px">
                             </lord-icon>
                         </div>
                         <h3>Free Consultation</h3>
-                        <p>Talk to a counselor via WhatsApp or call. We check your eligibility for Far Eastern Federal University (FEFU), NEET requirements, and budget.</p>
+                        <p>Talk to a counselor via WhatsApp or call. We check your eligibility for Far Eastern Federal
+                            University (FEFU), NEET requirements, and budget.</p>
                         <div class="step-details">
                             <div class="step-meta-chips">
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 10–15 mins</span>
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> No cost</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg> 10–15 mins</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                    </svg> No cost</span>
                             </div>
                             <div class="step-outcome">
                                 <span class="outcome-label">What you'll get:</span>
                                 <span>Eligibility confirmation + personalized cost estimate</span>
                             </div>
-                            <a href="https://wa.me/919823368651?text=hi%20%2C%20i%20want%20to%20know%20about%20the%20fees%20%2C%20hostel%20and%20all%20thing%20about%20fefu" target="_blank" class="step-cta-btn">
-                                <i data-lucide="message-circle" class="btn-icon"></i> 
+                            <a href="https://wa.me/919823368651?text=hi%20%2C%20i%20want%20to%20know%20about%20the%20fees%20%2C%20hostel%20and%20all%20thing%20about%20fefu"
+                                target="_blank" class="step-cta-btn">
+                                <i data-lucide="message-circle" class="btn-icon"></i>
                                 <span>Start free consulting now</span>
                             </a>
                         </div>
@@ -1001,20 +1019,24 @@
                     </div>
                     <div class="step-content">
                         <div class="step-icon">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/puvaffet.json"
-                                trigger="loop"
-                                delay="2500"
-                                colors="primary:var(--step-icon-color)"
-                                style="width:32px;height:32px">
+                            <lord-icon src="https://cdn.lordicon.com/puvaffet.json" trigger="loop" delay="2500"
+                                colors="primary:var(--step-icon-color)" style="width:32px;height:32px">
                             </lord-icon>
                         </div>
                         <h3>Document Submission</h3>
                         <p>Submit your documents — we'll verify and prepare them for the university.</p>
                         <div class="step-details">
                             <div class="step-meta-chips">
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 1–2 days</span>
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF / Scanned</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg> 1–2 days</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14 2 14 8 20 8" />
+                                    </svg> PDF / Scanned</span>
                             </div>
                             <ul class="step-checklist">
                                 <li>Passport (valid 2+ years)</li>
@@ -1035,20 +1057,25 @@
                     </div>
                     <div class="step-content">
                         <div class="step-icon">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/lupuorrc.json"
-                                trigger="loop"
-                                delay="3000"
-                                colors="primary:var(--step-icon-color)"
-                                style="width:32px;height:32px">
+                            <lord-icon src="https://cdn.lordicon.com/lupuorrc.json" trigger="loop" delay="3000"
+                                colors="primary:var(--step-icon-color)" style="width:32px;height:32px">
                             </lord-icon>
                         </div>
                         <h3>Official Admission Letter</h3>
-                        <p>Receive your official admission letter from Far Eastern Federal University within 7–14 days after document approval.</p>
+                        <p>Receive your official admission letter from Far Eastern Federal University within 7–14 days
+                            after document approval.</p>
                         <div class="step-details">
                             <div class="step-meta-chips">
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7–14 days</span>
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> University-issued</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg> 7–14 days</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                        <polyline points="22 4 12 14.01 9 11.01" />
+                                    </svg> University-issued</span>
                             </div>
                             <div class="step-outcome">
                                 <span class="outcome-label">Key details:</span>
@@ -1065,19 +1092,19 @@
                     </div>
                     <div class="step-content">
                         <div class="step-icon">
-                            <lord-icon
-                                src="https://cdn.lordicon.com/rhvddzym.json"
-                                trigger="loop"
-                                delay="3500"
-                                colors="primary:var(--step-icon-color)"
-                                style="width:32px;height:32px">
+                            <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" delay="3500"
+                                colors="primary:var(--step-icon-color)" style="width:32px;height:32px">
                             </lord-icon>
                         </div>
                         <h3>Visa, Travel & Arrival</h3>
                         <p>We handle the entire travel process from visa to your dorm room at FEFU.</p>
                         <div class="step-details">
                             <div class="step-meta-chips">
-                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 2–4 weeks (visa)</span>
+                                <span class="step-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10" />
+                                        <polyline points="12 6 12 12 16 14" />
+                                    </svg> 2–4 weeks (visa)</span>
                             </div>
                             <ul class="step-checklist">
                                 <li>Invitation letter from Russia</li>
@@ -1098,7 +1125,11 @@
                 <div class="responsibility-grid">
                     <div class="responsibility-col responsibility-you">
                         <div class="responsibility-header">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
                             <span>You Do</span>
                         </div>
                         <ul>
@@ -1109,7 +1140,10 @@
                     </div>
                     <div class="responsibility-col responsibility-we">
                         <div class="responsibility-header">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
                             <span>We Handle</span>
                         </div>
                         <ul>
@@ -1328,27 +1362,48 @@
             <div class="footer-grid">
                 <!-- Brand Column -->
                 <div class="footer-col footer-brand">
-                    <div class="footer-logo sidebar-logo" style="margin-bottom:0; padding:0; gap: 8px;">
-                        <svg class="sleek-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
+                    <div class="footer-logo" style="margin-bottom:0; padding:0; gap: 8px;">
+                        <svg class="sleek-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
                             <path d="M2 12H22" />
-                            <path d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" />
+                            <path
+                                d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" />
                         </svg>
                         <span style="font-weight: 600; color: #fff; font-size:1.1rem;">MBBS Abroads</span>
                     </div>
-                    <p>Your trusted gateway to world-class medical education at Far Eastern Federal University, Russia. We provide end-to-end consultancy for your MBBS journey.</p>
+                    <p>Your trusted gateway to world-class medical education at Far Eastern Federal University, Russia.
+                        We provide end-to-end consultancy for your MBBS journey.</p>
                     <div class="footer-socials">
-                        <a href="https://wa.me/919823368651" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-link">
+                        <a href="https://wa.me/919823368651" target="_blank" rel="noopener" aria-label="WhatsApp"
+                            class="social-link">
                             <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
                         </a>
                         <a href="#" target="_blank" rel="noopener" aria-label="Instagram" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                            </svg>
                         </a>
                         <a href="#" target="_blank" rel="noopener" aria-label="YouTube" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                                <path d="m10 15 5-3-5-3z" />
+                            </svg>
                         </a>
                         <a href="#" target="_blank" rel="noopener" aria-label="Facebook" class="social-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -1378,8 +1433,10 @@
                 <!-- Newsletter -->
                 <div class="footer-col footer-newsletter">
                     <h4>Stay Updated</h4>
-                    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Get the latest updates on admissions, scholarship deadlines, and Russian student life.</p>
-                    <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+                    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Get the latest
+                        updates on admissions, scholarship deadlines, and Russian student life.</p>
+                    <form class="newsletter-form"
+                        onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
                         <div class="newsletter-input-group">
                             <input type="email" placeholder="Your email address" required>
                             <button type="submit" class="newsletter-btn">Join</button>
@@ -1391,12 +1448,15 @@
             <!-- Trust Badges Row -->
             <div class="trust-badges-row">
                 <div class="trust-badge-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/WHO_logo.svg" alt="WHO Logo" class="badge-logo" style="filter: brightness(0) invert(1);">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/WHO_logo.svg" alt="WHO Logo"
+                        class="badge-logo" style="filter: brightness(0) invert(1);">
                     <div class="badge-text">WHO<br>Recognized</div>
                 </div>
                 <div class="trust-badge-item">
-                    <div style="width: 48px; height: 48px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                        <img src="https://www.nmc.org.in/wp-content/themes/nmc/images/logo.png" alt="NMC Logo" style="width: 80%; object-fit: contain;">
+                    <div
+                        style="width: 48px; height: 48px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                        <img src="https://www.nmc.org.in/wp-content/themes/nmc/images/logo.png" alt="NMC Logo"
+                            style="width: 80%; object-fit: contain;">
                     </div>
                     <div class="badge-text">NMC/MCI<br>Approved</div>
                 </div>
@@ -1440,8 +1500,8 @@
 
     <!-- Shader Loader -->
     <!-- Main Scripts -->
-    <script type="module" src="hero-3d.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="components/ui/sidebar-vanilla.js" defer></script>
     <script type="module" src="hostel-interaction.js" defer></script>
     <script type="module" src="tree.js" defer></script>
     <script src="timeline.js" defer></script>
@@ -1452,7 +1512,6 @@
     <script type="module" src="globe.js" defer></script>
 
     <script src="global-effects.js" defer></script>
-    <script src="components/ui/sidebar-vanilla.js" defer></script>
     <script src="theme-toggle.js" defer></script>
     <script>
         // Initialize Lucide icons
@@ -1479,16 +1538,19 @@
         }
     </script>
     <!-- Virtual Tour Modal -->
-    <div id="vtour-modal" class="vtour-modal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="vtour-title">
+    <div id="vtour-modal" class="vtour-modal" style="display: none;" role="dialog" aria-modal="true"
+        aria-labelledby="vtour-title">
         <div class="vtour-modal-backdrop" id="vtour-modal-backdrop"></div>
         <div class="vtour-modal-content">
             <button id="vtour-close-btn" class="vtour-close-btn" aria-label="Close modal">&times;</button>
-            
+
             <div class="vtour-modal-header">
                 <div class="vtour-modal-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                        <circle cx="12" cy="13" r="3"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                        <circle cx="12" cy="13" r="3" />
                     </svg>
                 </div>
                 <h3 id="vtour-title">360° Virtual Campus Tour</h3>
@@ -1500,7 +1562,7 @@
                     <label for="vtour_name">Full Name</label>
                     <input type="text" id="vtour_name" placeholder="e.g. Rahul Sharma" required autocomplete="name">
                 </div>
-                
+
                 <div class="vtour-form-group">
                     <label for="vtour_phone">WhatsApp Number</label>
                     <input type="tel" id="vtour_phone" placeholder="e.g. 98765 43210" required autocomplete="tel">
@@ -1510,7 +1572,8 @@
 
                 <button type="submit" class="premium-submit-btn vtour-submit-btn">
                     <span>Unlock Virtual Tour</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
@@ -1541,12 +1604,20 @@
         }
     }
     </script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+    <script>
+        // Centralized Supabase Initialization
+        (function() {
+            var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
+            var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
+            if (typeof supabase !== 'undefined' && supabase.createClient) {
+                window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            }
+        })();
+    </script>
     <script src="tracker.js"></script>
     <script src="vtour.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js" defer></script>
-    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 
 </html>

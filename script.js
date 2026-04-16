@@ -1,113 +1,51 @@
-// ========================================
-// NAVIGATION FUNCTIONALITY
-// ========================================
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('.nav-link, .sidebar-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-        const fullHref = this.getAttribute('href');
-        if (!fullHref) return;
-
-        // Extract hash part
-        const hashIndex = fullHref.indexOf('#');
-        if (hashIndex === -1) {
-            return; // No anchor, let browser handle it
-        }
-
-        const targetId = fullHref.substring(hashIndex);
-        const pagePart = fullHref.substring(0, hashIndex);
-
-        // If the link is pointing to another page, let the browser handle it
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        if (pagePart && pagePart !== '' && pagePart !== currentPath) {
-            return;
-        }
-
-        e.preventDefault();
-        const targetSection = document.querySelector(targetId);
-
-        if (targetSection) {
-            targetSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-
-            // Close original mobile menu if open
-            const navMenu = document.getElementById('navMenu');
-            if (navMenu) {
-                navMenu.classList.remove('active');
+/* ========================================
+   NAVIGATION & TOGGLE LOGIC
+   ======================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Navbar Scroll Effect
+    const mainNav = document.getElementById('mainNav');
+    if (mainNav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                mainNav.classList.add('nav-scrolled');
+            } else {
+                mainNav.classList.remove('nav-scrolled');
             }
+        }, { passive: true });
+    }
 
-            // Close sidebar mobile drawer if open
-            const closeBtn = document.getElementById('sidebar-close-toggle');
-            if (closeBtn) {
-                closeBtn.click();
-            }
-        }
-    });
+    // 2. Mobile Menu Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenuMobile');
+    const navMenuClose = document.getElementById('navMenuClose');
+    const navLinks = document.querySelectorAll('#navMenuMobile .nav-link');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.add('open');
+            navToggle.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        const closeMenu = () => {
+            navMenu.classList.remove('open');
+            navToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        if (navMenuClose) navMenuClose.addEventListener('click', closeMenu);
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+    }
 });
 
-// Mobile navigation toggle
-const navToggle = document.getElementById('navToggle');
-const navMenu = document.getElementById('navMenu');
-
-if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-    });
-}
-
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
-let lastScroll = 0;
-let ticking = false;
-
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        lastScroll = window.scrollY; // Use scrollY for better compatibility
-
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                if (lastScroll > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-}
-
-// ========================================
-// ACTIVE NAVIGATION HIGHLIGHTING
-// ========================================
-
-// ========================================
-// ACTIVE NAVIGATION HIGHLIGHTING (Optimized)
-// ========================================
-
-const sectionObserverOptions = {
-    threshold: 0.3,
-    rootMargin: "-10% 0px -40% 0px" // Trigger when section is near top/center
-};
-
 const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            const currentId = entry.target.getAttribute('id');
-
-            document.querySelectorAll('.nav-link, .sidebar-link').forEach(link => {
-                link.classList.remove('active');
-                const href = link.getAttribute('href');
-                if (href && (href === `#${currentId}` || href.endsWith(`#${currentId}`))) {
-                    link.classList.add('active');
-                }
-            });
+            entry.target.classList.add('in-view');
         }
     });
-}, sectionObserverOptions);
+}, { threshold: 0.1 });
 
 document.querySelectorAll('.section').forEach((section) => {
     sectionObserver.observe(section);
@@ -151,7 +89,7 @@ if (contactForm) {
 // ========================================
 
 import("https://esm.sh/motion@12.38.0").then(({ animate, inView, stagger, scroll }) => {
-    
+
     // 0. Global Scroll Progress Indicator using Motion
     const progressBar = document.createElement('div');
     progressBar.id = 'motion-scroll-progress';
@@ -175,8 +113,8 @@ import("https://esm.sh/motion@12.38.0").then(({ animate, inView, stagger, scroll
     });
 
     inView('.program-card, .step-card, .feature-card', (element) => {
-        animate(element, 
-            { opacity: [0, 1], y: [40, 0] }, 
+        animate(element,
+            { opacity: [0, 1], y: [40, 0] },
             { type: "spring", bounce: 0.4, duration: 0.8 }
         );
     });
@@ -191,13 +129,13 @@ import("https://esm.sh/motion@12.38.0").then(({ animate, inView, stagger, scroll
 
     // Animate when the grid enters view
     inView('.fefu-cards-grid', () => {
-        animate('.fefu-card', 
-            { opacity: [0, 1], y: [40, 0] }, 
-            { 
-                type: "spring", 
-                bounce: 0.3, 
-                duration: 0.9, 
-                delay: stagger(0.1, { startDelay: 0.1 }) 
+        animate('.fefu-card',
+            { opacity: [0, 1], y: [40, 0] },
+            {
+                type: "spring",
+                bounce: 0.3,
+                duration: 0.9,
+                delay: stagger(0.1, { startDelay: 0.1 })
             }
         );
     });
@@ -226,7 +164,7 @@ if (admissionSteps.length > 0) {
         });
     }, {
         threshold: 0.5,
-        rootMargin: "0px 0px -15% 0px" 
+        rootMargin: "0px 0px -15% 0px"
     });
 
     admissionSteps.forEach(step => stepObserver.observe(step));
@@ -539,12 +477,10 @@ if (document.readyState === 'loading') {
 // ========================================
 
 // Handle initial scroll state
-if (document.getElementById('hero-particles') || document.getElementById('shader-loader')) {
-    // Keep locked for loader on homepage (CSS has overflow-y: hidden by default)
-    document.body.style.overflow = 'hidden';
-} else {
-    // Unlock immediately on gallery/other pages where no loader exists
-    document.body.style.overflowY = 'auto';
+// NOTE: On homepage, loader.js handles the overflow lock/unlock.
+// Only unlock on non-homepage pages (gallery, blog, etc.) where no loader exists.
+if (!document.getElementById('hero-particles') && !document.getElementById('shader-loader')) {
+    document.body.style.overflow = '';
 }
 
 // Reveal hero section explicitly after loader finishes
@@ -1019,7 +955,7 @@ function initLightbox() {
 
     function closeLightbox() {
         lightbox.classList.remove('active');
-        document.body.style.overflowY = 'auto'; // Restore vertical scrolling explicitly
+        document.body.style.overflow = ''; // Restore scrolling (let CSS handle overflow-x)
         setTimeout(() => {
             lightboxImg.src = '';
             lightboxCaption.textContent = '';
@@ -1264,8 +1200,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="fmge-student-year">${student.designation}</p>
                 <p class="fmge-quote">
                     ${words.map((word, i) =>
-                        `<span style="filter:blur(8px);opacity:0;transform:translateY(4px);transition:filter 0.25s ease ${i * 0.02}s, opacity 0.25s ease ${i * 0.02}s, transform 0.25s ease ${i * 0.02}s;">${word}&nbsp;</span>`
-                    ).join('')}
+                `<span style="filter:blur(8px);opacity:0;transform:translateY(4px);transition:filter 0.25s ease ${i * 0.02}s, opacity 0.25s ease ${i * 0.02}s, transform 0.25s ease ${i * 0.02}s;">${word}&nbsp;</span>`
+            ).join('')}
                 </p>`;
 
             contentContainer.style.transition = 'opacity 0.2s ease, transform 0.2s ease';

@@ -1771,13 +1771,22 @@ html.theme-transitioning *::after {
    ======================================== */
 @media (max-width: 1024px) {
     .theme-toggle {
-        position: absolute !important;
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        right: 56px !important;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 64px; /* Move it further left to avoid menu button overlap */
         width: 60px;
         height: 32px;
         z-index: 9999;
+    }
+    
+    .sidebar-mobile .theme-toggle {
+        position: static !important;
+        transform: none !important;
+        margin-left: auto;
+        margin-right: 8px;
+        opacity: 1 !important;
+        pointer-events: all !important;
     }
 
     .theme-toggle-thumb {

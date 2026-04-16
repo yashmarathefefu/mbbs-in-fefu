@@ -90,5 +90,4 @@
         sendPageView();
     }, 1800000);
 
-    console.log('[Tracker] ✅ Tracking visitor ' + visitorId.substr(0, 8) + '...');
 })();

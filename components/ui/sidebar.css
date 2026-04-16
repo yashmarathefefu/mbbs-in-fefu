@@ -224,29 +224,12 @@ body {
 }
 
 /* Staggered animation for drawer links */
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(1) {
-    transition-delay: 0.1s;
-}
-
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(2) {
-    transition-delay: 0.15s;
-}
-
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(3) {
-    transition-delay: 0.2s;
-}
-
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(4) {
-    transition-delay: 0.25s;
-}
-
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(5) {
-    transition-delay: 0.3s;
-}
-
-.sidebar-mobile-drawer.open .sidebar-link:nth-child(6) {
-    transition-delay: 0.35s;
-}
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(1) { transition-delay: 0.1s; }
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(2) { transition-delay: 0.15s; }
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(3) { transition-delay: 0.2s; }
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(4) { transition-delay: 0.25s; }
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(5) { transition-delay: 0.3s; }
+.sidebar-mobile-drawer.open .sidebar-link:nth-child(6) { transition-delay: 0.35s; }
 
 /* Touch device — hide desktop sidebar, show mobile top navbar */
 @media (pointer: coarse) {
@@ -260,16 +243,14 @@ body {
 
     body {
         padding-top: 4rem;
-        padding-left: 0;     /* remove desktop sidebar offset */
+        padding-left: 0;
         overflow-x: hidden;
     }
 
-    /* Apply transition to all immediate children to push them smoothly */
     body > * {
         transition: transform var(--sidebar-transition);
     }
 
-    /* Prevent scrolling when drawer is open and push the content */
     body.mobile-drawer-open {
         overflow: hidden;
     }
@@ -278,7 +259,6 @@ body {
         transform: translateX(280px);
     }
 
-    /* Adds a dim overlay to main screen */
     body.mobile-drawer-open::before {
         content: '';
         position: fixed;
@@ -291,13 +271,8 @@ body {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* Sidebar Links */

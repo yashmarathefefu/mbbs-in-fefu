@@ -16,9 +16,7 @@
     }
 
     ready(function () {
-        var sb = (typeof supabase !== 'undefined' && supabase.createClient)
-            ? supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
-            : null;
+        var sb = window.supabaseClient || null;
 
         var openBtn = document.getElementById('open-vtour-modal');
         var modal = document.getElementById('vtour-modal');
@@ -204,6 +202,5 @@
             });
         }
 
-        console.log('[VTour] ✅ Virtual Tour module ready');
     });
 })();

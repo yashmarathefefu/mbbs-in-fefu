@@ -30,12 +30,11 @@
     }
 
     function refreshLordIcons() {
-        // Some lord-icons need a push to re-read CSS variables in the 'colors' attribute
         const icons = document.querySelectorAll('lord-icon');
         icons.forEach(icon => {
             const colors = icon.getAttribute('colors');
             if (colors) {
-                icon.setAttribute('colors', colors); // Trigger attribute change
+                icon.setAttribute('colors', colors);
             }
         });
     }
@@ -43,7 +42,6 @@
     /* ── Radial Ripple Transition ──────────── */
 
     function performRadialTransition(newTheme, btnRect, onApply) {
-        // Respect reduced-motion preference
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             onApply();
             return;
@@ -52,11 +50,9 @@
         const overlay = document.createElement('div');
         overlay.className = 'theme-ripple-overlay';
 
-        // Origin = center of the toggle button
         const x = btnRect.left + btnRect.width / 2;
         const y = btnRect.top + btnRect.height / 2;
 
-        // Radius large enough to cover the whole viewport
         const maxRadius = Math.ceil(Math.hypot(
             Math.max(x, window.innerWidth - x),
             Math.max(y, window.innerHeight - y)
@@ -68,18 +64,16 @@
         overlay.style.setProperty('--ripple-radius', maxRadius + 'px');
 
         document.body.appendChild(overlay);
-        overlay.offsetHeight; // force reflow
+        overlay.offsetHeight;
         overlay.classList.add('expanding');
 
-        // Apply the actual theme while the overlay still covers the viewport
         setTimeout(onApply, 350);
 
-        // Clean up
         overlay.addEventListener('animationend', () => overlay.remove());
         setTimeout(() => { if (overlay.parentNode) overlay.remove(); }, 1200);
     }
 
-    /* ── Apply Theme ──────────────────────── */
+    /* ── Apply Theme ─────────────────────── */
 
     function applyTheme(theme, animate, btnRect) {
         const apply = () => {
@@ -122,20 +116,14 @@
     /* ── Create Toggle Button ─────────────── */
 
     function createToggleButton() {
+        const existingBtn = document.getElementById('theme-toggle-btn');
+        if (existingBtn) existingBtn.remove();
+
         const btn = document.createElement('button');
         btn.id = 'theme-toggle-btn';
         btn.className = 'theme-toggle';
         btn.setAttribute('aria-label', 'Toggle theme');
         btn.type = 'button';
-
-        // Fix visibility on non-homepage pages 
-        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || document.getElementById('globe-container')) {
-            btn.style.opacity = '0';
-            btn.style.pointerEvents = 'none';
-        } else {
-            btn.style.opacity = '1';
-            btn.style.pointerEvents = 'all';
-        }
 
         btn.innerHTML = `
             <div class="theme-toggle-track">
@@ -175,15 +163,63 @@
         function placeToggle() {
             const mobileNav = document.querySelector('.sidebar-mobile');
             if (window.innerWidth <= 1024 && mobileNav) {
-                mobileNav.appendChild(btn);
+                // Create buttons container
+                let buttonsContainer = mobileNav.querySelector('.mobile-buttons');
+                if (!buttonsContainer) {
+                    buttonsContainer = document.createElement('div');
+                    buttonsContainer.className = 'mobile-buttons';
+                    buttonsContainer.style.cssText = 'display:flex; align-items:center; gap:8px;';
+                    mobileNav.appendChild(buttonsContainer);
+                }
+                
+                // Create hamburger button
+                let hamburgerBtn = buttonsContainer.querySelector('#sidebar-menu-toggle');
+                if (!hamburgerBtn) {
+                    hamburgerBtn = document.createElement('button');
+                    hamburgerBtn.id = 'sidebar-menu-toggle';
+                    hamburgerBtn.setAttribute('aria-label', 'Open menu');
+                    hamburgerBtn.style.cssText = 'background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;';
+                    hamburgerBtn.innerHTML = '<i data-lucide="menu" class="sidebar-icon"></i>';
+                    
+                    hamburgerBtn.addEventListener('click', () => {
+                        const drawer = document.getElementById('sidebar-mobile-drawer');
+                        if (drawer) {
+                            drawer.classList.add('open');
+                            document.body.classList.add('mobile-drawer-open');
+                        }
+                    });
+                    
+                    // Create close button handler for drawer
+                    const closeBtn = document.getElementById('sidebar-close-toggle');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            const drawer = document.getElementById('sidebar-mobile-drawer');
+                            if (drawer) {
+                                drawer.classList.remove('open');
+                                document.body.classList.remove('mobile-drawer-open');
+                            }
+                        });
+                    }
+                }
+                
+                // Add buttons in correct order: theme toggle first, hamburger last (rightmost)
+                buttonsContainer.innerHTML = '';
+                buttonsContainer.appendChild(btn);
+                buttonsContainer.appendChild(hamburgerBtn);
+                
+                // Re-render lucide icons
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
             } else {
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'all';
                 document.body.appendChild(btn);
             }
         }
-        
+
         placeToggle();
-        
-        // Handle screen resizing
+
         window.addEventListener('resize', () => {
             placeToggle();
         });
