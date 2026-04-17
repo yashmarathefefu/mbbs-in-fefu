@@ -178,26 +178,6 @@
                     hamburgerBtn.id = 'sidebar-menu-toggle';
                     hamburgerBtn.setAttribute('aria-label', 'Open menu');
                     hamburgerBtn.innerHTML = '<i data-lucide="menu" class="sidebar-icon"></i>';
-                    
-                    hamburgerBtn.addEventListener('click', () => {
-                        const drawer = document.getElementById('sidebar-mobile-drawer');
-                        if (drawer) {
-                            drawer.classList.add('open');
-                            document.body.classList.add('mobile-drawer-open');
-                        }
-                    });
-                    
-                    // Create close button handler for drawer
-                    const closeBtn = document.getElementById('sidebar-close-toggle');
-                    if (closeBtn) {
-                        closeBtn.addEventListener('click', () => {
-                            const drawer = document.getElementById('sidebar-mobile-drawer');
-                            if (drawer) {
-                                drawer.classList.remove('open');
-                                document.body.classList.remove('mobile-drawer-open');
-                            }
-                        });
-                    }
                 }
                 
                 // Add buttons in correct order: theme toggle first, hamburger last (rightmost)

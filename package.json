@@ -13,7 +13,8 @@
     "typed.js": "^3.0.0"
   },
   "scripts": {
-    "start": "http-server ."
+    "start": "http-server .",
+    "test": "node test-links.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

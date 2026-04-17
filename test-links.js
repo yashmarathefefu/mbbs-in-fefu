@@ -1,31 +1,46 @@
 const fs = require('fs');
 const https = require('https');
-const html = fs.readFileSync('e:\\final website\\gallery.html', 'utf8');
-const regex = /src=\"(https:\/\/ibspwomnrilukdcumsix\.supabase\.co\/[^\"]+)\"/g;
-let match;
-const urls = [];
-while ((match = regex.exec(html)) !== null) {
-    urls.push(match[1]);
-}
-console.log('Found ' + urls.length + ' urls');
+const path = require('path');
 
-let activeRequests = 0;
-urls.forEach(url => {
-    activeRequests++;
+const galleryPath = path.join(__dirname, 'gallery.html');
+const html = fs.readFileSync(galleryPath, 'utf8');
+const regex = /src="(https:\/\/ibspwomnrilukdcumsix\.supabase\.co\/[^"]+)"/g;
+const urls = [...html.matchAll(regex)].map((match) => match[1]);
+
+if (urls.length === 0) {
+    console.error(`No Supabase image URLs found in ${galleryPath}.`);
+    process.exit(1);
+}
+
+console.log(`Found ${urls.length} urls`);
+
+let activeRequests = urls.length;
+let failed = false;
+
+urls.forEach((url) => {
     https.get(url, (res) => {
         if (res.statusCode !== 200) {
-            console.log('FAILED: ' + res.statusCode + ' - ' + url);
+            failed = true;
+            console.error(`FAILED: ${res.statusCode} - ${url}`);
         }
-        activeRequests--;
-    }).on('error', (e) => {
-        console.log('ERROR: ' + e.message + ' - ' + url);
-        activeRequests--;
+        res.resume();
+        activeRequests -= 1;
+    }).on('error', (error) => {
+        failed = true;
+        console.error(`ERROR: ${error.message} - ${url}`);
+        activeRequests -= 1;
     });
 });
 
 const waitInterval = setInterval(() => {
-    if (activeRequests === 0) {
-        console.log('Done checking.');
-        clearInterval(waitInterval);
+    if (activeRequests !== 0) {
+        return;
     }
-}, 500);
+
+    clearInterval(waitInterval);
+    if (failed) {
+        process.exit(1);
+    }
+
+    console.log('Done checking.');
+}, 250);

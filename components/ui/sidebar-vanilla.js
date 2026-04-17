@@ -6,12 +6,11 @@
     'use strict';
 
     function initSidebar() {
-        const menuToggle = document.getElementById('sidebar-menu-toggle');
         const closeToggle = document.getElementById('sidebar-close-toggle');
         const drawer = document.getElementById('sidebar-mobile-drawer');
         const mobileBar = document.querySelector('.sidebar-mobile');
 
-        if (!menuToggle || !drawer) return;
+        if (!drawer) return;
 
         function openDrawer() {
             drawer.classList.add('open');
@@ -23,11 +22,15 @@
             document.body.classList.remove('mobile-drawer-open');
         }
 
-        menuToggle.addEventListener('click', openDrawer);
-        
         if (closeToggle) {
             closeToggle.addEventListener('click', closeDrawer);
         }
+
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('#sidebar-menu-toggle')) {
+                openDrawer();
+            }
+        });
 
         // Close on Escape key
         document.addEventListener('keydown', (e) => {

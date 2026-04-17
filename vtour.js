@@ -7,6 +7,7 @@
     'use strict';
 
     var TOUR_URL = 'https://kraizemli.ru/vtour/dvfu/tour.html';
+    var REDIRECT_FAILSAFE_MS = 1200;
 
     function ready(fn) {
         if (document.readyState !== 'loading') fn();
@@ -87,6 +88,10 @@
             formMsg.style.display = 'block';
         }
 
+        function goToTour() {
+            window.location.href = TOUR_URL;
+        }
+
         // ---- FORM SUBMIT ----
         if (form) {
             form.addEventListener('submit', function (e) {
@@ -124,10 +129,10 @@
                     cpu: navigator.hardwareConcurrency || 'unknown'
                 };
 
-                // Safety redirect
+                // Keep lead capture, but don't make users wait several seconds.
                 var redirectTimer = setTimeout(function () {
-                    window.location.href = TOUR_URL;
-                }, 3000);
+                    goToTour();
+                }, REDIRECT_FAILSAFE_MS);
 
                 if (localSb) {
                     localSb.from('form_submissions').insert([{
@@ -140,16 +145,14 @@
                         visitor_id: localStorage.getItem('fefu_visitor_id') || null
                     }]).then(function () {
                         clearTimeout(redirectTimer);
-                        window.location.href = TOUR_URL;
+                        goToTour();
                     }).catch(function () {
                         clearTimeout(redirectTimer);
-                        window.location.href = TOUR_URL;
+                        goToTour();
                     });
                 } else {
-                    // If SB still not ready, just redirect
-                    setTimeout(function() {
-                         window.location.href = TOUR_URL;
-                    }, 500);
+                    clearTimeout(redirectTimer);
+                    goToTour();
                 }
             });
         }

@@ -51,34 +51,32 @@ document.querySelectorAll('.section').forEach((section) => {
     sectionObserver.observe(section);
 });
 
-// ========================================
-// CONTACT FORM HANDLING
-// ========================================
 
-const contactForm = document.getElementById('contactForm');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
 
-        // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            message: document.getElementById('message').value
-        };
 
-        console.log('Form submitted:', formData);
 
-        // TODO: Add your form submission logic here
-        // For now, just show an alert
-        alert('Thank you for your message! We will get back to you soon.');
 
-        // Reset form
-        contactForm.reset();
-    });
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ========================================
 // INTERSECTION OBSERVER FOR ANIMATIONS
@@ -90,21 +88,20 @@ if (contactForm) {
 
 import("https://esm.sh/motion@12.38.0").then(({ animate, inView, stagger, scroll }) => {
 
-    // 0. Global Scroll Progress Indicator using Motion
-    const progressBar = document.createElement('div');
-    progressBar.id = 'motion-scroll-progress';
-    progressBar.style.position = 'fixed';
-    progressBar.style.top = '0';
-    progressBar.style.left = '0';
-    progressBar.style.right = '0';
-    progressBar.style.height = '4px';
-    progressBar.style.background = 'linear-gradient(90deg, #0077b6, #00b4d8)';
-    progressBar.style.transformOrigin = '0%';
-    progressBar.style.zIndex = '100000';
-    document.body.appendChild(progressBar);
 
-    scroll(animate(progressBar, { scaleX: [0, 1] }));
-    // 1. Standard Cards
+
+
+
+
+
+
+
+
+
+
+
+
+    // 1. Standard Cards
     const standardCards = document.querySelectorAll('.program-card, .step-card, .feature-card');
     standardCards.forEach(el => {
         el.style.opacity = '0';
@@ -417,14 +414,22 @@ function initGalleryTabs() {
 
     if (!tabs.length || !items.length) return;
 
-    // Initialize: Show only the active tab's category on page load
-    const activeTab = document.querySelector('.gallery-tab.active');
-    if (activeTab) {
-        const initialCategory = activeTab.dataset.category;
+    function applyCategory(category) {
+        let delayIndex = 0;
+
         items.forEach(item => {
-            const itemCategory = item.dataset.category;
-            if (itemCategory !== initialCategory) {
-                item.classList.add('hidden');
+            const matchesCategory = category === 'all' || item.dataset.category === category;
+            item.classList.toggle('hidden', !matchesCategory);
+
+            if (matchesCategory) {
+                item.classList.remove('animate-in');
+                void item.offsetWidth;
+                item.style.animationDelay = `${delayIndex * 0.05}s`;
+                item.classList.add('animate-in');
+                delayIndex++;
+            } else {
+                item.classList.remove('animate-in');
+                item.style.animationDelay = '';
             }
         });
     }
@@ -433,36 +438,21 @@ function initGalleryTabs() {
         tab.addEventListener('click', () => {
             const category = tab.dataset.category;
 
-            // Update active tab
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            // Orchestrate staggered filtering animation
-            let delayIndex = 0;
-
-            // First pass: Hide and reset all
-            items.forEach(item => {
-                const itemCategory = item.dataset.category;
-                if (itemCategory !== category) {
-                    item.classList.add('hidden');
-                } else {
-                    item.classList.remove('hidden');
-                    item.classList.remove('animate-in'); // Reset for re-trigger
-                }
+            tabs.forEach(t => {
+                t.classList.toggle('active', t.dataset.category === category);
             });
 
-            // Second pass: Trigger reflow and apply animation classes with staggered delays
-            items.forEach(item => {
-                const itemCategory = item.dataset.category;
-                if (itemCategory === category) {
-                    void item.offsetWidth; // Force a CSS reflow
-                    item.style.animationDelay = `${delayIndex * 0.05}s`;
-                    item.classList.add('animate-in');
-                    delayIndex++;
-                }
-            });
+            applyCategory(category);
         });
     });
+
+    const activeTab = document.querySelector('.gallery-tab.active') || tabs[0];
+    if (activeTab) {
+        tabs.forEach(t => {
+            t.classList.toggle('active', t.dataset.category === activeTab.dataset.category);
+        });
+        applyCategory(activeTab.dataset.category);
+    }
 }
 
 // Initialize gallery tabs when DOM is ready
@@ -907,13 +897,13 @@ function initLightbox() {
     const lightboxCounter = document.getElementById('lightbox-counter');
     const lightboxLoader = document.getElementById('lightbox-loader');
 
-    // Select all images from the gallery
-    const galleryItems = Array.from(document.querySelectorAll('.gallery-grid-categorized .gallery-item-cat:not(.hidden) img'));
     let currentImageIndex = 0;
 
-    // Function to update gallery items (since filtering hides some)
     function updateGalleryItems() {
-        return Array.from(document.querySelectorAll('.gallery-grid-categorized .gallery-item-cat:not(.hidden) img'));
+        return Array.from(document.querySelectorAll('.gallery-grid-categorized .gallery-item-cat img')).filter(img => {
+            const item = img.closest('.gallery-item-cat');
+            return item && !item.classList.contains('hidden');
+        });
     }
 
     function openLightbox(index) {
@@ -976,7 +966,7 @@ function initLightbox() {
 
     // Attach click events to the parent containers to capture clicks properly
     document.querySelectorAll('.gallery-item-cat').forEach(item => {
-        item.addEventListener('click', function (e) {
+        item.addEventListener('click', function () {
             const visibleItems = updateGalleryItems();
             const imgElement = this.querySelector('img');
             const index = visibleItems.indexOf(imgElement);
@@ -1041,49 +1031,6 @@ if (document.readyState === 'loading') {
 } else {
     initLightbox();
 }
-
-// ========================================
-// GALLERY FILTERING FUNCTIONALITY
-// ========================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    const galleryTabs = document.querySelectorAll('.gallery-tab');
-    const galleryItems = document.querySelectorAll('.gallery-item-cat');
-
-    if (galleryTabs.length > 0 && galleryItems.length > 0) {
-        galleryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const filterValue = tab.getAttribute('data-category');
-
-                // Remove active class from all tabs
-                galleryTabs.forEach(t => t.classList.remove('active'));
-
-                // Add active class to all tabs that share this category (sync top & bottom)
-                document.querySelectorAll(`.gallery-tab[data-category="${filterValue}"]`).forEach(t => {
-                    t.classList.add('active');
-                });
-
-                galleryItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                        // Add a small animation effect
-                        item.style.animation = 'none'; // reset
-                        item.offsetHeight; /* trigger reflow */
-                        item.style.animation = 'galleryScaleIn 0.4s ease-out forwards';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Ensure initially active tab triggers filtering
-        const activeTab = document.querySelector('.gallery-tab.active') || document.querySelector('.gallery-tab');
-        if (activeTab) {
-            activeTab.click();
-        }
-    }
-});
 
 // ========================================
 // FMGE PASSING STUDENTS TESTIMONIALS 2025

@@ -13,18 +13,18 @@
         banner.className = 'cookie-banner';
         banner.innerHTML = `
             <div class="cookie-content">
-                <h4>🍪 Cookie Preferences</h4>
-                <p>We use cookies and analytics to understand how students browse our site. This helps us provide better counseling for the 2026 intake. Read our <a href="privacy.html">Privacy Policy</a>.</p>
+                <h4>🍪 Help us improve</h4>
+                <p>We use basic data to make this website better for you. By staying, you help us improve your experience. Read our <a href="privacy.html">Privacy Policy</a>.</p>
             </div>
             <div class="cookie-actions">
                 <button class="cookie-btn btn-settings" id="cookieDecline">Later</button>
-                <button class="cookie-btn btn-accept" id="cookieAccept">Accept All</button>
+                <button class="cookie-btn btn-accept" id="cookieAccept">Okay</button>
             </div>
         `;
         document.body.appendChild(banner);
 
         // Animate in
-        setTimeout(() => banner.classList.add('active'), 1000);
+        setTimeout(() => banner.classList.add('active'), 5000);
 
         document.getElementById('cookieAccept').addEventListener('click', () => {
             localStorage.setItem(CONSENT_KEY, 'accepted');

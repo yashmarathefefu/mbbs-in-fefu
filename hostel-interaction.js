@@ -241,7 +241,7 @@ export class CinematicHostel {
     playAnimation(direction) {
         this.isAnimating = true;
         let lastTimestamp = 0;
-        const fps = 30;
+        const fps = 60;
         const interval = 1000 / fps;
 
         const animate = (timestamp) => {
@@ -277,7 +277,7 @@ export class CinematicHostel {
                             if (this.isGalleryMode && this.currentSlideIndex === 0) {
                                 this.overlay.classList.remove('hidden');
                             }
-                        }, 10000);
+                        }, 2000);
 
                         this.enterGalleryMode();
                     } else if (this.currentFrame === 1) {
@@ -345,7 +345,7 @@ export class CinematicHostel {
                 if (this.isGalleryMode && this.currentSlideIndex === 0) {
                     this.overlay.classList.remove('hidden');
                 }
-            }, 10000);
+            }, 2000);
 
             if (this.images[this.totalFrames]) {
                 this.drawFrame(this.images[this.totalFrames]);
