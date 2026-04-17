@@ -1182,6 +1182,29 @@ if (document.readyState === 'loading') {
     nextBtn.addEventListener('click', () => { stopAuto(); goNext(); startAuto(); });
     prevBtn.addEventListener('click', () => { stopAuto(); goPrev(); startAuto(); });
 
+    // ── Touch swipe on image stack (mobile) ───────────────────────────────────
+    let fmgeTouchStartX = 0;
+    let fmgeTouchStartY = 0;
+    const FMGE_SWIPE_MIN = 45;
+
+    container.addEventListener('touchstart', function (e) {
+        var t = e.changedTouches[0];
+        fmgeTouchStartX = t.clientX;
+        fmgeTouchStartY = t.clientY;
+    }, { passive: true });
+
+    container.addEventListener('touchend', function (e) {
+        var t = e.changedTouches[0];
+        var dx = t.clientX - fmgeTouchStartX;
+        var dy = t.clientY - fmgeTouchStartY;
+        if (Math.abs(dx) < FMGE_SWIPE_MIN) return;
+        if (Math.abs(dy) > Math.abs(dx) * 0.75) return;
+        stopAuto();
+        if (dx < 0) goNext();
+        else goPrev();
+        startAuto();
+    }, { passive: true });
+
     // ── Autoplay ──────────────────────────────────────────────────────────────
     function startAuto() {
         stopAuto();

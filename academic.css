@@ -177,6 +177,14 @@
     width: 100%;
     height: 100%;
     perspective: 1000px;
+    touch-action: pan-y;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.fmge-images-container:active {
+    cursor: grabbing;
 }
 
 .fmge-image-slide {
