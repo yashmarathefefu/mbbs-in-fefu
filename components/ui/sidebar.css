@@ -325,6 +325,9 @@ body {
     width: 1.4rem;
     height: 1.4rem;
     flex-shrink: 0;
+    stroke: currentColor;
+    stroke-width: 2px;
+    color: inherit;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 

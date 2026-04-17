@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="components/ui/sidebar.css">
     <link rel="stylesheet" href="theme.css">
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body {
@@ -389,7 +389,9 @@
     <script src="theme-toggle.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         });
     </script>
     <script src="tracker.js"></script>

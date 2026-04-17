@@ -104,7 +104,7 @@
     <link rel="stylesheet" href="global-effects.css">
     <link rel="stylesheet" href="components/ui/sidebar.css">
     <link rel="stylesheet" href="theme.css">
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
@@ -1514,8 +1514,11 @@
     <script src="global-effects.js" defer></script>
     <script src="theme-toggle.js" defer></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
 
         // Program Accordion Toggle functionality
         function toggleProgramDetails(btn) {
