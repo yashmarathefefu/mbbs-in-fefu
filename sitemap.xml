@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage with Key Campus Images -->
+    <url>
+        <loc>https://mbbsabroads.com/</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://mbbsabroads.com/assets/fefu_academic_lab.png</image:loc>
+            <image:caption>Medical students in modern laboratory at Far Eastern Federal University (FEFU)</image:caption>
+            <image:title>FEFU Medical Laboratory</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/hostel/hostel%20building.avif</image:loc>
+            <image:caption>Modern student dormitory building at FEFU campus, Russky Island</image:caption>
+            <image:title>FEFU Student Hostels</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://ibspwomnrilukdcumsix.supabase.co/storage/v1/object/public/fefu-images/nature/beautiful%20campus%207%20(1).avif</image:loc>
+            <image:caption>Panoramic view of the Far Eastern Federal University campus surrounded by the Pacific Ocean</image:caption>
+            <image:title>FEFU Campus Landscape</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/index.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blog.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/mbbs-in-russia-fefu-2026.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/is-mbbs-in-russia-safe-2026.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/gallery.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+</urlset>
