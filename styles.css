@@ -5731,7 +5731,7 @@ textarea:focus-visible,
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 1.25rem;
-    margin-top: 2rem;
+    margin-top: 3rem; /* Increased spacing */
 }
 
 @media (max-width: 1024px) {
@@ -5829,30 +5829,75 @@ textarea:focus-visible,
 .acc-badge-content {
     position: relative;
     height: 100%;
-    background: rgba(10, 10, 15, 0.8);
-    border-radius: 1rem;
-    padding: 1.5rem 1rem;
+    background: rgba(15, 23, 42, 0.4); /* Deeper glassmorphism */
+    border-radius: 1.25rem;
+    padding: 1.75rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    gap: 0.75rem;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow:
         0 0 0 1px rgba(255, 255, 255, 0.02) inset,
-        0 10px 30px rgba(0, 0, 0, 0.4);
-    transition: all 0.4s ease;
-    min-height: 160px;
+        0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    min-height: 180px;
 }
 
 .acc-badge:hover .acc-badge-content {
-    background: rgba(15, 15, 20, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(30, 41, 59, 0.6);
+    border-color: rgba(94, 234, 212, 0.4);
     box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
-        0 20px 50px rgba(0, 0, 0, 0.5),
-        0 0 40px rgba(59, 130, 246, 0.08);
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 25px 60px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(94, 234, 212, 0.1);
+}
+
+.acc-logo-wrap {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.acc-badge:hover .acc-logo-wrap {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.acc-logo {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+/* Invert certain logos for better visibility on dark backgrounds */
+.acc-logo-invert {
+    filter: brightness(100) invert(0);
+}
+
+.acc-logo-nmc {
+    filter: brightness(0) invert(1) contrast(1.2);
+    max-width: 110px;
+}
+
+[data-theme="light"] .acc-logo-invert {
+    filter: none;
+}
+
+[data-theme="light"] .acc-logo-nmc {
+    filter: none;
+}
+
+[data-theme="light"] .acc-badge-content {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
 .acc-logo {
