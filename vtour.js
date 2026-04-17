@@ -130,7 +130,8 @@
                         email: '',
                         message: 'Requested Virtual Tour Access',
                         country: '',
-                        device_info: deviceInfo
+                        device_info: deviceInfo,
+                        visitor_id: localStorage.getItem('fefu_visitor_id') || null
                     }]).then(function () {
                         clearTimeout(redirectTimer);
                         window.location.href = TOUR_URL;

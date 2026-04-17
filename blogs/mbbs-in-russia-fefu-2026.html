@@ -994,7 +994,11 @@
                 galleryBtn.addEventListener('mouseleave', () => {
                     pupils.forEach(pupil => {
                         pupil.style.transform = 'translate(-50%, -50%)';
-                              // ---- Robust Supabase Initialization ----
+                    });
+                });
+            }
+
+            // ---- Robust Supabase Initialization ----
             (function() {
                 var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
                 var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';

@@ -160,7 +160,8 @@
                     email: email,
                     message: message || null,
                     country: country || null,
-                    device_info: deviceInfo
+                    device_info: deviceInfo,
+                    visitor_id: localStorage.getItem('fefu_visitor_id') || null
                 }]).then(function (result) {
                     if (result.error) {
                         showMsg('❌ Something went wrong. Please try again.', 'error');

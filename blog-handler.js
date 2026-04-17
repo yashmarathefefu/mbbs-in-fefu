@@ -91,7 +91,8 @@
                         source: 'blog',
                         pageUrl: window.location.href,
                         userAgent: navigator.userAgent
-                    }
+                    },
+                    visitor_id: localStorage.getItem('fefu_visitor_id') || null
                 }]);
 
                 if (error) {
