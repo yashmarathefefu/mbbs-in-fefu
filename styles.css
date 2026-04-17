@@ -5723,3 +5723,244 @@ textarea:focus-visible,
         font-size: 0.82rem;
     }
 }
+
+/* ========================================
+   ACCREDITATIONS SECTION
+   ======================================== */
+.accreditations-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .accreditations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .accreditations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+.acc-badge {
+    position: relative;
+    border-radius: 1rem;
+    background: transparent;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.acc-badge:hover {
+    transform: translateY(-8px);
+}
+
+.acc-badge-glow {
+    --blur: 0px;
+    --spread: 40;
+    --start: 0;
+    --active: 0;
+    --border-width: 2px;
+
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.acc-badge-glow::after {
+    content: '';
+    position: absolute;
+    inset: calc(-1 * var(--border-width));
+    border-radius: inherit;
+    border: var(--border-width) solid transparent;
+    background:
+        radial-gradient(circle, #3b82f6 10%, #3b82f600 20%),
+        radial-gradient(circle at 40% 40%, #8b5cf6 5%, #8b5cf600 15%),
+        radial-gradient(circle at 60% 60%, #06b6d4 10%, #06b6d400 20%),
+        repeating-conic-gradient(from 236.84deg at 50% 50%,
+            #3b82f6 0%,
+            #8b5cf6 calc(25% / 5),
+            #06b6d4 calc(50% / 5),
+            #3b82f6 calc(100% / 5));
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    filter: brightness(1.5) saturate(1.2);
+    -webkit-mask-clip: padding-box, border-box;
+    -webkit-mask-composite: intersect;
+    -webkit-mask-image:
+        linear-gradient(transparent, transparent),
+        conic-gradient(from calc((var(--start) - var(--spread)) * 1deg),
+            transparent 0deg,
+            white,
+            transparent calc(var(--spread) * 2deg));
+    mask-clip: padding-box, border-box;
+    mask-composite: intersect;
+    mask-image:
+        linear-gradient(transparent, transparent),
+        conic-gradient(from calc((var(--start) - var(--spread)) * 1deg),
+            transparent 0deg,
+            white,
+            transparent calc(var(--spread) * 2deg));
+}
+
+.acc-badge:hover .acc-badge-glow::after {
+    opacity: 0.6;
+    animation: accGlowRotate 4s linear infinite;
+}
+
+@keyframes accGlowRotate {
+    from {
+        --start: 0;
+    }
+    to {
+        --start: 360;
+    }
+}
+
+.acc-badge-content {
+    position: relative;
+    height: 100%;
+    background: rgba(10, 10, 15, 0.8);
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+        0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+    min-height: 160px;
+}
+
+.acc-badge:hover .acc-badge-content {
+    background: rgba(15, 15, 20, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(59, 130, 246, 0.08);
+}
+
+.acc-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.acc-badge:hover .acc-logo {
+    transform: scale(1.1);
+}
+
+.acc-logo-nmc {
+    filter: brightness(0) invert(1);
+    max-width: 90px;
+}
+
+.acc-logo-svg {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.acc-text-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.acc-text-logo svg {
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+}
+
+.acc-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-top: 0.25rem;
+}
+
+.acc-full {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    line-height: 1.3;
+    max-width: 120px;
+}
+
+/* Light Theme Support */
+[data-theme="light"] .acc-badge-content {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.02) inset,
+        0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .acc-badge:hover .acc-badge-content {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .acc-name {
+    color: #1e293b;
+}
+
+[data-theme="light"] .acc-full {
+    color: #64748b;
+}
+
+[data-theme="light"] .acc-logo-svg {
+    color: #1e293b;
+}
+
+[data-theme="light"] .acc-logo-nmc {
+    filter: none;
+}
+
+/* Entrance Animation */
+.acc-badge {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.acc-badge.revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 640px) {
+    .acc-badge-content {
+        padding: 1.25rem 0.75rem;
+        min-height: 140px;
+    }
+
+    .acc-logo {
+        height: 36px;
+    }
+
+    .acc-name {
+        font-size: 0.9rem;
+    }
+
+    .acc-full {
+        font-size: 0.65rem;
+    }
+}

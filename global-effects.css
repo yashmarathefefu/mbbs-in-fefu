@@ -66,7 +66,8 @@
     .fefu-card::after,
     .program-card::after,
     .step-card::after,
-    .feature-card::after {
+    .feature-card::after,
+    .acc-badge::after {
         content: '';
         position: absolute;
         inset: 0;
@@ -80,7 +81,8 @@
     .fefu-card:hover::after,
     .program-card:hover::after,
     .step-card:hover::after,
-    .feature-card:hover::after {
+    .feature-card:hover::after,
+    .acc-badge:hover::after {
         opacity: 1;
     }
 }

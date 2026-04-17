@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Stagger grids
-    const staggerSelectors = ['.fefu-cards-grid', '.programs-grid', '.admission-steps', '.features-grid'];
+    const staggerSelectors = ['.fefu-cards-grid', '.programs-grid', '.admission-steps', '.features-grid', '.accreditations-grid'];
     staggerSelectors.forEach(selector => {
         document.querySelectorAll(selector).forEach(el => {
             el.classList.add('scroll-reveal-stagger');
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---- 3. Card Glow Tracking (Mouse-Follow, desktop only) ----
     if (window.innerWidth > 768) {
-        const glowCards = document.querySelectorAll('.fefu-card, .program-card, .step-card, .feature-card');
+        const glowCards = document.querySelectorAll('.fefu-card, .program-card, .step-card, .feature-card, .acc-badge');
         glowCards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
