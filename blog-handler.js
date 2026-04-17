@@ -90,7 +90,10 @@
                     device_info: {
                         source: 'blog',
                         pageUrl: window.location.href,
-                        userAgent: navigator.userAgent
+                        userAgent: navigator.userAgent,
+                        screenResolution: window.screen.width + 'x' + window.screen.height,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        location: JSON.parse(localStorage.getItem('fefu_location') || 'null')
                     },
                     visitor_id: localStorage.getItem('fefu_visitor_id') || null
                 }]);

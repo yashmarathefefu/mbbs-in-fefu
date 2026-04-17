@@ -151,7 +151,13 @@
                     userAgent: navigator.userAgent,
                     pageUrl: window.location.href,
                     submittedAt: new Date().toISOString(),
-                    adblockDetected: checkAdblock()
+                    adblockDetected: checkAdblock(),
+                    screenResolution: window.screen.width + 'x' + window.screen.height,
+                    windowSize: window.innerWidth + 'x' + window.innerHeight,
+                    language: navigator.language,
+                    platform: navigator.platform,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null')
                 };
 
                 sb.from('form_submissions').insert([{

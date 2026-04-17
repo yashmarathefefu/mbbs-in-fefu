@@ -27,6 +27,24 @@
         var count = parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '0', 10) + 1;
         localStorage.setItem(VISIT_COUNT_KEY, String(count));
         sessionStorage.setItem('fefu_session_counted', '1');
+
+        // ---- Silent Location Detection (Once per session) ----
+        try {
+            fetch('https://ipapi.co/json/')
+                .then(function(res) { return res.json(); })
+                .then(function(data) {
+                    if (data && data.city) {
+                        var loc = {
+                            city: data.city,
+                            region: data.region,
+                            country: data.country_name,
+                            ip: data.ip
+                        };
+                        localStorage.setItem('fefu_location', JSON.stringify(loc));
+                    }
+                })
+                .catch(function() { /* Silently fail to avoid console errors */ });
+        } catch (e) { }
     }
 
     // ---- Track page view ----

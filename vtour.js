@@ -115,7 +115,10 @@
                     userAgent: navigator.userAgent,
                     submittedAt: new Date().toISOString(),
                     source: 'virtual_tour_form',
-                    pageUrl: window.location.href
+                    pageUrl: window.location.href,
+                    screenResolution: window.screen.width + 'x' + window.screen.height,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null')
                 };
 
                 // Safety redirect

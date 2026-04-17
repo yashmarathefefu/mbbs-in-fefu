@@ -399,6 +399,10 @@
         html += '<h4 style="font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;font-weight:600;">📊 Device & Analytics</h4>';
         html += '<div class="device-grid">';
         if (device.source) html += '<span class="device-tag" style="background:var(--blue);color:#fff;border-color:var(--blue);">📌 Source: ' + escHTML(device.source === 'virtual_tour_form' ? 'Virtual Tour Form' : device.source) + '</span>';
+        if (device.location && device.location.city) {
+            html += '<span class="device-tag" style="background:var(--yellow);color:#000;border-color:var(--yellow);font-weight:700;">📍 Location: ' + 
+                escHTML(device.location.city) + ', ' + escHTML(device.location.region || '') + ' (' + escHTML(device.location.country || '') + ')</span>';
+        }
         if (device.screenResolution) html += '<span class="device-tag">🖥 Screen: ' + escHTML(device.screenResolution) + '</span>';
         if (device.windowSize) html += '<span class="device-tag">📐 Window: ' + escHTML(device.windowSize) + '</span>';
         html += '<span class="device-tag">🌐 ' + parseBrowser(device.userAgent) + '</span>';
