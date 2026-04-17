@@ -68,7 +68,7 @@ body {
     align-items: center;
     gap: 12px;
     margin-bottom: 2.5rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0.65rem;
     white-space: nowrap;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -306,7 +306,7 @@ body {
 .sidebar-link.active {
     color: #fff;
     background: linear-gradient(90deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.02) 100%);
-    box-shadow: inset 3px 0 0 0 var(--sidebar-accent);
+    box-shadow: inset 4px 0 0 0 var(--sidebar-accent);
 }
 
 .sidebar-link.active::before {

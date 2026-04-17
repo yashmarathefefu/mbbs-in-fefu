@@ -318,7 +318,7 @@ html.theme-transitioning *::after {
 [data-theme="light"] .sidebar-link.active {
     color: #2563EB;
     background: linear-gradient(90deg, rgba(37, 99, 235, 0.08) 0%, transparent 100%);
-    border-left: 2px solid rgba(37, 99, 235, 0.6);
+    box-shadow: inset 4px 0 0 0 #2563EB;
 }
 
 [data-theme="light"] .sidebar-logo div {
