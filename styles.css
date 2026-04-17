@@ -5231,6 +5231,7 @@ textarea:focus-visible,
     border-radius: 60px;
     isolation: isolate;
     transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    will-change: transform;
 }
 
 .premium-vtour-btn:hover {
@@ -5253,7 +5254,10 @@ textarea:focus-visible,
 }
 
 .premium-vtour-btn:focus-visible .vtour-btn-bg {
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+    box-shadow:
+        0 0 0 3px rgba(125, 211, 252, 0.4),
+        0 0 0 7px rgba(30, 64, 175, 0.28),
+        0 14px 30px rgba(8, 47, 107, 0.5);
 }
 
 /* Pulsing outer glow ring */
@@ -5261,18 +5265,18 @@ textarea:focus-visible,
     position: absolute;
     inset: -3px;
     border-radius: 60px;
-    background: linear-gradient(135deg, #2563EB, #06b6d4, #2563EB);
+    background: linear-gradient(135deg, #3b82f6, #22d3ee, #2563eb);
     background-size: 200% 200%;
     animation: vtourGlowRotate 3s ease infinite;
-    opacity: 0.6;
-    filter: blur(6px);
+    opacity: 0.5;
+    filter: blur(7px);
     z-index: 0;
     transition: opacity 0.3s ease;
 }
 
 .premium-vtour-btn:hover .vtour-btn-glow {
-    opacity: 1;
-    filter: blur(8px);
+    opacity: 0.9;
+    filter: blur(9px);
 }
 
 @keyframes vtourGlowRotate {
@@ -5294,15 +5298,18 @@ textarea:focus-visible,
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 42%),
-        linear-gradient(135deg, #0f3ea8 0%, #2563EB 48%, #0f172a 100%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%),
+        linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0b1220 100%);
     border-radius: 60px;
     z-index: 1;
     transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     box-shadow:
-        0 14px 30px rgba(8, 47, 107, 0.28),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        0 14px 30px rgba(8, 47, 107, 0.42),
+        0 0 0 1px rgba(59, 130, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .vtour-btn-bg::before {
@@ -5327,8 +5334,13 @@ textarea:focus-visible,
 
 .premium-vtour-btn:hover .vtour-btn-bg {
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 46%),
-        linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #0f172a 100%);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 46%),
+        linear-gradient(135deg, #1e40af 0%, #3b82f6 52%, #0b1220 100%);
+    border-color: rgba(125, 211, 252, 0.45);
+    box-shadow:
+        0 18px 34px rgba(8, 47, 107, 0.52),
+        0 0 20px rgba(59, 130, 246, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 /* Button content layout */
@@ -5340,6 +5352,7 @@ textarea:focus-visible,
     gap: 14px;
     padding: 1rem 2.25rem;
     color: #ffffff;
+    transition: transform 0.25s ease;
 }
 
 /* Icon container */
@@ -5354,11 +5367,16 @@ textarea:focus-visible,
     border-radius: 12px;
     flex-shrink: 0;
     transition: all 0.3s ease;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .premium-vtour-btn:hover .vtour-btn-icon-wrap {
     background: rgba(255, 255, 255, 0.22);
     transform: rotate(-4deg) scale(1.05);
+}
+
+.premium-vtour-btn:hover .vtour-btn-content {
+    transform: translateX(1px);
 }
 
 .vtour-icon {
@@ -5377,15 +5395,16 @@ textarea:focus-visible,
 .vtour-btn-label {
     font-size: 1.05rem;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
     line-height: 1.2;
-    text-shadow: 0 1px 10px rgba(15, 23, 42, 0.18);
+    color: #f8fbff;
+    text-shadow: 0 1px 12px rgba(2, 6, 23, 0.45);
 }
 
 .vtour-btn-sub {
     font-size: 0.72rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.78);
+    color: rgba(226, 232, 240, 0.9);
     letter-spacing: 0.02em;
     margin-top: 2px;
 }
@@ -5394,7 +5413,8 @@ textarea:focus-visible,
 .vtour-btn-arrow {
     font-size: 1.3rem;
     font-weight: 300;
-    opacity: 0.7;
+    color: #c7e6ff;
+    opacity: 0.88;
     margin-left: 4px;
     transition: all 0.3s ease;
 }
@@ -5402,6 +5422,17 @@ textarea:focus-visible,
 .premium-vtour-btn:hover .vtour-btn-arrow {
     opacity: 1;
     transform: translateX(4px);
+}
+
+.premium-vtour-btn:active .vtour-btn-bg {
+    box-shadow:
+        0 10px 20px rgba(8, 47, 107, 0.38),
+        0 0 12px rgba(59, 130, 246, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.premium-vtour-btn:active .vtour-btn-content {
+    transform: translateY(1px);
 }
 
 /* ---- Light theme button ---- */
