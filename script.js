@@ -101,7 +101,8 @@ import("https://esm.sh/motion@12.38.0").then(({ animate, inView, stagger, scroll
 
 
 
-    // 1. Standard Cards
+
+    // 1. Standard Cards
     const standardCards = document.querySelectorAll('.program-card, .step-card, .feature-card');
     standardCards.forEach(el => {
         el.style.opacity = '0';
@@ -528,9 +529,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-console.log('MBBS Consultancy Website Loaded Successfully! 🎓');
-console.log('Ready for Three.js integration in the hero-canvas element');
-
 // ========================================
 // CAMPUS NATURE CAROUSEL — Osmo Crisp Slideshow
 // ========================================
@@ -718,7 +716,6 @@ function initCampusSlideShow(el) {
     // ─────────────────────────────────────────────────────────────────────────
 
     updateUI(0);
-    console.log(`🎞️ Osmo Slideshow '${el.id}' initialized with ${total} slides`);
 }
 
 // Initialize on DOMContentLoaded or loader-finished
@@ -793,8 +790,6 @@ if (document.getElementById('shader-loader')) {
             updateEyes(e);
         }
     }, { passive: true });
-
-    console.log('👁️ Creepy eye button initialized');
 })();
 
 
@@ -805,8 +800,6 @@ let __heavyLoadingExecuted = false;
 window.addEventListener('start-heavy-loading', () => {
     if (__heavyLoadingExecuted) return;
     __heavyLoadingExecuted = true;
-
-    console.log('🚀 Starting heavy asset loading...');
 
     // 1. Load Carousel Images
     const lazyImages = document.querySelectorAll('img[data-src]');
@@ -839,7 +832,6 @@ const heavyLoadFailsafe = document.getElementById('campus-nature'); // Nature se
 function triggerHeavyLoad(source) {
     if (window.__heavyLoadingStarted) return; // Prevent multiple triggers
 
-    console.log(`⚡ Heavy assets triggered by: ${source}`);
     window.__heavyLoadingStarted = true;
     window.dispatchEvent(new Event('start-heavy-loading'));
 }

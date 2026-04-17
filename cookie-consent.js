@@ -44,7 +44,6 @@
         // We classify our internal tracking as 'Essential Functional Analytics'
         // This ensures the site owner gets leads with full context while staying safe.
         window.fefuConsentGained = true;
-        console.log("FEFU: Internal Lead Intelligence activated (Essential).");
     }
 
     // Always run internal analytics on load
@@ -56,7 +55,6 @@
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
                 if (link.href.indexOf(window.location.hostname) === -1) {
-                    console.log('External Link Clicked:', link.href);
                     // This data can be pushed to Supabase if needed
                 }
             });
