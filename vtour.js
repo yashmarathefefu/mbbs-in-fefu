@@ -118,7 +118,10 @@
                     pageUrl: window.location.href,
                     screenResolution: window.screen.width + 'x' + window.screen.height,
                     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null')
+                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null'),
+                    fingerprint: localStorage.getItem('fefu_fingerprint'),
+                    ram: navigator.deviceMemory || 'unknown',
+                    cpu: navigator.hardwareConcurrency || 'unknown'
                 };
 
                 // Safety redirect

@@ -408,6 +408,9 @@
         html += '<span class="device-tag">🌐 ' + parseBrowser(device.userAgent) + '</span>';
         if (city) html += '<span class="device-tag">🕐 ' + escHTML(city) + (device.timezoneOffset ? ' (' + device.timezoneOffset + ')' : '') + '</span>';
         if (device.platform) html += '<span class="device-tag">💻 ' + escHTML(device.platform) + '</span>';
+        if (device.ram) html += '<span class="device-tag">🧠 Memory: ' + escHTML(device.ram) + 'GB RAM</span>';
+        if (device.cpu) html += '<span class="device-tag">⚙️ CPU: ' + escHTML(device.cpu) + ' Cores</span>';
+        if (device.fingerprint) html += '<span class="device-tag" style="background:var(--purple);color:#fff;">🔑 Fingerprint: ' + escHTML(device.fingerprint) + '</span>';
         if (device.connection && device.connection !== 'unknown') html += '<span class="device-tag">📶 ' + escHTML(device.connection) + '</span>';
         if (device.touchscreen) html += '<span class="device-tag">📱 Touch: ' + device.touchscreen + '</span>';
         if (device.language) html += '<span class="device-tag">🗣 ' + escHTML(device.language) + '</span>';
@@ -428,6 +431,14 @@
         html += '<div id="browsingHistoryContainer"><span style="color:var(--text-muted);font-size:12px;">Loading browsing data…</span></div>';
 
         modalBody.innerHTML = html;
+
+        // ---- Method 3 & 4: Cross-Device & Fingerprint Logic ----
+        if (device.location && device.location.ip) {
+            checkCrossDeviceMatches(device.location.ip, row.visitor_id, row.id);
+        }
+        if (device.fingerprint) {
+            checkFingerprintMatches(device.fingerprint, row.id);
+        }
 
         // Load browsing data and intelligence if visitor_id exists
         if (row.visitor_id) {
@@ -971,6 +982,69 @@
                 });
                 html += '</div>';
                 container.innerHTML = html;
+            });
+    }
+
+    /* ======== CROSS-DEVICE MATCHING (Method 3) ======== */
+    function checkCrossDeviceMatches(ip, currentVisitorId, currentLeadId) {
+        sb.from('form_submissions').select('id, name, phone, visitor_id, device_info')
+            .neq('id', currentLeadId)
+            .then(function(res) {
+                if (res.error || !res.data) return;
+                
+                var matches = res.data.filter(function(sub) {
+                    var subIp = sub.device_info && sub.device_info.location && sub.device_info.location.ip;
+                    return subIp === ip; // Same WiFi/Net
+                });
+
+                if (matches.length > 0) {
+                    var matchHtml = '<div style="margin-top:16px; padding:12px; background:rgba(139, 92, 246, 0.1); border:1px dashed var(--primary); border-radius:12px;">' +
+                        '<div style="color:var(--primary); font-size:12px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px;">' +
+                        '🔗 Possible Cross-Device Match (Same IP)</div>';
+                    
+                    matches.forEach(function(m) {
+                        matchHtml += '<div style="font-size:11px; color:var(--text-main); margin-bottom:4px;">' +
+                            'Matched with Lead: <b>' + escHTML(m.name || 'Anonymous') + '</b> (' + escHTML(m.phone || 'No Phone') + ')' +
+                            '</div>';
+                    });
+                    
+                    matchHtml += '<div style="font-size:10px; color:var(--text-muted); font-style:italic;">Note: These sessions share the same WiFi/Network.</div></div>';
+                    
+                    var matchDiv = document.createElement('div');
+                    matchDiv.innerHTML = matchHtml;
+                    $('leadIntelContainer').prepend(matchDiv);
+                }
+            });
+    }
+
+    /* ======== HARDWARE FINGERPRINT MATCHING (Method 4) ======== */
+    function checkFingerprintMatches(fp, currentLeadId) {
+        sb.from('form_submissions').select('id, name, phone, device_info')
+            .neq('id', currentLeadId)
+            .then(function(res) {
+                if (res.error || !res.data) return;
+                
+                var matches = res.data.filter(function(sub) {
+                    return sub.device_info && sub.device_info.fingerprint === fp;
+                });
+
+                if (matches.length > 0) {
+                    var matchHtml = '<div style="margin-top:10px; padding:12px; background:rgba(239, 68, 68, 0.1); border:1px solid #ef4444; border-radius:12px;">' +
+                        '<div style="color:#ef4444; font-size:12px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:6px;">' +
+                        '⚠️ Hardware Duplicate Detected (Fingerprint Match)</div>';
+                    
+                    matches.forEach(function(m) {
+                        matchHtml += '<div style="font-size:11px; color:var(--text-main); margin-bottom:4px;">' +
+                            'This physical device used by: <b>' + escHTML(m.name || 'Anonymous') + '</b> (' + escHTML(m.phone || 'No Phone') + ')' +
+                            '</div>';
+                    });
+                    
+                    matchHtml += '<div style="font-size:10px; color:var(--text-muted); font-style:italic;">Note: This is the exact same hardware. Extremely high probability of being the same person.</div></div>';
+                    
+                    var matchDiv = document.createElement('div');
+                    matchDiv.innerHTML = matchHtml;
+                    $('leadIntelContainer').prepend(matchDiv);
+                }
             });
     }
 
