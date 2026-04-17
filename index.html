@@ -1663,12 +1663,37 @@
     </script>
 
     <script>
-        // Centralized Supabase Initialization
+        /**
+         * Centralized Supabase Initialization
+         * Ensures that the library is available before creating the client.
+         */
         (function() {
             var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
             var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
-            if (typeof supabase !== 'undefined' && supabase.createClient) {
-                window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+            function initSupabase() {
+                if (typeof supabase !== 'undefined' && supabase.createClient) {
+                    window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                    // Notify any waiting scripts
+                    window.dispatchEvent(new CustomEvent('supabase-ready', { detail: { client: window.supabaseClient } }));
+                    return true;
+                }
+                return false;
+            }
+
+            // Attempt initialization immediately in case library was already loaded synchronously
+            if (!initSupabase()) {
+                // If not ready, wait for DOMContentLoaded (when defer scripts have run)
+                document.addEventListener('DOMContentLoaded', function() {
+                    if (!initSupabase()) {
+                        // Fallback: check again shortly if network was slow
+                        var attempts = 0;
+                        var interval = setInterval(function() {
+                            attempts++;
+                            if (initSupabase() || attempts > 20) clearInterval(interval);
+                        }, 100);
+                    }
+                });
             }
         })();
     </script>

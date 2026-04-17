@@ -688,49 +688,35 @@
                 });
             }
 
-            // Supabase Logic
-            const SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
-            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
+            // ---- Robust Supabase Initialization ----
+            (function() {
+                var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
+                var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
 
-            if (typeof supabase !== 'undefined') {
-                const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-                const blogForm = document.getElementById('blogInquiryForm');
-                const blogMsg = document.getElementById('blogFormMsg');
-                const blogBtn = document.getElementById('blogFormBtn');
+                function initSupabase() {
+                    if (typeof supabase !== 'undefined' && supabase.createClient) {
+                        window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                        window.dispatchEvent(new CustomEvent('supabase-ready', { detail: { client: window.supabaseClient } }));
+                        return true;
+                    }
+                    return false;
+                }
 
-                if (blogForm) {
-                    blogForm.addEventListener('submit', async (e) => {
-                        e.preventDefault();
-                        const name = document.getElementById('blog_name').value;
-                        const phone = document.getElementById('blog_phone').value;
-                        const email = document.getElementById('blog_email').value;
-                        const country = document.getElementById('blog_country').value;
-
-                        blogBtn.disabled = true;
-                        blogBtn.innerHTML = '<span>Sending...</span>';
-
-                        const { error } = await sb.from('form_submissions').insert([{
-                            name, phone, email, country,
-                            message: 'Inquiry from Safety Blog (2026)',
-                            device_info: { source: 'safety_blog', pageUrl: window.location.href, submittedAt: new Date().toISOString() }
-                        }]);
-
-                        if (error) {
-                            blogMsg.textContent = 'âŒ Error. Please try again.';
-                            blogMsg.className = 'blog-form-msg error';
-                        } else {
-                            blogMsg.textContent = 'âœ… Thank you! We will contact you soon.';
-                            blogMsg.className = 'blog-form-msg success';
-                            blogForm.reset();
+                if (!initSupabase()) {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        if (!initSupabase()) {
+                            var attempts = 0;
+                            var interval = setInterval(function() {
+                                attempts++;
+                                if (initSupabase() || attempts > 20) clearInterval(interval);
+                            }, 100);
                         }
-                        blogBtn.disabled = false;
-                        blogBtn.innerHTML = '<span>Get Free Counseling</span> <i data-lucide="send"></i>';
-                        lucide.createIcons();
                     });
                 }
-            }
+            })();
         });
     </script>
+    <script src="../blog-handler.js" defer></script>
     <script src="../tracker.js"></script>
 </body>
 

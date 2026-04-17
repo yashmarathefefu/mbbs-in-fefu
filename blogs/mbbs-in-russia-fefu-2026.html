@@ -994,110 +994,35 @@
                 galleryBtn.addEventListener('mouseleave', () => {
                     pupils.forEach(pupil => {
                         pupil.style.transform = 'translate(-50%, -50%)';
-                    });
-                });
-            }
+                              // ---- Robust Supabase Initialization ----
+            (function() {
+                var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
+                var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
 
-            // ---- Blog Inquiry Form (Supabase) ----
-            const SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
-            const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
-
-            if (typeof supabase !== 'undefined' && supabase.createClient) {
-                const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-                const blogForm = document.getElementById('blogInquiryForm');
-                const blogMsg = document.getElementById('blogFormMsg');
-                const blogBtn = document.getElementById('blogFormBtn');
-
-                if (blogForm) {
-                    // Auto +91 on phone blur
-                    const phoneInput = document.getElementById('blog_phone');
-                    if (phoneInput) {
-                        phoneInput.addEventListener('blur', function () {
-                            const digits = phoneInput.value.replace(/\D/g, '');
-                            if (digits.length === 10) {
-                                phoneInput.value = '+91 ' + digits.replace(/(\d{5})(\d{5})/, '$1 $2');
-                            }
-                        });
+                function initSupabase() {
+                    if (typeof supabase !== 'undefined' && supabase.createClient) {
+                        window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                        window.dispatchEvent(new CustomEvent('supabase-ready', { detail: { client: window.supabaseClient } }));
+                        return true;
                     }
+                    return false;
+                }
 
-                    // Duplicate check (24hr window)
-                    function isDuplicate(email, phone) {
-                        try {
-                            const stored = JSON.parse(localStorage.getItem('fefu_submitted') || 'null');
-                            if (!stored || Date.now() - stored.time > 86400000) return false;
-                            return stored.email === email || stored.phone === phone;
-                        } catch (e) { return false; }
-                    }
-
-                    blogForm.addEventListener('submit', async (e) => {
-                        e.preventDefault();
-
-                        const name = document.getElementById('blog_name').value.trim();
-                        let phone = document.getElementById('blog_phone').value.trim();
-                        const email = document.getElementById('blog_email').value.trim();
-                        const country = document.getElementById('blog_country').value;
-
-                        // Auto +91
-                        const digits = phone.replace(/\D/g, '');
-                        if (digits.length === 10 && !phone.startsWith('+')) {
-                            phone = '+91 ' + digits.replace(/(\d{5})(\d{5})/, '$1 $2');
-                        }
-
-                        // Duplicate
-                        if (isDuplicate(email, phone)) {
-                            blogMsg.textContent = 'â³ You have already submitted. We will contact you soon!';
-                            blogMsg.className = 'blog-form-msg error';
-                            return;
-                        }
-
-                        // Loading
-                        blogBtn.disabled = true;
-                        blogBtn.innerHTML = '<span>Sending...</span>';
-
-                        try {
-                            const { error } = await sb.from('form_submissions').insert([{
-                                name: name,
-                                phone: phone,
-                                email: email,
-                                country: country || null,
-                                message: 'Inquiry from Blog: MBBS in Russia 2026',
-                                device_info: {
-                                    source: 'blog',
-                                    pageUrl: window.location.href,
-                                    userAgent: navigator.userAgent,
-                                    screenResolution: screen.width + 'x' + screen.height,
-                                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                                    referrer: document.referrer || 'Direct',
-                                    submittedAt: new Date().toISOString()
-                                }
-                            }]);
-
-                            if (error) {
-                                blogMsg.textContent = 'âŒ Something went wrong. Please try again.';
-                                blogMsg.className = 'blog-form-msg error';
-                            } else {
-                                localStorage.setItem('fefu_submitted', JSON.stringify({
-                                    email, phone, time: Date.now()
-                                }));
-                                blogMsg.textContent = 'âœ… Thank you, ' + name.split(' ')[0] + '! Our counselor will call you within 24 hours.';
-                                blogMsg.className = 'blog-form-msg success';
-                                blogForm.reset();
-                            }
-                        } catch (err) {
-                            blogMsg.textContent = 'âŒ Network error. Please check your connection.';
-                            blogMsg.className = 'blog-form-msg error';
-                        } finally {
-                            blogBtn.disabled = false;
-                            blogBtn.innerHTML = '<span>Get Free Counseling</span> <i data-lucide="send" style="width:18px;height:18px;"></i>';
-                            lucide.createIcons();
+                if (!initSupabase()) {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        if (!initSupabase()) {
+                            var attempts = 0;
+                            var interval = setInterval(function() {
+                                attempts++;
+                                if (initSupabase() || attempts > 20) clearInterval(interval);
+                            }, 100);
                         }
                     });
                 }
-            }
+            })();
         });
     </script>
+    <script src="../blog-handler.js" defer></script>
     <script src="../tracker.js"></script>
 </body>
-
 </html>
-
