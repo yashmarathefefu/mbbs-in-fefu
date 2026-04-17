@@ -168,7 +168,6 @@
                 if (!buttonsContainer) {
                     buttonsContainer = document.createElement('div');
                     buttonsContainer.className = 'mobile-buttons';
-                    buttonsContainer.style.cssText = 'display:flex; align-items:center; gap:8px;';
                     mobileNav.appendChild(buttonsContainer);
                 }
                 
@@ -178,7 +177,6 @@
                     hamburgerBtn = document.createElement('button');
                     hamburgerBtn.id = 'sidebar-menu-toggle';
                     hamburgerBtn.setAttribute('aria-label', 'Open menu');
-                    hamburgerBtn.style.cssText = 'background:none; border:none; padding:10px; color:#fff; cursor:pointer; display:flex; align-items:center;';
                     hamburgerBtn.innerHTML = '<i data-lucide="menu" class="sidebar-icon"></i>';
                     
                     hamburgerBtn.addEventListener('click', () => {

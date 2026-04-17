@@ -405,50 +405,49 @@
     }
 
     .hero-content {
-        max-width: 440px;
-        /* Same lock as mobile */
+        max-width: 580px;
         width: 100%;
         margin: 0 auto;
-        padding-top: 110px;
-        padding-bottom: 140px;
-        gap: 24px;
+        padding-top: 100px;
+        padding-bottom: 80px;
+        gap: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        justify-content: flex-start;
+        justify-content: center;
         box-sizing: border-box;
     }
 
     #animated-hero-title {
-        font-size: clamp(2.5rem, 7vw, 3.8rem); 
+        font-size: clamp(3rem, 8vw, 4.5rem); 
         font-weight: 700;
         line-height: 1.15;
         max-width: 90%;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
     }
 
     .hero-subtitle {
-        max-width: 440px;
-        font-size: 19px;
+        max-width: 520px;
+        font-size: 20px;
         line-height: 1.6;
-        margin-top: 10px;
+        margin-top: 8px;
         margin-bottom: 0px;
         padding: 0;
     }
 
     .hero-eyebrow {
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 2px;
         padding: 6px 14px;
         border-radius: 999px;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
     }
 
     .hero-cta-row {
         display: flex;
         gap: 16px;
-        margin-top: 20px;
+        margin-top: 16px;
         flex-wrap: nowrap;
         justify-content: center;
         margin-bottom: 0px;
@@ -456,36 +455,36 @@
 
     .btn-discover,
     .btn-ghost {
-        font-size: 15px;
-        padding: 11px 18px;
+        font-size: 16px;
+        padding: 14px 28px;
     }
 
     .hero-stats-row {
-        gap: 8px;
+        gap: 12px;
         flex-wrap: nowrap;
         justify-content: center;
-        margin-top: auto;
+        margin-top: 24px;
         width: 100%;
     }
 
     .hero-stat {
-        padding: 12px 6px;
+        padding: 16px 12px;
         min-width: 0;
         flex: 1;
         border-radius: 16px;
     }
 
     .hero-stat-number {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .hero-stat-label {
-        font-size: 9.5px;
+        font-size: 10px;
         letter-spacing: 0;
     }
 
     .hero-stat-plus {
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
