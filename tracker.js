@@ -64,9 +64,7 @@
         tracked = true;
 
         var timeSpent = Math.round((Date.now() - pageStart) / 1000);
-        // Don't log tiny views (less than 1 second — probably a redirect)
         if (timeSpent < 1) timeSpent = 1;
-        // Cap at 30 minutes to avoid stale tabs
         if (timeSpent > 1800) timeSpent = 1800;
 
         var payload = {
@@ -74,7 +72,8 @@
             page_url: getPagePath(),
             page_title: document.title || '',
             time_spent_seconds: timeSpent,
-            referrer: document.referrer || 'Direct'
+            referrer: document.referrer || 'Direct',
+            visit_count: parseInt(localStorage.getItem(VISIT_COUNT_KEY) || '1', 10)
         };
 
         var url = SUPABASE_URL + '/rest/v1/page_views';
@@ -88,24 +87,52 @@
                 },
                 body: JSON.stringify(payload),
                 keepalive: true,
-                credentials: 'omit' // Solves the wildcard CORS credentials error
+                credentials: 'omit'
             });
         } catch (e) { }
     }
 
-    // Send on page unload
-    window.addEventListener('beforeunload', sendPageView);
+    // ---- Event Logger (Clicks, CTAs) ----
+    function logEvent(name, data) {
+        var eventUrl = SUPABASE_URL + '/rest/v1/page_events';
+        var eventPayload = {
+            visitor_id: visitorId,
+            event_name: name,
+            event_data: data || {},
+            created_at: new Date().toISOString()
+        };
+        try {
+            fetch(eventUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': 'Bearer ' + SUPABASE_KEY
+                },
+                body: JSON.stringify(eventPayload),
+                keepalive: true,
+                credentials: 'omit'
+            });
+        } catch (e) { }
+    }
 
-    // Also send when tab becomes hidden (mobile browsers don't always fire beforeunload)
-    document.addEventListener('visibilitychange', function () {
-        if (document.visibilityState === 'hidden') {
-            sendPageView();
+    // Auto-track important clicks
+    document.addEventListener('click', function(e) {
+        var target = e.target.closest('button, a.btn, .creepy-btn, .whatsapp-fab, .premium-submit-btn');
+        if (target) {
+            var label = target.innerText.trim() || target.getAttribute('aria-label') || 'Icon Button';
+            logEvent('Button Click', {
+                label: label,
+                tag: target.tagName,
+                url: window.location.href,
+                id: target.id || 'No ID'
+            });
         }
     });
 
-    // Safety: also send after 30 minutes in case user never leaves
-    setTimeout(function () {
-        sendPageView();
-    }, 1800000);
-
+    window.addEventListener('beforeunload', sendPageView);
+    document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'hidden') sendPageView();
+    });
+    setTimeout(function () { sendPageView(); }, 1800000);
 })();

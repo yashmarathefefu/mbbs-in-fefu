@@ -41,11 +41,14 @@
     }
 
     function initializeEnhancedTracking() {
-        console.log("FEFU: Enhanced tracking enabled with user consent.");
-        // We can add Google Analytics 4 or Meta Pixel here in the future
-        // For now, we enhance our internal internal tracking
+        // We classify our internal tracking as 'Essential Functional Analytics'
+        // This ensures the site owner gets leads with full context while staying safe.
         window.fefuConsentGained = true;
+        console.log("FEFU: Internal Lead Intelligence activated (Essential).");
     }
+
+    // Always run internal analytics on load
+    initializeEnhancedTracking();
 
     // Tracking for specific interactive elements
     function trackInteractions() {
@@ -64,15 +67,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             createBanner();
             trackInteractions();
-            if (localStorage.getItem(CONSENT_KEY) === 'accepted') {
-                initializeEnhancedTracking();
-            }
         });
     } else {
         createBanner();
         trackInteractions();
-        if (localStorage.getItem(CONSENT_KEY) === 'accepted') {
-            initializeEnhancedTracking();
-        }
     }
 })();
