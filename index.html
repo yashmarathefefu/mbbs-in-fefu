@@ -176,13 +176,13 @@
 
     <!-- Mobile Sidebar -->
     <div class="sidebar-mobile">
-        <div class="sidebar-logo" style="margin-bottom:0;">
+        <div class="sidebar-logo sidebar-logo-mobile">
             <svg class="sleek-logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path class="globe-path" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
                 <path class="globe-path" d="M2 12H22" />
                 <path class="globe-path" d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" />
             </svg>
-            <span class="sidebar-label-container" style="margin-left: 12px; transform: none; opacity: 1;">
+            <span class="sidebar-label-container sidebar-mobile-label-container">
                 <svg class="sleek-logo-text-svg" viewBox="0 0 180 30" width="140" height="24">
                     <text x="0" y="22" font-family="'Outfit', sans-serif" font-weight="700" font-size="22" class="sleek-text-path">MBBS Abroads</text>
                 </svg>
@@ -192,55 +192,55 @@
     </div>
 
     <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
-            <div class="sidebar-logo" style="margin-bottom:0;">
+        <div class="sidebar-mobile-drawer-header">
+            <div class="sidebar-logo sidebar-logo-mobile">
                 <svg class="sleek-logo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path class="globe-path" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
                     <path class="globe-path" d="M2 12H22" />
                     <path class="globe-path" d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" />
                 </svg>
-                <span class="sidebar-label-container" style="margin-left: 12px; transform: none; opacity: 1;">
+                <span class="sidebar-label-container sidebar-mobile-label-container">
                     <svg class="sleek-logo-text-svg" viewBox="0 0 180 30" width="140" height="24">
                         <text x="0" y="22" font-family="'Outfit', sans-serif" font-weight="700" font-size="22" class="sleek-text-path">MBBS Abroads</text>
                     </svg>
                 </span>
             </div>
-            <button id="sidebar-close-toggle" aria-label="Close menu" style="background:none; border:none; padding:5px; color:#fff; cursor:pointer; display:flex; align-items:center;">
+            <button id="sidebar-close-toggle" aria-label="Close menu" class="sidebar-close-toggle">
                 <i data-lucide="x" class="sidebar-icon"></i>
             </button>
         </div>
-        <nav class="sidebar-links" style="overflow-y:auto; flex-grow: 1;">
+        <nav class="sidebar-links sidebar-mobile-links">
             <a href="index.html" class="sidebar-link">
                 <i data-lucide="home" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Home</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Home</span>
             </a>
             <a href="index.html#about" class="sidebar-link">
                 <i data-lucide="building-2" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">About FEFU</span>
+                <span class="sidebar-label sidebar-mobile-link-label">About FEFU</span>
             </a>
             <a href="gallery.html" class="sidebar-link">
                 <i data-lucide="image" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Gallery</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Gallery</span>
             </a>
             <a href="blog.html" class="sidebar-link">
                 <i data-lucide="book-open" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Blog</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Blog</span>
             </a>
             <a href="index.html#hostels" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="bed-double" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Hostels</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Hostels</span>
             </a>
             <a href="index.html#admission" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="file-text" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Admission</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Admission</span>
             </a>
             <a href="index.html#why-us" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="star" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Why Us</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Why Us</span>
             </a>
             <a href="index.html#contact" class="sidebar-link" onclick="document.getElementById('sidebar-close-toggle').click()">
                 <i data-lucide="phone" class="sidebar-icon"></i>
-                <span class="sidebar-label" style="margin-left: 1rem;">Contact</span>
+                <span class="sidebar-label sidebar-mobile-link-label">Contact</span>
             </a>
         </nav>
     </div>
@@ -263,7 +263,7 @@
 
         <div class="container relative z-10 w-full flex items-center justify-center">
             <div class="hero-content">
-                <span class="hero-eyebrow" id="hero-eyebrow" style="letter-spacing: 0.3em; font-weight: 600;">WILL YOU
+                <span class="hero-eyebrow" id="hero-eyebrow">WILL YOU
                     TAKE THE LEAP?</span>
                 <h1 class="hero-title" id="animated-hero-title">Study MBBS in Russia at FEFU</h1>
                 <p class="hero-subtitle" id="hero-subtitle">Your guaranteed pathway to an MBBS degree at Russia's top
@@ -1222,12 +1222,12 @@
         </div>
     </section>
 
-    <section id="contact" class="section contact-section" style="position: relative;">
+    <section id="contact" class="section contact-section contact-section-shell">
 
 
-        <div class="container" style="position: relative; z-index: 2;">
+        <div class="container contact-section-content">
             <div class="section-header">
-                <span class="nature-badge"
+                <span class="nature-badge contact-badge"
                     style="background: rgba(255,255,255,0.1); color: var(--primary-color); padding: 5px 15px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block;">✉️
                     Get In Touch</span>
                 <h2 class="section-title">Contact Us</h2>
@@ -1362,7 +1362,7 @@
             <div class="footer-grid">
                 <!-- Brand Column -->
                 <div class="footer-col footer-brand">
-                    <div class="footer-logo" style="margin-bottom:0; padding:0; gap: 8px;">
+                    <div class="footer-logo footer-logo-tight">
                         <svg class="sleek-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path
@@ -1371,23 +1371,23 @@
                             <path
                                 d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z" />
                         </svg>
-                        <span style="font-weight: 600; color: #fff; font-size:1.1rem;">MBBS Abroads</span>
+                        <span class="footer-brand-name">MBBS Abroads</span>
                     </div>
                     <p>Your trusted gateway to world-class medical education at Far Eastern Federal University, Russia.
                         We provide end-to-end consultancy for your MBBS journey.</p>
                     <div class="footer-socials">
                         <a href="https://wa.me/919823368651" target="_blank" rel="noopener" aria-label="WhatsApp"
                             class="social-link">
-                            <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                            <i data-lucide="message-circle" class="social-icon-sm"></i>
                         </a>
                         <a href="mailto:admissions@fefumedical.com" aria-label="Email" class="social-link">
-                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                            <i data-lucide="mail" class="social-icon-sm"></i>
                         </a>
                         <a href="blog.html" aria-label="Blog" class="social-link">
-                            <i data-lucide="book-open" style="width: 20px; height: 20px;"></i>
+                            <i data-lucide="book-open" class="social-icon-sm"></i>
                         </a>
                         <a href="privacy.html" aria-label="Privacy Policy" class="social-link">
-                            <i data-lucide="shield" style="width: 20px; height: 20px;"></i>
+                            <i data-lucide="shield" class="social-icon-sm"></i>
                         </a>
                     </div>
                 </div>
@@ -1417,7 +1417,7 @@
                 <!-- Newsletter -->
                 <div class="footer-col footer-newsletter">
                     <h4>Stay Updated</h4>
-                    <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 20px;">Get the latest
+                    <p class="footer-newsletter-copy">Get the latest
                         updates on admissions, scholarship deadlines, and Russian student life.</p>
                     <form class="newsletter-form"
                         onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
@@ -1433,19 +1433,18 @@
             <div class="trust-badges-row">
                 <div class="trust-badge-item">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/WHO_logo.svg" alt="WHO Logo"
-                        class="badge-logo" style="filter: brightness(0) invert(1);">
+                        class="badge-logo badge-logo-invert">
                     <div class="badge-text">WHO<br>Recognized</div>
                 </div>
                 <div class="trust-badge-item">
-                    <div
-                        style="width: 48px; height: 48px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <div class="trust-logo-shell">
                         <img src="https://www.nmc.org.in/wp-content/themes/nmc/images/logo.png" alt="NMC Logo"
-                            style="width: 80%; object-fit: contain;">
+                            class="trust-logo-image">
                     </div>
                     <div class="badge-text">NMC/MCI<br>Approved</div>
                 </div>
                 <div class="trust-badge-item">
-                    <i data-lucide="shield-check" style="width: 40px; height: 40px; color: #fff;"></i>
+                    <i data-lucide="shield-check" class="trust-icon-lg"></i>
                     <div class="badge-text">Ministry of<br>Health Russia</div>
                 </div>
             </div>
@@ -1453,7 +1452,7 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <a href="admin.html" class="footer-admin-link" aria-label="Admin Portal">
-                    <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+                    <i data-lucide="lock" class="footer-admin-icon"></i>
                 </a>
                 <p>© 2026 FEFU Medical Consultancy. All rights reserved.</p>
                 <div class="footer-legal-links">

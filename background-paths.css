@@ -125,12 +125,15 @@
     margin-bottom: 1rem;
     opacity: 0;
     transform: translateY(20px);
-    border: 1px solid rgba(163, 194, 250, 0.6);
-    /* Brighter blue border */
-    /* Sky blue border tint */
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    backdrop-filter: blur(4px);
+    border: 1px solid rgba(163, 194, 250, 0.35);
+    padding: 0.72rem 1.35rem;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.4));
+    box-shadow:
+        0 12px 30px rgba(2, 6, 23, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* Title */
@@ -315,26 +318,48 @@
     transform: translateY(20px);
     /* Push stats to the bottom of the hero container */
     margin-top: auto;
+    width: min(100%, 860px);
 }
 
 .hero-stat {
     text-align: center;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 1.25rem 2rem;
-    border-radius: 1.25rem;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+        linear-gradient(145deg, rgba(8, 15, 28, 0.88), rgba(12, 21, 36, 0.76));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 1.35rem 1.6rem 1.2rem;
+    border-radius: 1.45rem;
     min-width: 160px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    box-shadow:
+        0 18px 40px rgba(2, 6, 23, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hero-stat::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 18%, rgba(125, 211, 252, 0.16), transparent 28%),
+        radial-gradient(circle at 82% 85%, rgba(56, 189, 248, 0.12), transparent 32%);
+    pointer-events: none;
+    opacity: 0.92;
 }
 
 .hero-stat:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(191, 219, 254, 0.26);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+        linear-gradient(145deg, rgba(10, 18, 32, 0.92), rgba(14, 26, 44, 0.82));
+    box-shadow:
+        0 22px 46px rgba(2, 6, 23, 0.46),
+        0 0 34px rgba(59, 130, 246, 0.12);
 }
 
 .hero-stat-number {
@@ -343,20 +368,28 @@
     font-weight: 700;
     color: #fff;
     font-variant-numeric: tabular-nums;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 16px rgba(96, 165, 250, 0.12);
 }
 
 .hero-stat-plus {
     font-size: clamp(1.2rem, 2vw, 1.5rem);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(191, 219, 254, 0.82);
+    position: relative;
+    z-index: 1;
 }
 
 .hero-stat-label {
     display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 0.25rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: rgba(226, 232, 240, 0.72);
+    margin-top: 0.45rem;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
 }
 
 

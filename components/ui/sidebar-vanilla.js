@@ -15,6 +15,9 @@
         function openDrawer() {
             drawer.classList.add('open');
             document.body.classList.add('mobile-drawer-open');
+            if (mobileBar) {
+                mobileBar.classList.remove('nav-hidden');
+            }
         }
 
         function closeDrawer() {
@@ -29,6 +32,11 @@
         document.addEventListener('click', (e) => {
             if (e.target.closest('#sidebar-menu-toggle')) {
                 openDrawer();
+                return;
+            }
+
+            if (drawer.classList.contains('open') && !e.target.closest('#sidebar-mobile-drawer')) {
+                closeDrawer();
             }
         });
 
@@ -41,25 +49,33 @@
 
         // Scroll effect for mobile top bar
         if (mobileBar) {
-            let lastScroll = 0;
-            
-            window.addEventListener('scroll', () => {
+            let lastScroll = window.scrollY;
+            let ticking = false;
+
+            function updateMobileBar() {
                 const currentScroll = window.scrollY;
-                
-                if (currentScroll > 100) {
-                    mobileBar.classList.add('scrolled');
-                } else {
-                    mobileBar.classList.remove('scrolled');
+                const delta = currentScroll - lastScroll;
+
+                mobileBar.classList.toggle('scrolled', currentScroll > 32);
+
+                if (!drawer.classList.contains('open')) {
+                    if (delta > 8 && currentScroll > 180) {
+                        mobileBar.classList.add('nav-hidden');
+                    } else if (delta < -8 || currentScroll < 140) {
+                        mobileBar.classList.remove('nav-hidden');
+                    }
                 }
-                
-                if (currentScroll > lastScroll && currentScroll > 200) {
-                    mobileBar.classList.add('nav-hidden');
-                } else {
-                    mobileBar.classList.remove('nav-hidden');
-                }
-                
+
                 lastScroll = currentScroll;
-            });
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateMobileBar);
+                    ticking = true;
+                }
+            }, { passive: true });
         }
     }
 

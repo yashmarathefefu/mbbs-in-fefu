@@ -9,46 +9,66 @@ function initGlobe() {
     const canvas = document.getElementById('globe-canvas');
     if (!canvas) return;
 
-    const isMobile = window.innerWidth < 768;
+    let isMobile = window.innerWidth < 768;
 
     let phi = 0;
     let width = 0;
     let pointerInteracting = null;
     let pointerMovement = 0;
     let currentR = 0;
-    let rotationSpeed = 0.003; // Default rotation speed
     let globe = null; // Hoist globe variable here
+    let currentDpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 2);
+    let resizeFrame = null;
 
-    function onResize() {
+    function onResize(force) {
         const isMobileNow = window.innerWidth < 768;
         const dprNow = isMobileNow ? 1 : Math.min(window.devicePixelRatio, 2);
+        const nextWidth = canvas.clientWidth || 800;
+
+        if (!force && nextWidth === width && dprNow === currentDpr && isMobileNow === isMobile) {
+            return;
+        }
 
         // Use the canvas's CSS-defined size (set in styles.css per breakpoint)
-        width = canvas.clientWidth || 800;
+        width = nextWidth;
+        currentDpr = dprNow;
+        isMobile = isMobileNow;
 
         // Update canvas DOM attributes for responsive sizing
-        canvas.width = width * dprNow;
-        canvas.height = width * dprNow;
+        canvas.width = width * currentDpr;
+        canvas.height = width * currentDpr;
 
         // Update the globe if it exists
         if (globe) {
-            globe.width = width * dprNow;
-            globe.height = width * dprNow;
+            globe.width = width * currentDpr;
+            globe.height = width * currentDpr;
         }
     }
 
+    function scheduleResize() {
+        if (resizeFrame !== null) {
+            return;
+        }
+
+        resizeFrame = window.requestAnimationFrame(() => {
+            resizeFrame = null;
+            onResize(false);
+        });
+    }
+
     // Update size on custom slider change
-    window.addEventListener('globe-settings-changed', onResize);
+    window.addEventListener('globe-settings-changed', () => onResize(true));
 
-    window.addEventListener('resize', onResize);
-    onResize();
-
-    const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 2);
+    window.addEventListener('resize', scheduleResize, { passive: true });
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', scheduleResize, { passive: true });
+    }
+    onResize(true);
 
     globe = createGlobe(canvas, {
-        width: width * dpr,
-        height: width * dpr,
-        devicePixelRatio: dpr,
+        width: width * currentDpr,
+        height: width * currentDpr,
+        devicePixelRatio: currentDpr,
         phi: 0,
         theta: 0.25,
         dark: 1,
@@ -69,8 +89,8 @@ function initGlobe() {
             if (phi === 0) phi = 4.2;
             if (pointerInteracting === null) phi += speed;
             state.phi = phi + currentR;
-            state.width = width * dpr;
-            state.height = width * dpr;
+            state.width = width * currentDpr;
+            state.height = width * currentDpr;
 
             // Dynamic theme support for white/black globe
             const isLight = document.documentElement.getAttribute('data-theme') === 'light';
@@ -118,7 +138,7 @@ function initGlobe() {
         }
     });
     canvas.addEventListener('touchmove', (e) => {
-        if (e.touches[0] && pointerInteracting !== null) {
+        if (e.touches && e.touches[0] && pointerInteracting !== null) {
             const delta = e.touches[0].clientX - pointerInteracting;
             pointerMovement = delta;
             currentR = delta / 200;

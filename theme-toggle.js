@@ -118,6 +118,7 @@
     function createToggleButton() {
         const existingBtn = document.getElementById('theme-toggle-btn');
         if (existingBtn) existingBtn.remove();
+        let isInMobileBar = null;
 
         const btn = document.createElement('button');
         btn.id = 'theme-toggle-btn';
@@ -162,7 +163,14 @@
 
         function placeToggle() {
             const mobileNav = document.querySelector('.sidebar-mobile');
-            if (window.innerWidth <= 1024 && mobileNav) {
+            const shouldUseMobileBar = window.innerWidth <= 1024 && !!mobileNav;
+            if (shouldUseMobileBar === isInMobileBar) {
+                return;
+            }
+
+            isInMobileBar = shouldUseMobileBar;
+
+            if (shouldUseMobileBar) {
                 // Create buttons container
                 let buttonsContainer = mobileNav.querySelector('.mobile-buttons');
                 if (!buttonsContainer) {
@@ -179,20 +187,21 @@
                     hamburgerBtn.setAttribute('aria-label', 'Open menu');
                     hamburgerBtn.innerHTML = '<i data-lucide="menu" class="sidebar-icon"></i>';
                 }
-                
-                // Add buttons in correct order: theme toggle first, hamburger last (rightmost)
-                buttonsContainer.innerHTML = '';
-                buttonsContainer.appendChild(btn);
-                buttonsContainer.appendChild(hamburgerBtn);
+
+                if (btn.parentElement !== buttonsContainer || hamburgerBtn.parentElement !== buttonsContainer) {
+                    buttonsContainer.replaceChildren(btn, hamburgerBtn);
+                }
                 
                 // Re-render lucide icons
                 if (window.lucide) {
                     window.lucide.createIcons();
                 }
             } else {
-                btn.style.opacity = '1';
-                btn.style.pointerEvents = 'all';
-                document.body.appendChild(btn);
+                if (btn.parentElement !== document.body) {
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'all';
+                    document.body.appendChild(btn);
+                }
             }
         }
 
