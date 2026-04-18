@@ -35,6 +35,7 @@
             var firstField = null;
             var maxScrollDepth = 0;
             var exitIntentTriggered = false;
+            var selectedTopic = '';
 
             // Track Scroll
             window.addEventListener('scroll', function () {
@@ -78,6 +79,7 @@
                     chip.addEventListener('click', function () {
                         for (var j = 0; j < chips.length; j++) chips[j].classList.remove('active');
                         chip.classList.add('active');
+                        selectedTopic = chip.textContent ? chip.textContent.trim() : '';
                         if (textarea) {
                             textarea.value = chip.getAttribute('data-msg') || '';
                             textarea.dispatchEvent(new Event('input', { bubbles: true }));
@@ -136,6 +138,32 @@
                 var email = emailInput ? emailInput.value.trim() : '';
                 var message = textarea ? textarea.value.trim() : '';
                 var country = countrySelect ? countrySelect.value : '';
+                var validation = window.FEFULeadUtils && window.FEFULeadUtils.validateLeadInput
+                    ? window.FEFULeadUtils.validateLeadInput({
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        message: message,
+                        country: country
+                    })
+                    : null;
+
+                if (validation && !validation.valid) {
+                    showMsg(validation.errors[0], 'error');
+                    return;
+                }
+
+                if (validation) {
+                    name = validation.normalized.name;
+                    phone = validation.normalized.phone;
+                    email = validation.normalized.email;
+                    message = validation.normalized.message;
+                    country = validation.normalized.country;
+                    if (nameInput) nameInput.value = name;
+                    if (phoneInput) phoneInput.value = phone;
+                    if (emailInput) emailInput.value = email;
+                    if (textarea) textarea.value = message;
+                }
 
                 if (isDuplicate(email, phone)) {
                     showMsg('⏳ You have already submitted an inquiry. We will contact you soon!', 'error');
@@ -147,21 +175,23 @@
                     btn.innerHTML = '<span>Sending...</span> <div class="spinner"></div>';
                 }
 
-                var deviceInfo = {
-                    userAgent: navigator.userAgent,
-                    pageUrl: window.location.href,
-                    submittedAt: new Date().toISOString(),
-                    adblockDetected: checkAdblock(),
-                    screenResolution: window.screen.width + 'x' + window.screen.height,
-                    windowSize: window.innerWidth + 'x' + window.innerHeight,
-                    language: navigator.language,
-                    platform: navigator.platform,
-                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null'),
-                    fingerprint: localStorage.getItem('fefu_fingerprint'),
-                    ram: navigator.deviceMemory || 'unknown',
-                    cpu: navigator.hardwareConcurrency || 'unknown'
-                };
+                var deviceInfo = window.FEFULeadUtils && window.FEFULeadUtils.buildLeadDeviceInfo
+                    ? window.FEFULeadUtils.buildLeadDeviceInfo('contact_form', {
+                        formStartTime: formStartTime,
+                        firstField: firstField,
+                        fieldInteractions: fieldInteractions,
+                        maxScrollDepth: maxScrollDepth,
+                        exitIntentTriggered: exitIntentTriggered,
+                        selectedTopic: selectedTopic
+                    }, {
+                        adblockDetected: checkAdblock()
+                    })
+                    : {
+                        userAgent: navigator.userAgent,
+                        pageUrl: window.location.href,
+                        submittedAt: new Date().toISOString(),
+                        adblockDetected: checkAdblock()
+                    };
 
                 sb.from('form_submissions').insert([{
                     name: name,
@@ -173,7 +203,10 @@
                     visitor_id: localStorage.getItem('fefu_visitor_id') || null
                 }]).then(function (result) {
                     if (result.error) {
-                        showMsg('❌ Something went wrong. Please try again.', 'error');
+                        var friendlyMsg = window.FEFULeadUtils && window.FEFULeadUtils.getSubmissionErrorMessage
+                            ? window.FEFULeadUtils.getSubmissionErrorMessage(result.error)
+                            : '';
+                        showMsg(friendlyMsg || '❌ Something went wrong. Please try again.', 'error');
                     } else {
                         localStorage.setItem('fefu_submitted', JSON.stringify({ email: email, phone: phone, time: Date.now() }));
                         showMsg('✅ Thank you, ' + name.split(' ')[0] + '! We will contact you shortly.', 'success');
@@ -248,3 +281,4 @@
     window.launchConfetti = launchConfetti;
 
 })();
+

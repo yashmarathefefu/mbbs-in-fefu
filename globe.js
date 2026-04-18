@@ -10,6 +10,15 @@ function initGlobe() {
     if (!canvas) return;
 
     let isMobile = window.innerWidth < 768;
+    const lowEndDevice = isMobile && (
+        (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+        (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+        ((navigator.connection || {}).saveData === true)
+    );
+
+    if (lowEndDevice) {
+        document.documentElement.classList.add('low-end-device');
+    }
 
     let phi = 0;
     let width = 0;
@@ -73,7 +82,7 @@ function initGlobe() {
         theta: 0.25,
         dark: 1,
         diffuse: 1.0,
-        mapSamples: isMobile ? 10000 : 16000,
+        mapSamples: lowEndDevice ? 6000 : (isMobile ? 10000 : 16000),
         mapBrightness: 9.0,                // Maximum visibility for continental dots
         baseColor: [0.22, 0.22, 0.22],     // Clean dark land dots
         glowColor: [0.05, 0.05, 0.05],     // Pure neutral dark glow
@@ -84,7 +93,7 @@ function initGlobe() {
         markerColor: [0.1, 0.8, 0.9],      // Bright cyan markers mimicking the screenshot
         onRender: function (state) {
             // Use custom global speed if available, otherwise fallback to 0.003
-            const speed = window.globeSettings ? window.globeSettings.speed : 0.003;
+            const speed = window.globeSettings ? window.globeSettings.speed : (lowEndDevice ? 0.0018 : 0.003);
             // Center the globe initially on Asia/Russia (India + Vladivostok)
             if (phi === 0) phi = 4.2;
             if (pointerInteracting === null) phi += speed;
@@ -118,19 +127,27 @@ function initGlobe() {
     setTimeout(() => { canvas.style.opacity = '1'; }, 100);
 
     // Drag-to-rotate interaction
+    if (lowEndDevice) {
+        canvas.style.pointerEvents = 'none';
+    }
+
     canvas.addEventListener('pointerdown', (e) => {
+        if (lowEndDevice) return;
         pointerInteracting = e.clientX - pointerMovement;
         canvas.style.cursor = 'grabbing';
     });
     canvas.addEventListener('pointerup', () => {
+        if (lowEndDevice) return;
         pointerInteracting = null;
         canvas.style.cursor = 'grab';
     });
     canvas.addEventListener('pointerout', () => {
+        if (lowEndDevice) return;
         pointerInteracting = null;
         canvas.style.cursor = 'grab';
     });
     canvas.addEventListener('mousemove', (e) => {
+        if (lowEndDevice) return;
         if (pointerInteracting !== null) {
             const delta = e.clientX - pointerInteracting;
             pointerMovement = delta;
@@ -138,6 +155,7 @@ function initGlobe() {
         }
     });
     canvas.addEventListener('touchmove', (e) => {
+        if (lowEndDevice) return;
         if (e.touches && e.touches[0] && pointerInteracting !== null) {
             const delta = e.touches[0].clientX - pointerInteracting;
             pointerMovement = delta;

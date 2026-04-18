@@ -557,6 +557,72 @@
             display: flex;
         }
 
+        .modal-box.modal-sm {
+            max-width: 420px;
+        }
+
+        .dialog-copy {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+
+        .dialog-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.28);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 12px 14px;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            margin-bottom: 14px;
+            font-family: inherit;
+        }
+
+        .dialog-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+        }
+
+        .dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .dialog-btn {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .dialog-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .dialog-btn.primary {
+            background: linear-gradient(135deg, var(--primary), #6d28d9);
+            border-color: transparent;
+        }
+
+        .dialog-btn.primary:hover,
+        .dialog-btn.danger:hover {
+            filter: brightness(1.05);
+        }
+
+        .dialog-btn.danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-color: transparent;
+        }
+
         .modal-box {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -1668,16 +1734,49 @@
 
     <!-- Email Template Modal -->
     <div class="modal-overlay" id="emailModal">
-        <div class="modal-box" style="max-width:500px;">
+        <div class="modal-box modal-sm">
             <div class="modal-header">
                 <h2>📧 Quick Reply Templates</h2>
                 <button class="modal-close"
                     onclick="document.getElementById('emailModal').classList.remove('active')">✕</button>
             </div>
             <div class="modal-body">
-                <p style="color:var(--text-muted);font-size:13px;margin-bottom:8px;">Click a template to open your email
+                <p class="dialog-copy">Click a template to open your email
                     client:</p>
                 <div class="email-template-list" id="emailTemplates"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-box modal-sm">
+            <div class="modal-header">
+                <h2 id="confirmTitle">Confirm Action</h2>
+                <button class="modal-close" id="confirmClose">âœ•</button>
+            </div>
+            <div class="modal-body">
+                <p class="dialog-copy" id="confirmMessage">Are you sure?</p>
+            </div>
+            <div class="modal-actions dialog-actions">
+                <button class="dialog-btn" id="confirmCancel">Cancel</button>
+                <button class="dialog-btn danger" id="confirmAccept">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="promptModal">
+        <div class="modal-box modal-sm">
+            <div class="modal-header">
+                <h2 id="promptTitle">Update Status</h2>
+                <button class="modal-close" id="promptClose">âœ•</button>
+            </div>
+            <div class="modal-body">
+                <p class="dialog-copy" id="promptMessage">Enter a new status.</p>
+                <input class="dialog-input" id="promptInput" type="text" placeholder="New / In Progress / Contacted / Resolved">
+            </div>
+            <div class="modal-actions dialog-actions">
+                <button class="dialog-btn" id="promptCancel">Cancel</button>
+                <button class="dialog-btn primary" id="promptAccept">Save</button>
             </div>
         </div>
     </div>

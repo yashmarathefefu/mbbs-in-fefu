@@ -11,6 +11,9 @@
 
     // Don't track admin page
     if (window.location.pathname.indexOf('admin') !== -1) return;
+    if (window.FEFULeadUtils && window.FEFULeadUtils.captureSessionContext) {
+        window.FEFULeadUtils.captureSessionContext();
+    }
 
     // ---- Advanced Device Fingerprinting ----
     function getCanvasFingerprint() {
@@ -160,7 +163,8 @@
                 label: label,
                 tag: target.tagName,
                 url: window.location.href,
-                id: target.id || 'No ID'
+                id: target.id || 'No ID',
+                pagePath: getPagePath()
             });
         }
     });

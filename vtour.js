@@ -25,6 +25,11 @@
         var phoneInput = document.getElementById('vtour_phone');
         var formMsg = document.getElementById('vtour-form-message');
         var submitBtn = form ? form.querySelector('.vtour-submit-btn') : null;
+        var formStartTime = null;
+        var firstField = null;
+        var fieldInteractions = {};
+        var maxScrollDepth = 0;
+        var exitIntentTriggered = false;
 
         /**
          * Setup the form once Supabase is ready
@@ -34,6 +39,27 @@
         // Listen for Supabase ready event
         window.addEventListener('supabase-ready', function(e) {
             localSb = e.detail.client;
+        });
+
+        function trackField(name) {
+            if (!formStartTime) formStartTime = Date.now();
+            if (!firstField) firstField = name;
+            fieldInteractions[name] = (fieldInteractions[name] || 0) + 1;
+        }
+
+        if (nameInput) nameInput.addEventListener('focus', function () { trackField('name'); });
+        if (phoneInput) phoneInput.addEventListener('focus', function () { trackField('phone'); });
+
+        window.addEventListener('scroll', function () {
+            var h = document.documentElement;
+            var denominator = h.scrollHeight - h.clientHeight;
+            if (denominator <= 0) return;
+            var depth = Math.round((window.scrollY / denominator) * 100);
+            if (depth > maxScrollDepth && depth <= 100) maxScrollDepth = depth;
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', function (e) {
+            if (e.clientY < 0) exitIntentTriggered = true;
         });
 
         // ---- OPEN MODAL ----
@@ -88,6 +114,12 @@
             formMsg.style.display = 'block';
         }
 
+        function resetSubmitButton() {
+            if (!submitBtn) return;
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Open Virtual Tour</span>';
+        }
+
         function goToTour() {
             window.location.href = TOUR_URL;
         }
@@ -99,16 +131,26 @@
 
                 var name = nameInput ? nameInput.value.trim() : '';
                 var phone = phoneInput ? phoneInput.value.trim() : '';
+                var validation = window.FEFULeadUtils && window.FEFULeadUtils.validateLeadInput
+                    ? window.FEFULeadUtils.validateLeadInput({
+                        name: name,
+                        phone: phone,
+                        email: '',
+                        message: '',
+                        country: ''
+                    })
+                    : null;
 
-                if (!name || name.length < 2) {
-                    showMsg('Please enter your full name.', 'error');
+                if (validation && !validation.valid) {
+                    showMsg(validation.errors[0], 'error');
                     return;
                 }
 
-                var phoneDigits = phone.replace(/\D/g, '');
-                if (phoneDigits.length < 10) {
-                    showMsg('Please enter a valid phone number.', 'error');
-                    return;
+                if (validation) {
+                    name = validation.normalized.name;
+                    phone = validation.normalized.phone;
+                    if (nameInput) nameInput.value = name;
+                    if (phoneInput) phoneInput.value = phone;
                 }
 
                 if (submitBtn) {
@@ -116,18 +158,20 @@
                     submitBtn.innerHTML = '<span>Processing...</span> <div class="spinner"></div>';
                 }
 
-                var deviceInfo = {
-                    userAgent: navigator.userAgent,
-                    submittedAt: new Date().toISOString(),
-                    source: 'virtual_tour_form',
-                    pageUrl: window.location.href,
-                    screenResolution: window.screen.width + 'x' + window.screen.height,
-                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    location: JSON.parse(localStorage.getItem('fefu_location') || 'null'),
-                    fingerprint: localStorage.getItem('fefu_fingerprint'),
-                    ram: navigator.deviceMemory || 'unknown',
-                    cpu: navigator.hardwareConcurrency || 'unknown'
-                };
+                var deviceInfo = window.FEFULeadUtils && window.FEFULeadUtils.buildLeadDeviceInfo
+                    ? window.FEFULeadUtils.buildLeadDeviceInfo('virtual_tour_form', {
+                        formStartTime: formStartTime,
+                        firstField: firstField,
+                        fieldInteractions: fieldInteractions,
+                        maxScrollDepth: maxScrollDepth,
+                        exitIntentTriggered: exitIntentTriggered
+                    })
+                    : {
+                        userAgent: navigator.userAgent,
+                        submittedAt: new Date().toISOString(),
+                        source: 'virtual_tour_form',
+                        pageUrl: window.location.href
+                    };
 
                 // Keep lead capture, but don't make users wait several seconds.
                 var redirectTimer = setTimeout(function () {
@@ -143,7 +187,20 @@
                         country: '',
                         device_info: deviceInfo,
                         visitor_id: localStorage.getItem('fefu_visitor_id') || null
-                    }]).then(function () {
+                    }]).then(function (result) {
+                        if (result && result.error) {
+                            clearTimeout(redirectTimer);
+                            var friendlyMsg = window.FEFULeadUtils && window.FEFULeadUtils.getSubmissionErrorMessage
+                                ? window.FEFULeadUtils.getSubmissionErrorMessage(result.error)
+                                : '';
+
+                            if (friendlyMsg) {
+                                showMsg(friendlyMsg, 'error');
+                                resetSubmitButton();
+                                return;
+                            }
+                        }
+
                         clearTimeout(redirectTimer);
                         goToTour();
                     }).catch(function () {

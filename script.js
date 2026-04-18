@@ -993,7 +993,7 @@ function initLightbox() {
         if (e.key === 'ArrowLeft') showPrev();
     });
 
-    // Touch / Swipe Navigation for Mobile
+        // Navigation
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -1025,41 +1025,40 @@ if (document.readyState === 'loading') {
 }
 
 // ========================================
-// FMGE PASSING STUDENTS TESTIMONIALS 2025
+// NEXT-STEP PLANNING SLIDER
 // ========================================
 (function initFMGETestimonials() {
 
-    // ── Data ──────────────────────────────────────────────────────────────────
-    // Replace src with real photos when available.
+    // Temporary sample FMGE results layout. Replace with verified student proofs.
     const fmgeStudents = [
         {
-            name: "Arjun Mehta",
-            designation: "FMGE Qualified — March 2025 | Batch of 2024, FEFU",
-            quote: "Clearing FMGE on my first attempt after FEFU was a proud moment. The clinical training and problem-solving approach at FEFU prepared me exceptionally well for the exam.",
+            name: "Aarav Shah",
+            designation: "Sample FMGE Result | March 2025 | Placeholder",
+            quote: "Sample layout only. Replace this line with the student's real session, attempt, and proof-backed outcome once you send the verified details.",
             src: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=500&auto=format&fit=crop"
         },
         {
-            name: "Priya Sharma",
-            designation: "FMGE Qualified — March 2025 | Batch of 2024, FEFU",
-            quote: "FEFU's structured curriculum and dedicated professors made all the difference. I always felt confident going into FMGE because of the strong foundation built during my six years.",
+            name: "Priya Nair",
+            designation: "Sample FMGE Result | March 2025 | Placeholder",
+            quote: "Sample layout only. This slot is ready for a real first-attempt or cleared-session story once you provide the genuine result proof and consented wording.",
             src: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=500&auto=format&fit=crop"
         },
         {
-            name: "Rohan Nair",
-            designation: "FMGE Qualified — August 2025 | Batch of 2024, FEFU",
-            quote: "The hands-on clinical rotations gave me real-world patient exposure very early. That practical confidence is what carried me through FMGE. Grateful to FEFU and my consultancy.",
+            name: "Rohan Iyer",
+            designation: "Sample FMGE Result | August 2025 | Placeholder",
+            quote: "Sample layout only. Replace this with the verified result, exam window, and one trustworthy line about the student's academic journey or preparation style.",
             src: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=500&auto=format&fit=crop"
         },
         {
             name: "Sneha Reddy",
-            designation: "FMGE Qualified — August 2025 | Batch of 2024, FEFU",
-            quote: "Studying in Russia sounds daunting, but FEFU made it feel like home. The English-medium program meant zero language barrier, and the FMGE coaching guidance from our seniors was invaluable.",
+            designation: "Sample FMGE Result | August 2025 | Placeholder",
+            quote: "Sample layout only. When you send the proof, this can become a compact, high-trust card that shows the cleared session without sounding like marketing copy.",
             src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=500&auto=format&fit=crop"
         },
         {
-            name: "Karthik Iyer",
-            designation: "FMGE Qualified — March 2025 | Batch of 2024, FEFU",
-            quote: "The quality of education at FEFU is truly global. Professors who've practised internationally, advanced labs, and a community of over 1,000 Indian students — it all adds up to FMGE success.",
+            name: "Karthik Menon",
+            designation: "Sample FMGE Result | March 2026 | Placeholder",
+            quote: "Sample layout only. Use this card later for a verified recent outcome if you want the section to show continuity across multiple exam sessions.",
             src: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=500&auto=format&fit=crop"
         }
     ];
@@ -1075,12 +1074,12 @@ if (document.readyState === 'loading') {
     let autoTimer = null;
     const total = fmgeStudents.length;
 
-    // ── Helper: random tilt for inactive cards ────────────────────────────────
+        // Helper: random tilt for inactive cards
     function randomRotateY() {
         return Math.floor(Math.random() * 21) - 10;
     }
 
-    // ── Build image slides ────────────────────────────────────────────────────
+        // Build image slides
     function buildSlides() {
         container.innerHTML = '';
         fmgeStudents.forEach((student, index) => {
@@ -1097,7 +1096,7 @@ if (document.readyState === 'loading') {
         });
     }
 
-    // ── Apply transform to each slide based on active index ───────────────────
+        // Apply transform to each slide based on active index
     function updateSlides() {
         const slides = container.querySelectorAll('.fmge-image-slide');
         slides.forEach((slide, index) => {
@@ -1125,7 +1124,7 @@ if (document.readyState === 'loading') {
         });
     }
 
-    // ── Render quote text with stagger blur-reveal ────────────────────────────
+        // Render quote text with stagger blur-reveal
     function renderContent() {
         const student = fmgeStudents[active];
         const words = student.quote.split(' ');
@@ -1161,7 +1160,7 @@ if (document.readyState === 'loading') {
         }, 200);
     }
 
-    // ── Navigation ────────────────────────────────────────────────────────────
+        // Navigation
     function goTo(index) {
         active = (index + total) % total;
         updateSlides();
@@ -1174,7 +1173,7 @@ if (document.readyState === 'loading') {
     nextBtn.addEventListener('click', () => { stopAuto(); goNext(); startAuto(); });
     prevBtn.addEventListener('click', () => { stopAuto(); goPrev(); startAuto(); });
 
-    // ── Touch swipe on image stack (mobile) ───────────────────────────────────
+        // Touch swipe on image stack (mobile)
     let fmgeTouchStartX = 0;
     let fmgeTouchStartY = 0;
     const FMGE_SWIPE_MIN = 45;
@@ -1238,3 +1237,6 @@ if (document.readyState === 'loading') {
     }
 
 })();
+
+
+

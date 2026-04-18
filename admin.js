@@ -24,11 +24,16 @@
     var detailModal = $('detailModal'), modalBody = $('modalBody'), modalActions = $('modalActions'), modalClose = $('modalClose');
     var emailModal = $('emailModal'), emailTemplates = $('emailTemplates');
     var toastEl = $('newLeadToast'), toastMsg = $('toastMsg');
+    var confirmModal = $('confirmModal'), confirmTitle = $('confirmTitle'), confirmMessage = $('confirmMessage');
+    var confirmAccept = $('confirmAccept'), confirmCancel = $('confirmCancel'), confirmClose = $('confirmClose');
+    var promptModal = $('promptModal'), promptTitle = $('promptTitle'), promptMessage = $('promptMessage');
+    var promptInput = $('promptInput'), promptAccept = $('promptAccept'), promptCancel = $('promptCancel'), promptClose = $('promptClose');
 
     var allRows = [];
     var selectedIds = new Set();
     var lastKnownCount = 0;
     var pollTimer = null;
+    var allowedStatuses = ['New', 'In Progress', 'Contacted', 'Resolved'];
 
     /* ======== EMAIL TEMPLATES ======== */
     var templates = [
@@ -94,9 +99,82 @@
     function stopPolling() { if (pollTimer) clearInterval(pollTimer); }
 
     function showToast(msg) {
+        if (!toastEl || !toastMsg) return;
         toastMsg.textContent = msg;
         toastEl.classList.add('show');
         setTimeout(function () { toastEl.classList.remove('show'); }, 4000);
+    }
+
+    function showConfirm(title, message, acceptLabel, danger) {
+        return new Promise(function (resolve) {
+            confirmTitle.textContent = title || 'Confirm Action';
+            confirmMessage.textContent = message || 'Are you sure?';
+            confirmAccept.textContent = acceptLabel || 'Confirm';
+            confirmAccept.classList.toggle('danger', !!danger);
+            confirmAccept.classList.toggle('primary', !danger);
+            confirmModal.classList.add('active');
+
+            function cleanup(result) {
+                confirmModal.classList.remove('active');
+                confirmAccept.removeEventListener('click', onAccept);
+                confirmCancel.removeEventListener('click', onCancel);
+                confirmClose.removeEventListener('click', onCancel);
+                confirmModal.removeEventListener('click', onOverlay);
+                resolve(result);
+            }
+            function onAccept() { cleanup(true); }
+            function onCancel() { cleanup(false); }
+            function onOverlay(e) { if (e.target === confirmModal) cleanup(false); }
+
+            confirmAccept.addEventListener('click', onAccept);
+            confirmCancel.addEventListener('click', onCancel);
+            confirmClose.addEventListener('click', onCancel);
+            confirmModal.addEventListener('click', onOverlay);
+        });
+    }
+
+    function showPrompt(title, message, initialValue, placeholder, acceptLabel) {
+        return new Promise(function (resolve) {
+            promptTitle.textContent = title || 'Input Required';
+            promptMessage.textContent = message || '';
+            promptInput.value = initialValue || '';
+            promptInput.placeholder = placeholder || '';
+            promptAccept.textContent = acceptLabel || 'Save';
+            promptModal.classList.add('active');
+            setTimeout(function () { promptInput.focus(); promptInput.select(); }, 20);
+
+            function cleanup(result) {
+                promptModal.classList.remove('active');
+                promptAccept.removeEventListener('click', onAccept);
+                promptCancel.removeEventListener('click', onCancel);
+                promptClose.removeEventListener('click', onCancel);
+                promptModal.removeEventListener('click', onOverlay);
+                promptInput.removeEventListener('keydown', onKeyDown);
+                resolve(result);
+            }
+            function onAccept() { cleanup(promptInput.value.trim()); }
+            function onCancel() { cleanup(null); }
+            function onOverlay(e) { if (e.target === promptModal) cleanup(null); }
+            function onKeyDown(e) {
+                if (e.key === 'Enter') cleanup(promptInput.value.trim());
+                if (e.key === 'Escape') cleanup(null);
+            }
+
+            promptAccept.addEventListener('click', onAccept);
+            promptCancel.addEventListener('click', onCancel);
+            promptClose.addEventListener('click', onCancel);
+            promptModal.addEventListener('click', onOverlay);
+            promptInput.addEventListener('keydown', onKeyDown);
+        });
+    }
+
+    function normalizeStatus(status) {
+        if (!status) return null;
+        var cleaned = String(status).trim().toLowerCase();
+        for (var i = 0; i < allowedStatuses.length; i++) {
+            if (allowedStatuses[i].toLowerCase() === cleaned) return allowedStatuses[i];
+        }
+        return null;
     }
 
     function playNotifSound() {
@@ -154,9 +232,10 @@
         updateBulkBar();
     });
 
-    $('bulkDeleteBtn').addEventListener('click', function () {
+    $('bulkDeleteBtn').addEventListener('click', async function () {
         if (selectedIds.size === 0) return;
-        if (!confirm('Delete ' + selectedIds.size + ' lead(s)? This cannot be undone.')) return;
+        var approved = await showConfirm('Delete Leads', 'Delete ' + selectedIds.size + ' lead(s)? This cannot be undone.', 'Delete', true);
+        if (!approved) return;
         var ids = Array.from(selectedIds);
         sb.from('form_submissions').delete().in('id', ids)
             .then(function (res) {
@@ -165,14 +244,19 @@
                 selectAll.checked = false;
                 updateBulkBar();
                 loadSubmissions();
+                showToast('Selected leads deleted.');
             })
-            .catch(function (err) { alert('Delete failed: ' + err.message); });
+            .catch(function (err) { showToast('Delete failed: ' + err.message); });
     });
 
-    $('bulkStatusBtn').addEventListener('click', function () {
+    $('bulkStatusBtn').addEventListener('click', async function () {
         if (selectedIds.size === 0) return;
-        var status = prompt('Enter new status (New / In Progress / Contacted / Resolved):');
-        if (!status) return;
+        var status = await showPrompt('Set Lead Status', 'Enter the new status for selected leads.', '', 'New / In Progress / Contacted / Resolved', 'Update');
+        status = normalizeStatus(status);
+        if (!status) {
+            showToast('Use one of: New, In Progress, Contacted, Resolved.');
+            return;
+        }
         var ids = Array.from(selectedIds);
         sb.from('form_submissions').update({ status: status }).in('id', ids)
             .then(function (res) {
@@ -181,8 +265,9 @@
                 selectAll.checked = false;
                 updateBulkBar();
                 loadSubmissions();
+                showToast('Lead status updated.');
             })
-            .catch(function (err) { alert('Update failed: ' + err.message); });
+            .catch(function (err) { showToast('Update failed: ' + err.message); });
     });
 
     function updateBulkBar() {
@@ -192,7 +277,7 @@
 
     /* ======== CSV EXPORT ======== */
     exportBtn.addEventListener('click', function () {
-        if (allRows.length === 0) { alert('No data.'); return; }
+        if (allRows.length === 0) { showToast('No data to export yet.'); return; }
         var h = ['Date', 'Name', 'Email', 'Phone', 'Country', 'Message', 'Status', 'Notes'];
         var csv = [h.join(',')];
         allRows.forEach(function (r) {
@@ -315,7 +400,7 @@
                         if (row) row.status = val;
                         pendingCount.innerText = allRows.filter(function (r) { return !r.status || r.status === 'New' || r.status === 'In Progress'; }).length;
                     })
-                    .catch(function () { alert('Status update failed.'); loadSubmissions(); })
+                    .catch(function () { showToast('Status update failed.'); loadSubmissions(); })
                     .finally(function () { el.disabled = false; el.style.opacity = '1'; });
             });
         }
@@ -348,7 +433,7 @@
             waBtns[i].addEventListener('click', function () {
                 var phone = this.getAttribute('data-phone').replace(/[\s\-]/g, '');
                 var name = this.getAttribute('data-name');
-                if (!phone) { alert('No phone number.'); return; }
+                if (!phone) { showToast('No phone number for this lead.'); return; }
                 if (!phone.startsWith('+')) phone = '+91' + phone;
                 var msg = encodeURIComponent('Hi ' + name + '! Thank you for your interest in MBBS at FEFU. How can I help you?');
                 window.open('https://wa.me/' + phone.replace('+', '') + '?text=' + msg, '_blank');
@@ -358,12 +443,13 @@
         // Delete buttons
         var delBtns = tableBody.querySelectorAll('.del-btn');
         for (var i = 0; i < delBtns.length; i++) {
-            delBtns[i].addEventListener('click', function () {
+            delBtns[i].addEventListener('click', async function () {
                 var id = this.getAttribute('data-id');
-                if (!confirm('Delete this lead? This cannot be undone.')) return;
+                var approved = await showConfirm('Delete Lead', 'Delete this lead? This cannot be undone.', 'Delete', true);
+                if (!approved) return;
                 sb.from('form_submissions').delete().eq('id', id)
-                    .then(function (res) { if (res.error) throw res.error; loadSubmissions(); })
-                    .catch(function () { alert('Delete failed.'); });
+                    .then(function (res) { if (res.error) throw res.error; loadSubmissions(); showToast('Lead deleted.'); })
+                    .catch(function () { showToast('Delete failed.'); });
             });
         }
     }
@@ -413,13 +499,24 @@
         if (device.fingerprint) html += '<span class="device-tag" style="background:var(--purple);color:#fff;">🔑 Fingerprint: ' + escHTML(device.fingerprint) + '</span>';
         if (device.connection && device.connection !== 'unknown') html += '<span class="device-tag">📶 ' + escHTML(device.connection) + '</span>';
         if (device.touchscreen) html += '<span class="device-tag">📱 Touch: ' + device.touchscreen + '</span>';
+        if (device.orientation) html += '<span class="device-tag">📱 Orientation: ' + escHTML(device.orientation) + '</span>';
+        if (device.pixelRatio) html += '<span class="device-tag">🔍 DPR: ' + escHTML(String(device.pixelRatio)) + '</span>';
         if (device.language) html += '<span class="device-tag">🗣 ' + escHTML(device.language) + '</span>';
+        if (device.colorScheme) html += '<span class="device-tag">🎨 Theme: ' + escHTML(device.colorScheme) + '</span>';
+        if (device.reducedMotion) html += '<span class="device-tag">🎬 Motion: ' + escHTML(device.reducedMotion) + '</span>';
         if (device.formTimeSpent) html += '<span class="device-tag">⏱ Form: ' + escHTML(device.formTimeSpent) + '</span>';
         if (device.firstFieldClicked) html += '<span class="device-tag">🎯 First: ' + escHTML(device.firstFieldClicked) + '</span>';
         if (device.scrollDepth) html += '<span class="device-tag">📜 Max Scroll Depth: ' + escHTML(device.scrollDepth) + '</span>';
         if (device.exitIntent) html += '<span class="device-tag">🚪 Exit Intent Triggered: ' + escHTML(device.exitIntent) + '</span>';
+        if (device.selectedTopic) html += '<span class="device-tag">💡 Topic: ' + escHTML(device.selectedTopic) + '</span>';
+        if (device.landingPage) html += '<span class="device-tag">🚀 Landing: ' + escHTML(device.landingPage) + '</span>';
+        if (device.lastPage) html += '<span class="device-tag">📄 Last Page: ' + escHTML(device.lastPage) + '</span>';
+        if (device.sessionDurationSeconds) html += '<span class="device-tag">⌛ Session: ' + escHTML(String(device.sessionDurationSeconds)) + 's</span>';
         if (device.adblockDetected) html += '<span class="device-tag">🛑 Adblock/Plugins: ' + escHTML(device.adblockDetected) + '</span>';
         if (device.referrer) html += '<span class="device-tag ref-tag">🔗 ' + escHTML(device.referrer === 'Direct' ? 'Direct' : device.referrer) + '</span>';
+        if (device.utm && (device.utm.utm_source || device.utm.utm_medium || device.utm.utm_campaign)) {
+            html += '<span class="device-tag">📣 UTM: ' + escHTML([device.utm.utm_source, device.utm.utm_medium, device.utm.utm_campaign].filter(Boolean).join(' / ')) + '</span>';
+        }
         html += '</div>';
 
         // Lead Intelligence Section
@@ -473,15 +570,17 @@
         });
 
         // Delete from modal
-        $('modalDeleteBtn').addEventListener('click', function () {
-            if (!confirm('Delete this lead permanently?')) return;
+        $('modalDeleteBtn').addEventListener('click', async function () {
+            var approved = await showConfirm('Delete Lead', 'Delete this lead permanently?', 'Delete', true);
+            if (!approved) return;
             sb.from('form_submissions').delete().eq('id', row.id)
                 .then(function (res) {
                     if (res.error) throw res.error;
                     detailModal.classList.remove('active');
                     loadSubmissions();
+                    showToast('Lead deleted.');
                 })
-                .catch(function () { alert('Delete failed.'); });
+                .catch(function () { showToast('Delete failed.'); });
         });
 
         // Email templates
