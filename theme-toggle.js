@@ -210,6 +210,10 @@
         window.addEventListener('resize', () => {
             placeToggle();
         });
+
+        // applyTheme ran before the button existed; sync icon/labels to actual theme
+        const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        updateButtonIcon(currentTheme);
     }
 
     /* ── Init ──────────────────────────────── */
