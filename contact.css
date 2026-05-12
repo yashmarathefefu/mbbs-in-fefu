@@ -25,6 +25,8 @@
     .contact-wrapper {
         grid-template-columns: 1fr;
         padding: 30px 20px;
+        gap: 30px;
+        margin: 0 10px;
     }
 }
 
@@ -275,6 +277,12 @@
     font-family: inherit;
 }
 
+.topic-chip:focus-visible {
+    outline: none;
+    border-color: rgba(167, 139, 250, 0.7);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.22);
+}
+
 .topic-chip:hover {
     background: rgba(167, 139, 250, 0.2);
     border-color: rgba(167, 139, 250, 0.5);
@@ -384,6 +392,8 @@
     font-size: 16px;
     color: #fff;
     font-weight: 500;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ---- Status Messages ---- */
@@ -469,6 +479,59 @@
 }
 
 @media (max-width: 768px) {
+    .contact-section {
+        padding: 72px 0;
+    }
+
+    .contact-wrapper {
+        margin: 0 8px;
+        padding: 26px 16px;
+        border-radius: 22px;
+        gap: 24px;
+    }
+
+    .premium-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .premium-form input,
+    .premium-form textarea,
+    .premium-form select,
+    .premium-submit-btn {
+        min-height: 48px;
+    }
+
+    .input-hint {
+        position: static;
+        display: block;
+        margin-top: 6px;
+        margin-left: 2px;
+        font-size: 12px;
+    }
+
+    .quick-topics {
+        gap: 10px;
+        margin-bottom: 18px;
+    }
+
+    .quick-topic-label {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 2px;
+    }
+
+    .topic-chip {
+        min-height: 40px;
+        padding: 8px 12px;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+    .premium-submit-btn {
+        font-size: 15px;
+        padding: 14px 20px;
+    }
+
     .whatsapp-fab {
         bottom: 22px;
         /* 20-24px */
@@ -484,28 +547,78 @@
     }
 
     .contact-wrapper {
-        padding: 25px 15px;
+        padding: 22px 12px;
         border-radius: 20px;
+        margin: 0 5px;
+        box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+    }
+
+    .premium-form .form-row {
+        gap: 15px;
     }
 
     .premium-form input,
     .premium-form textarea,
     .premium-form select {
-        padding: 14px 16px;
+        padding: 13px 14px;
         font-size: 16px;
     }
 
+    .premium-form .form-group.is-invalid input,
+    .premium-form .form-group.is-invalid select,
+    .premium-form .form-group.is-invalid textarea {
+        animation: none;
+    }
+
     .premium-form label {
-        font-size: 14px;
+        font-size: 13px;
         top: 14px;
+        left: 15px;
     }
 
     .contact-info-glass {
-        padding: 20px;
+        padding: 18px;
         border-radius: 16px;
+    }
+
+    .contact-info-item {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .info-icon {
+        width: 40px;
+        height: 40px;
     }
 
     .contact-info-item p {
         font-size: 14px;
+    }
+
+    .whatsapp-fab:hover {
+        transform: none;
+        padding-right: 12px;
+    }
+
+    .whatsapp-label {
+        display: none;
+    }
+}
+
+/* Fix for extra narrow screens like iPhone SE */
+@media (max-width: 360px) {
+    .contact-wrapper {
+        padding: 20px 10px;
+    }
+    
+    .quick-topic-label {
+        display: block;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .topic-chip {
+        font-size: 12px;
+        padding: 5px 10px;
     }
 }
