@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Education Blog - Study MBBS in Russia | MBBS Abroads</title>
     <meta name="description"
-        content="Latest news, admission guides, and student life stories for Indian students studying MBBS at Far Eastern Federal University (FEFU), Russia. Stay informed with MBBS Abroads.">
+        content="FEFU and MBBS in Russia guides for Indian students: fees, admission, hostel life, safety, FMGE/NExT, and NMC/FMGL document checks.">
     <link rel="canonical" href="https://mbbsabroads.com/blog.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Medical Education Blog - Study MBBS in Russia | MBBS Abroads">
@@ -21,15 +21,16 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cookie-consent.css">
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="components/ui/sidebar.css">
     <link rel="stylesheet" href="theme.css">
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -43,14 +44,68 @@
                 {
                     "@type": "ListItem",
                     "position": 1,
+                    "url": "https://mbbsabroads.com/blogs/why-choose-fefu-mbbs-russia-2026.html",
+                    "name": "Why Choose FEFU for MBBS in Russia in 2026?"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
                     "url": "https://mbbsabroads.com/blogs/is-mbbs-in-russia-safe-2026.html",
                     "name": "Is MBBS in Russia Safe in 2026?"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 2,
+                    "position": 3,
                     "url": "https://mbbsabroads.com/blogs/mbbs-in-russia-fefu-2026.html",
-                    "name": "Top 10 NMC-Approved Medical Universities in Russia for Indian Students (2026)"
+                    "name": "Top NMC/FMGL-Compliant Medical Universities in Russia for Indian Students (2026)"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "url": "https://mbbsabroads.com/blogs/fefu-mbbs-fees-hostel-admission-eligibility-guide-2026.html",
+                    "name": "FEFU MBBS Fees, Hostel, Admission & Eligibility Guide 2026"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "url": "https://mbbsabroads.com/blogs/mbbs-in-russia-fees-indian-students-2026.html",
+                    "name": "MBBS in Russia Fees for Indian Students 2026"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "url": "https://mbbsabroads.com/blogs/is-fefu-good-for-indian-students-2026.html",
+                    "name": "Is FEFU Good for Indian Students? An Honest Review"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "url": "https://mbbsabroads.com/blogs/mbbs-in-russia-vs-mbbs-in-georgia-2026.html",
+                    "name": "MBBS in Russia vs MBBS in Georgia: Which Is Better?"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 8,
+                    "url": "https://mbbsabroads.com/blogs/mbbs-in-russia-vs-mbbs-in-kazakhstan-2026.html",
+                    "name": "MBBS in Russia vs MBBS in Kazakhstan: 2026 Analysis"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "url": "https://mbbsabroads.com/blogs/nmc-guidelines-mbbs-abroad-students-2026.html",
+                    "name": "NMC Guidelines for MBBS Abroad 2026: Official Rules"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 10,
+                    "url": "https://mbbsabroads.com/blogs/fmge-passing-rate-fefu-why-it-matters-2026.html",
+                    "name": "FMGE Passing Rate: Why It Matters Before Choosing"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 11,
+                    "url": "https://mbbsabroads.com/blogs/fefu-hostel-campus-life-indian-students-2026.html",
+                    "name": "FEFU Hostel & Campus Life: Indian Student Guide"
                 }
             ]
         }
@@ -63,16 +118,251 @@
         }
 
         .blog-hero {
-            padding: 80px 0 40px;
+            padding: 100px 0 50px;
             text-align: center;
-            background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+            position: relative;
         }
 
+        /* Filter Controls */
+        .filter-container {
+            max-width: 900px;
+            margin: 30px auto 0;
+            padding: 0 20px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary, rgba(255, 255, 255, 0.45));
+            pointer-events: none;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 16px 14px 48px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 99px;
+            color: var(--text-primary, #fff);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 18px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 550;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .filter-btn:hover {
+            background: rgba(167, 139, 250, 0.05);
+            color: #a78bfa;
+            border-color: rgba(167, 139, 250, 0.3);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #7c3aed, #2563EB);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.35);
+        }
+
+        /* Featured Section */
+        .featured-section {
+            margin: 40px auto;
+            max-width: 1100px;
+            padding: 0 20px;
+        }
+
+        .featured-card {
+            background: linear-gradient(135deg, rgba(14, 20, 36, 0.96), rgba(30, 41, 59, 0.92));
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 28px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 20px;
+            position: relative;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+            transition: border-color 0.3s ease;
+        }
+
+        .featured-card:hover {
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        .featured-cover {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: 
+                radial-gradient(circle at top right, rgba(124, 58, 237, 0.2), transparent 50%),
+                radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.1), transparent 50%);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .featured-tag {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .featured-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+
+        .featured-excerpt {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 16px;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+        }
+
+        .featured-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .featured-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #7c3aed, #2563EB);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .featured-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45);
+        }
+
+        .featured-sidebar {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .featured-bullet-title {
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .featured-bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .featured-bullets li {
+            position: relative;
+            padding-left: 24px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .featured-bullets li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        @media (max-width: 850px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+            .featured-cover {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Grid formatting */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            padding: 30px 0;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .blog-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .blog-card {
@@ -88,99 +378,61 @@
         }
 
         .blog-card:hover {
-            transform: translateY(-10px);
-            background: var(--bg-secondary);
+            transform: translateY(-8px);
             border-color: rgba(167, 139, 250, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .blog-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         .blog-card-cover {
-            min-height: 160px;
-            padding: 22px;
+            min-height: 140px;
+            padding: 20px;
             display: flex;
             align-items: flex-end;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            background:
-                radial-gradient(circle at top right, rgba(124, 58, 237, 0.22), transparent 40%),
-                linear-gradient(135deg, rgba(8, 13, 27, 0.94), rgba(30, 41, 59, 0.9));
+            background: linear-gradient(135deg, rgba(8, 13, 27, 0.94), rgba(30, 41, 59, 0.9));
         }
 
         .blog-card-cover.is-safety {
             background:
-                radial-gradient(circle at top right, rgba(16, 185, 129, 0.28), transparent 42%),
+                radial-gradient(circle at top right, rgba(16, 185, 129, 0.2), transparent 40%),
                 linear-gradient(135deg, rgba(7, 24, 22, 0.96), rgba(17, 24, 39, 0.92));
         }
 
         .blog-card-cover.is-admissions {
             background:
-                radial-gradient(circle at top right, rgba(59, 130, 246, 0.3), transparent 42%),
+                radial-gradient(circle at top right, rgba(59, 130, 246, 0.2), transparent 40%),
                 linear-gradient(135deg, rgba(14, 20, 36, 0.96), rgba(30, 41, 59, 0.92));
+        }
+
+        .blog-card-cover.is-fees {
+            background:
+                radial-gradient(circle at top right, rgba(245, 158, 11, 0.2), transparent 40%),
+                linear-gradient(135deg, rgba(28, 18, 5, 0.96), rgba(17, 24, 39, 0.92));
+        }
+
+        .blog-card-cover.is-fefu {
+            background:
+                radial-gradient(circle at top right, rgba(167, 139, 250, 0.2), transparent 40%),
+                linear-gradient(135deg, rgba(17, 10, 36, 0.96), rgba(30, 41, 59, 0.92));
         }
 
         .blog-card-kicker {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.08);
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 99px;
+            background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            backdrop-filter: blur(10px);
         }
 
         .blog-card-kicker i {
-            width: 15px;
-            height: 15px;
-        }
-
-        /* Magnetic Glow */
-        .blog-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: inherit;
-            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(167, 139, 250, 0.1), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            z-index: 0;
-            pointer-events: none;
-        }
-        
-        .blog-card:hover::before {
-            opacity: 1;
-        }
-
-        .blog-card > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .blog-card-image {
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .blog-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .blog-card:hover .blog-card-image img {
-            transform: scale(1.1);
+            width: 14px;
+            height: 14px;
         }
 
         .blog-card-content {
@@ -190,50 +442,17 @@
             flex-direction: column;
         }
 
-        .blog-category {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(167, 139, 250, 0.1);
-            color: #a78bfa;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .blog-card-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 14px;
-            margin-bottom: 16px;
-            color: var(--text-muted, rgba(255, 255, 255, 0.48));
-            font-size: 0.85rem;
-        }
-
-        .blog-card-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .blog-card-meta i {
-            width: 14px;
-            height: 14px;
-        }
-
         .blog-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            line-height: 1.3;
             font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.35;
+            margin-bottom: 12px;
         }
 
         .blog-excerpt {
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.65);
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -244,79 +463,215 @@
             overflow: hidden;
         }
 
+        .blog-card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .blog-card-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .blog-card-meta i {
+            width: 14px;
+            height: 14px;
+        }
+
         .blog-footer {
             margin-top: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 15px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.85rem;
-            color: var(--text-muted, rgba(255, 255, 255, 0.4));
+        }
+
+        .blog-tag {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #a78bfa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .read-more {
-            color: #a78bfa;
-            text-decoration: none;
+            font-size: 0.88rem;
             font-weight: 600;
-            display: flex;
+            color: #a78bfa;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
-            transition: gap 0.3s ease;
+            gap: 4px;
+            transition: gap 0.2s ease;
         }
 
-        .read-more:hover {
+        .blog-card:hover .read-more {
             gap: 8px;
         }
 
-        .blog-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            margin-top: auto;
+        /* Empty State */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.45);
+            display: none;
         }
 
-        .blog-chip-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 22px;
+        .no-results i {
+            color: #7c3aed;
+            margin-bottom: 16px;
         }
 
-        .blog-chip {
-            padding: 9px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-secondary);
-            font-size: 0.88rem;
+        .no-results h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 8px;
         }
 
-        /* Loading State */
-        .blog-skeleton {
-            height: 400px;
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
+        /* Inquiry Form at the bottom */
+        .blog-listing-form-sec {
+            margin: 60px auto 30px;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .blog-inquiry-form {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        @keyframes skeleton-loading {
-            0% {
-                background-position: 200% 0;
-            }
+        .blog-inquiry-form::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #a78bfa, #2563EB, #10b981);
+        }
 
-            100% {
-                background-position: -200% 0;
+        .blog-inquiry-form h3 {
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            font-size: 1.6rem;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+
+        .blog-inquiry-form .form-subtitle {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .blog-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .blog-form-grid {
+                grid-template-columns: 1fr;
             }
+        }
+
+        .blog-form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .blog-form-input:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+        }
+
+        .blog-form-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #7c3aed, #2563EB);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .blog-form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .blog-form-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .blog-form-msg {
+            text-align: center;
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 16px;
+            font-size: 0.92rem;
+            display: none;
+        }
+
+        .blog-form-msg.success {
+            display: block;
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .blog-form-msg.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .blog-form-guarantee {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .blog-form-guarantee i {
+            color: #10b981;
         }
 
         @media (max-width: 768px) {
             .blog-hero {
                 padding: 100px 15px 30px;
-                background: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 80%);
             }
 
             .section-title {
@@ -397,7 +752,6 @@
                 </svg>
             </span>
         </div>
-        <!-- Buttons will be positioned by JavaScript -->
     </div>
 
     <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
@@ -449,52 +803,109 @@
             </a>
         </nav>
     </div>
+
     <main class="main-content">
         <section class="blog-hero">
             <div class="container">
                 <h1 class="section-title">Medical Education & Life in Russia Blog</h1>
-                <p class="section-subtitle">Parent-focused safety guides, admissions comparisons, and practical FEFU student insights for MBBS aspirants.</p>
-                <div class="blog-chip-row" aria-label="Popular blog topics">
-                    <span class="blog-chip">NMC Recognition</span>
-                    <span class="blog-chip">Campus Safety</span>
-                    <span class="blog-chip">Fees & ROI</span>
-                    <span class="blog-chip">Hostel Life</span>
+                <p class="section-subtitle">Parent-focused safety guides, transparent admissions, and practical campus experiences for MBBS aspirants.</p>
+                
+                <div class="filter-container">
+                    <div class="search-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search articles by title or keyword...">
+                    </div>
+                    <div class="filter-row" id="filterRow">
+                        <button class="filter-btn active" data-filter="all">All Articles</button>
+                        <button class="filter-btn" data-filter="fefu-guide">FEFU Guide</button>
+                        <button class="filter-btn" data-filter="fees">Fees & Admission</button>
+                        <button class="filter-btn" data-filter="safety">Safety & Hostels</button>
+                        <button class="filter-btn" data-filter="fmge">FMGE / NExT</button>
+                        <button class="filter-btn" data-filter="comparisons">Comparisons</button>
+                        <button class="filter-btn" data-filter="admissions">MBBS in Russia</button>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Featured Guide Banner -->
+        <section class="featured-section" id="featuredSection">
+            <div class="featured-card">
+                <div class="featured-cover">
+                    <span class="featured-tag">★ Featured Guide</span>
+                    <h2 class="featured-title">FEFU MBBS Fees, Hostel, Admission & Eligibility Guide 2026</h2>
+                    <p class="featured-excerpt">The ultimate blueprint for Indian medical aspirants targeting Far Eastern Federal University (FEFU) in 2026. Review qualifying criteria, direct-remittance accounts, and ocean-view hostels.</p>
+                    <div class="featured-meta">
+                        <span><i data-lucide="calendar"></i> March 14, 2026</span>
+                        <span><i data-lucide="clock-3"></i> 8 min read</span>
+                        <span><i data-lucide="user"></i> Admission Board</span>
+                    </div>
+                    <a href="blogs/fefu-mbbs-fees-hostel-admission-eligibility-guide-2026.html" class="featured-action-btn">
+                        <span>Read Ultimate Guide</span>
+                        <i data-lucide="arrow-right"></i>
+                    </a>
+                </div>
+                <div class="featured-sidebar">
+                    <h3 class="featured-bullet-title">What You'll Learn:</h3>
+                    <ul class="featured-bullets">
+                        <li>PCB aggregate 50% & NEET eligibility rules</li>
+                        <li>Fully English-medium 6-year schedule details</li>
+                        <li>Dorm layouts with attached private baths</li>
+                        <li>direct-to-university payment instructions</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Grid -->
         <section class="section">
             <div class="container">
-                <div class="blog-grid">
-                    <!-- Blog Card: Safety in Russia -->
-                    <a href="blogs/is-mbbs-in-russia-safe-2026.html" class="blog-card-link" aria-label="Read Is MBBS in Russia Safe in 2026">
-                        <article class="blog-card animate-on-scroll">
-                            <div class="blog-card-cover is-safety">
-                                <span class="blog-card-kicker"><i data-lucide="shield"></i> Safety Guide</span>
+                <div class="blog-grid" id="blogGrid">
+                    <!-- Card 1: Why Choose FEFU -->
+                    <a href="blogs/why-choose-fefu-mbbs-russia-2026.html" class="blog-card-link" data-category="fefu-guide" aria-label="Read Why Choose FEFU for MBBS in Russia in 2026">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-fefu">
+                                <span class="blog-card-kicker"><i data-lucide="sparkles"></i> FEFU Guide</span>
                             </div>
                             <div class="blog-card-content">
                                 <div class="blog-card-meta">
-                                    <span><i data-lucide="calendar"></i> March 9, 2026</span>
-                                    <span><i data-lucide="clock-3"></i> 5 min read</span>
+                                    <span><i data-lucide="calendar"></i> May 22, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 7 min read</span>
                                 </div>
-                                <span class="blog-category">Safety</span>
-                                <h2 class="blog-title">Is MBBS in Russia Safe in 2026? A Parent's Guide to Security & Campus Life</h2>
-                                <p class="blog-excerpt">
-                                    The strongest concerns parents have before sending a student abroad are safety, support, and daily life. This guide explains why Vladivostok and FEFU's closed island campus stand out.
-                                </p>
-                                <div class="blog-actions">
-                                    <div class="blog-footer">
-                                        <span>Security, hostel life, campus support</span>
-                                    </div>
+                                <h2 class="blog-title">Why Choose FEFU for MBBS in Russia in 2026?</h2>
+                                <p class="blog-excerpt">A practical, parent-friendly guide explaining why FEFU stands out for Indian students through its English-medium program, campus life, safety, and NMC verification checkpoints.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">FEFU Guide</span>
                                     <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
                                 </div>
                             </div>
                         </article>
                     </a>
 
-                    <!-- Blog Card: MBBS in Russia -->
-                    <a href="blogs/mbbs-in-russia-fefu-2026.html" class="blog-card-link" aria-label="Read Top 10 NMC-Approved Medical Universities in Russia for Indian Students 2026">
-                        <article class="blog-card animate-on-scroll">
+                    <!-- Card 1: Safety in Russia -->
+                    <a href="blogs/is-mbbs-in-russia-safe-2026.html" class="blog-card-link" data-category="safety" aria-label="Read Is MBBS in Russia Safe in 2026">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-safety">
+                                <span class="blog-card-kicker"><i data-lucide="shield"></i> Safety Guide</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 9, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 6 min read</span>
+                                </div>
+                                <h2 class="blog-title">Is MBBS in Russia Safe in 2026? A Parent's Security Guide</h2>
+                                <p class="blog-excerpt">The strongest concerns parents have before sending a student abroad are safety, support, and daily life. This guide explains why Vladivostok and FEFU's closed island campus stand out.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">Safety & Hostels</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 2: Top 10 Universities -->
+                    <a href="blogs/mbbs-in-russia-fefu-2026.html" class="blog-card-link" data-category="admissions" aria-label="Read Top NMC FMGL Compliant Medical Universities in Russia for Indian Students 2026">
+                        <article class="blog-card">
                             <div class="blog-card-cover is-admissions">
                                 <span class="blog-card-kicker"><i data-lucide="graduation-cap"></i> Admissions Guide</span>
                             </div>
@@ -503,20 +914,201 @@
                                     <span><i data-lucide="calendar"></i> March 9, 2026</span>
                                     <span><i data-lucide="clock-3"></i> 8 min read</span>
                                 </div>
-                                <span class="blog-category">Admissions</span>
-                                <h2 class="blog-title">Top 10 NMC-Approved Medical Universities in Russia for Indian Students (2026)</h2>
-                                <p class="blog-excerpt">
-                                    A comprehensive guide comparing the top 10 NMC-approved Russian medical universities, fees, Indian student presence, and why FEFU is emerging as the top choice for 2026.
-                                </p>
-                                <div class="blog-actions">
-                                    <div class="blog-footer">
-                                        <span>Fees, FMGE, ranking, student fit</span>
-                                    </div>
+                                <h2 class="blog-title">Top NMC/FMGL-Compliant Medical Universities in Russia for Indian Students (2026)</h2>
+                                <p class="blog-excerpt">A practical guide for students searching NMC-approved medical colleges in Russia, with safer NMC/FMGL checks, fee context, and a FEFU-focused comparison.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">MBBS in Russia</span>
                                     <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
                                 </div>
                             </div>
                         </article>
                     </a>
+
+                    <!-- Card 3: Russia Fees 2026 -->
+                    <a href="blogs/mbbs-in-russia-fees-indian-students-2026.html" class="blog-card-link" data-category="fees" aria-label="Read MBBS in Russia Fees for Indian Students 2026">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-fees">
+                                <span class="blog-card-kicker"><i data-lucide="dollar-sign"></i> Fee Structure</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 12, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 7 min read</span>
+                                </div>
+                                <h2 class="blog-title">MBBS in Russia Fees for Indian Students 2026: Transparent Costs</h2>
+                                <p class="blog-excerpt">Planning to study medicine abroad requires careful budget analysis. Here is a clear, transparent fee structure listing tuition, hostels, insurance, and food charges.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">Fees & Admission</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 4: Is FEFU Good Review -->
+                    <a href="blogs/is-fefu-good-for-indian-students-2026.html" class="blog-card-link" data-category="fefu-guide" aria-label="Read Is FEFU Good for Indian Students Honest Review">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-fefu">
+                                <span class="blog-card-kicker"><i data-lucide="thumbs-up"></i> Honest Assessment</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 15, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 6 min read</span>
+                                </div>
+                                <h2 class="blog-title">Is FEFU Good for Indian Students? An Honest, Unbiased Review</h2>
+                                <p class="blog-excerpt">We analyze the academic rigor, clinical exposure, weather changes, Indian dining mess options, and overall student reviews for Far Eastern Federal University.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">FEFU Guide</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 5: Russia vs Georgia -->
+                    <a href="blogs/mbbs-in-russia-vs-mbbs-in-georgia-2026.html" class="blog-card-link" data-category="comparisons" aria-label="Read MBBS in Russia vs MBBS in Georgia">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-admissions">
+                                <span class="blog-card-kicker"><i data-lucide="git-compare"></i> Compare Countries</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 16, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 8 min read</span>
+                                </div>
+                                <h2 class="blog-title">MBBS in Russia vs MBBS in Georgia: Which is Better in 2026?</h2>
+                                <p class="blog-excerpt">A head-to-head comparison of medical degrees from Russia vs Georgia, covering tuition subsidies, licensing rules compliance, and hospital infrastructures.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">Comparisons</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 6: Russia vs Kazakhstan -->
+                    <a href="blogs/mbbs-in-russia-vs-mbbs-in-kazakhstan-2026.html" class="blog-card-link" data-category="comparisons" aria-label="Read MBBS in Russia vs MBBS in Kazakhstan">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-admissions">
+                                <span class="blog-card-kicker"><i data-lucide="git-compare"></i> Compare Countries</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 18, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 7 min read</span>
+                                </div>
+                                <h2 class="blog-title">MBBS in Russia vs MBBS in Kazakhstan: 2026 Financial Analysis</h2>
+                                <p class="blog-excerpt">Compare duration guidelines, clinical hours, licensing constraints, and average budgets between Central Asian regional academies and Russian federal systems.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">Comparisons</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 7: NMC Guidelines -->
+                    <a href="blogs/nmc-guidelines-mbbs-abroad-students-2026.html" class="blog-card-link" data-category="admissions" aria-label="Read NMC Guidelines for MBBS Abroad 2026">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-safety">
+                                <span class="blog-card-kicker"><i data-lucide="file-check-2"></i> Regulation Check</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 20, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 8 min read</span>
+                                </div>
+                                <h2 class="blog-title">NMC Guidelines for MBBS Abroad 2026: Mandatory Compliance Checklist</h2>
+                                <p class="blog-excerpt">Ensure your degree is recognized in India. Complete evaluation of course length (54 months study + 12 months internship) and English instruction rules.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">MBBS in Russia</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 8: FMGE Success -->
+                    <a href="blogs/fmge-passing-rate-fefu-why-it-matters-2026.html" class="blog-card-link" data-category="fmge" aria-label="Read FMGE Passing Rate Why it Matters">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-fefu">
+                                <span class="blog-card-kicker"><i data-lucide="award"></i> Academic Outcomes</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 22, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 6 min read</span>
+                                </div>
+                                <h2 class="blog-title">FMGE Passing Rate of Russian Universities: What FEFU Students Should Check</h2>
+                                <p class="blog-excerpt">A source-first guide to judging FMGE claims, checking batch size, exam session, first-attempt data, and building a serious preparation plan from year 1.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">FMGE / NExT</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+
+                    <!-- Card 9: Hostel Life -->
+                    <a href="blogs/fefu-hostel-campus-life-indian-students-2026.html" class="blog-card-link" data-category="safety" aria-label="Read FEFU Hostel & Campus Life">
+                        <article class="blog-card">
+                            <div class="blog-card-cover is-fees">
+                                <span class="blog-card-kicker"><i data-lucide="home"></i> Campus Housing</span>
+                            </div>
+                            <div class="blog-card-content">
+                                <div class="blog-card-meta">
+                                    <span><i data-lucide="calendar"></i> March 24, 2026</span>
+                                    <span><i data-lucide="clock-3"></i> 7 min read</span>
+                                </div>
+                                <h2 class="blog-title">FEFU Hostel and Campus Life: Modern Dorms & Indian Dining Guide</h2>
+                                <p class="blog-excerpt">Explore the premium dormitories with attached private washrooms, hot water, skywalk connections, weekly housekeeping, and northern/southern Indian meals.</p>
+                                <div class="blog-footer">
+                                    <span class="blog-tag">Safety & Hostels</span>
+                                    <div class="read-more">Read More <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></div>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+
+                <!-- No Results State -->
+                <div class="no-results" id="noResults">
+                    <i data-lucide="book-x" style="width: 48px; height: 48px;"></i>
+                    <h3>No Articles Found</h3>
+                    <p>We couldn't find any articles matching your search query. Try broadening your keywords or clearing filters.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inline inquiry form at the bottom -->
+        <section class="blog-listing-form-sec">
+            <div class="blog-inquiry-form">
+                <h3>📋 Register for Direct FEFU Admission</h3>
+                <p class="form-subtitle">Skip local brokers and agency markups. Apply directly via our validated admissions pathway.</p>
+                <form id="blogInquiryForm">
+                    <div class="blog-form-grid">
+                        <input type="text" class="blog-form-input" id="blog_name" placeholder="Full Name" required>
+                        <input type="tel" class="blog-form-input" id="blog_phone" placeholder="Phone / WhatsApp Number" required>
+                        <input type="email" class="blog-form-input" id="blog_email" placeholder="Email Address" required>
+                        <select class="blog-form-input" id="blog_country">
+                            <option value="" disabled selected>Select Country</option>
+                            <option value="India">India</option>
+                            <option value="Nepal">Nepal</option>
+                            <option value="Bangladesh">Bangladesh</option>
+                            <option value="Sri Lanka">Sri Lanka</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="blog-form-submit" id="blogFormBtn">
+                        <span>Start Direct Registration</span>
+                        <i data-lucide="send" style="width:18px;height:18px;"></i>
+                    </button>
+                </form>
+                <div class="blog-form-msg" id="blogFormMsg"></div>
+                <div class="blog-form-guarantee">
+                    <i data-lucide="shield-check" style="width:16px;height:16px;"></i>
+                    <span>Free Counseling - Direct Enrollment - Zero Capitation Fee</span>
                 </div>
             </div>
         </section>
@@ -534,27 +1126,120 @@
     <script src="script.js"></script>
     <script src="components/ui/sidebar-vanilla.js"></script>
     <script src="theme-toggle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) {
                 lucide.createIcons();
             }
-        });
-    </script>
-    <script src="tracker.js"></script>
-    <script>
-        // Magnetic Glow for Blog Cards
-        document.querySelectorAll('.blog-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', x + 'px');
-                card.style.setProperty('--mouse-y', y + 'px');
+
+            // Real-Time Client-Side Filtering & Search Logic
+            const searchInput = document.getElementById('searchInput');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cardLinks = document.querySelectorAll('.blog-card-link');
+            const noResults = document.getElementById('noResults');
+            const featuredSection = document.getElementById('featuredSection');
+
+            let activeCategory = 'all';
+            let searchQuery = '';
+
+            function updateFilters() {
+                let visibleCount = 0;
+                
+                cardLinks.forEach(link => {
+                    const category = link.getAttribute('data-category');
+                    const title = link.querySelector('.blog-title').textContent.toLowerCase();
+                    const excerpt = link.querySelector('.blog-excerpt').textContent.toLowerCase();
+                    const tag = link.querySelector('.blog-tag').textContent.toLowerCase();
+
+                    const matchesCategory = (activeCategory === 'all' || category === activeCategory);
+                    const matchesSearch = (!searchQuery || 
+                                           title.includes(searchQuery) || 
+                                           excerpt.includes(searchQuery) ||
+                                           tag.includes(searchQuery));
+
+                    if (matchesCategory && matchesSearch) {
+                        link.style.display = 'block';
+                        // Trigger smooth opacity fade-in
+                        setTimeout(() => {
+                            link.style.opacity = '1';
+                            link.style.transform = 'scale(1)';
+                        }, 10);
+                        visibleCount++;
+                    } else {
+                        link.style.opacity = '0';
+                        link.style.transform = 'scale(0.95)';
+                        // Wait for transition before hiding display
+                        setTimeout(() => {
+                            link.style.display = 'none';
+                        }, 300);
+                    }
+                });
+
+                // Hide Featured guide section if category is comparisons/fmge, or search query is active
+                if (activeCategory !== 'all' && activeCategory !== 'fefu-guide' || searchQuery !== '') {
+                    featuredSection.style.opacity = '0';
+                    setTimeout(() => {
+                        featuredSection.style.display = 'none';
+                    }, 300);
+                } else {
+                    featuredSection.style.display = 'block';
+                    setTimeout(() => {
+                        featuredSection.style.opacity = '1';
+                    }, 10);
+                }
+
+                // Show/hide empty state
+                if (visibleCount === 0) {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            }
+
+            // Search Event
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase().trim();
+                updateFilters();
             });
+
+            // Category Click Event
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = btn.getAttribute('data-filter');
+                    updateFilters();
+                });
+            });
+
+            // ---- Robust Supabase Initialization ----
+            (function() {
+                var SUPABASE_URL = 'https://ibspwomnrilukdcumsix.supabase.co';
+                var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlic3B3b21ucmlsdWtkY3Vtc2l4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NjUxMTUsImV4cCI6MjA4NjU0MTExNX0.ScRhoEVYXABEozmUpQbEktsBD6twvF8lHdD4xXr5rpY';
+
+                function initSupabase() {
+                    if (typeof supabase !== 'undefined' && supabase.createClient) {
+                        window.supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+                        window.dispatchEvent(new CustomEvent('supabase-ready', { detail: { client: window.supabaseClient } }));
+                        return true;
+                    }
+                    return false;
+                }
+
+                if (!initSupabase()) {
+                    var attempts = 0;
+                    var interval = setInterval(function() {
+                        attempts++;
+                        if (initSupabase() || attempts > 20) clearInterval(interval);
+                    }, 100);
+                }
+            })();
         });
     </script>
+    <script src="blog-handler.js" defer></script>
+    <script src="tracker.js" defer></script>
+    <script src="cookie-consent.js" defer></script>
 </body>
 
 </html>
-

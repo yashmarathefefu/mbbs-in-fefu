@@ -2222,3 +2222,260 @@ html.low-end-device[data-theme="light"] .hero-eyebrow {
     background-clip: text;
     color: transparent;
 }
+
+/* ========================================
+   31. BLOG LISTING & INDIVIDUAL BLOG PAGES - LIGHT THEME
+   ======================================== */
+[data-theme="light"] .blog-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 119, 182, 0.04) 0%, transparent 70%);
+}
+
+[data-theme="light"] .search-input {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .search-input::placeholder {
+    color: #94a3b8 !important;
+}
+
+[data-theme="light"] .search-input:focus {
+    background: #ffffff !important;
+    border-color: var(--primary-color, #0077B6) !important;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15), 0 4px 12px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .search-wrapper i {
+    color: #64748b !important;
+}
+
+[data-theme="light"] .filter-btn {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: #475569 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme="light"] .filter-btn:hover {
+    background: rgba(0, 119, 182, 0.05) !important;
+    color: var(--primary-color, #0077B6) !important;
+    border-color: rgba(0, 119, 182, 0.25) !important;
+}
+
+[data-theme="light"] .filter-btn.active {
+    background: var(--gradient-1) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 4px 12px rgba(0, 119, 182, 0.25) !important;
+}
+
+/* Featured Guide Card in Light Mode */
+[data-theme="light"] .featured-card {
+    background: #ffffff !important;
+    border-color: rgba(0, 119, 182, 0.12) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.9) inset !important;
+}
+
+[data-theme="light"] .featured-cover {
+    background: 
+        radial-gradient(circle at top right, rgba(0, 180, 216, 0.08), transparent 50%),
+        radial-gradient(circle at bottom left, rgba(0, 119, 182, 0.05), transparent 50%) !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+@media (max-width: 850px) {
+    [data-theme="light"] .featured-cover {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    }
+}
+
+[data-theme="light"] .featured-title {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .featured-excerpt {
+    color: #475569 !important;
+}
+
+[data-theme="light"] .featured-meta {
+    color: #64748b !important;
+}
+
+[data-theme="light"] .featured-sidebar {
+    background: rgba(0, 0, 0, 0.01) !important;
+    border-left: 1px solid rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (max-width: 850px) {
+    [data-theme="light"] .featured-sidebar {
+        border-left: none !important;
+    }
+}
+
+[data-theme="light"] .featured-bullet-title {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .featured-bullets li {
+    color: #334155 !important;
+}
+
+/* Regular Cards in Light Mode */
+[data-theme="light"] .blog-card {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03) !important;
+}
+
+[data-theme="light"] .blog-card:hover {
+    border-color: rgba(0, 119, 182, 0.2) !important;
+    box-shadow: 0 15px 35px rgba(0, 119, 182, 0.06), 0 4px 12px rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme="light"] .blog-card-cover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .blog-title {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .blog-excerpt {
+    color: #475569 !important;
+}
+
+[data-theme="light"] .blog-card-meta {
+    color: #64748b !important;
+}
+
+[data-theme="light"] .blog-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .blog-tag,
+[data-theme="light"] .read-more {
+    color: var(--primary-color, #0077B6) !important;
+}
+
+[data-theme="light"] .no-results h3 {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .no-results p {
+    color: #64748b !important;
+}
+
+/* Bottom Inquiry Form in Light Mode */
+[data-theme="light"] .blog-inquiry-form {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .blog-inquiry-form h3 {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .blog-inquiry-form .form-subtitle {
+    color: #475569 !important;
+}
+
+[data-theme="light"] .blog-form-input {
+    background: #f8fafc !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .blog-form-input::placeholder {
+    color: #94a3b8 !important;
+}
+
+[data-theme="light"] .blog-form-input:focus {
+    background: #ffffff !important;
+    border-color: var(--primary-color, #0077B6) !important;
+    box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.12) !important;
+}
+
+[data-theme="light"] .blog-form-guarantee {
+    color: #64748b !important;
+}
+
+/* ========================================
+   INDIVIDUAL BLOG POST DETAILS - LIGHT THEME
+   ======================================== */
+[data-theme="light"] .post-title {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .post-meta {
+    color: #64748b !important;
+}
+
+[data-theme="light"] .post-content {
+    color: #1e293b !important;
+}
+
+[data-theme="light"] .table-container {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme="light"] th {
+    background: rgba(0, 119, 182, 0.06) !important;
+    color: #0f172a !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] td {
+    color: #334155 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .faq-item {
+    border-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .faq-item:hover {
+    border-color: rgba(0, 119, 182, 0.25) !important;
+}
+
+[data-theme="light"] .faq-question {
+    background: #ffffff !important;
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .faq-question:hover {
+    background: rgba(0, 119, 182, 0.03) !important;
+}
+
+[data-theme="light"] .faq-answer {
+    background: #ffffff !important;
+}
+
+[data-theme="light"] .faq-answer p {
+    color: #475569 !important;
+}
+
+
+[data-theme="light"] .post-category {
+    background: rgba(0, 119, 182, 0.08) !important;
+    color: var(--primary-color, #0077B6) !important;
+}
+
+[data-theme="light"] .back-to-blog {
+    color: #475569 !important;
+    transition: color 0.2s ease !important;
+}
+
+[data-theme="light"] .back-to-blog:hover {
+    color: var(--primary-color, #0077B6) !important;
+}
+

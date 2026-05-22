@@ -5,7 +5,7 @@
     <!-- Homepage with Key Campus Images -->
     <url>
         <loc>https://mbbsabroads.com/</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
@@ -27,35 +27,98 @@
 
     <url>
         <loc>https://mbbsabroads.com/index.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
         <loc>https://mbbsabroads.com/blog.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
+        <loc>https://mbbsabroads.com/blogs/why-choose-fefu-mbbs-russia-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
         <loc>https://mbbsabroads.com/blogs/mbbs-in-russia-fefu-2026.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://mbbsabroads.com/blogs/is-mbbs-in-russia-safe-2026.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/mbbs-in-russia-fees-indian-students-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/fefu-mbbs-fees-hostel-admission-eligibility-guide-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/is-fefu-good-for-indian-students-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/mbbs-in-russia-vs-mbbs-in-georgia-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/mbbs-in-russia-vs-mbbs-in-kazakhstan-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/nmc-guidelines-mbbs-abroad-students-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/fmge-passing-rate-fefu-why-it-matters-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://mbbsabroads.com/blogs/fefu-hostel-campus-life-indian-students-2026.html</loc>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://mbbsabroads.com/gallery.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-05-22</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
