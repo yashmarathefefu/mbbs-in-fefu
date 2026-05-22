@@ -168,9 +168,9 @@ html.theme-transitioning *::after {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding-top: 110px;
-        padding-bottom: 140px;
-        gap: 24px;
+        padding-top: 100px;
+        padding-bottom: 120px;
+        gap: 16px;
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
@@ -226,10 +226,10 @@ html.theme-transitioning *::after {
 [data-theme="light"] .hero-eyebrow {
     color: #3498DB;
     font-weight: 600;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.22em;
     border: 1px solid rgba(52, 152, 219, 0.25) !important;
     background: rgba(255, 255, 255, 0.88) !important;
-    padding: 0.45rem 1.4rem !important;
+    padding: 0.5rem 1.1rem !important;
     border-radius: 50px !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);

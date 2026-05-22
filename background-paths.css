@@ -116,33 +116,32 @@
 /* Eyebrow */
 .hero-eyebrow {
     display: inline-block;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: #a3c2fa;
-    /* Soft sky blue restored */
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     opacity: 0;
     transform: translateY(20px);
     border: 1px solid rgba(163, 194, 250, 0.35);
-    padding: 0.72rem 1.35rem;
+    padding: 0.5rem 1.1rem;
     border-radius: 999px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(30, 41, 59, 0.4));
     box-shadow:
-        0 12px 30px rgba(2, 6, 23, 0.32),
+        0 8px 22px rgba(2, 6, 23, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 /* Title */
 #animated-hero-title {
-    font-size: clamp(2.5rem, 8vw + 1rem, 5.6rem); /* GitHub-scale: ~90px max */
+    font-size: clamp(2.1rem, 5.5vw + 0.5rem, 4.4rem); /* Sleek, crisp, perfectly balanced scale */
     font-weight: 800;
-    margin-bottom: 2.2rem;
-    letter-spacing: -0.045em;
-    line-height: 1.0;
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
 
     /* Premium white-to-blue gradient */
     background: linear-gradient(170deg, #ffffff 10%, #bfdbff 100%);
@@ -166,11 +165,11 @@
 
 /* Subtitle */
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.35rem); /* GitHub-scale: ~22px max */
+    font-size: clamp(0.95rem, 1.2vw + 0.5rem, 1.15rem); /* Sleeker subtitle */
     color: rgba(255, 255, 255, 0.95);
-    max-width: 720px;
-    margin: 0 auto 3.5rem;
-    line-height: 1.7;
+    max-width: 680px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.6;
     opacity: 0;
     transform: translateY(20px);
     text-shadow: 0 0 0 rgba(0, 0, 0, 0);
@@ -231,17 +230,17 @@
 .btn-discover {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 16px 36px;
+    gap: 10px;
+    padding: 14px 30px;
     background: linear-gradient(135deg, #ffffff 0%, #c0d4ff 100%);
     color: #000;
     border: none;
     border-radius: 12px;
-    font-weight: 750;
-    font-size: 1.05rem;
+    font-weight: 700;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 24px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.18);
     position: relative;
     overflow: hidden;
     letter-spacing: -0.01em;
@@ -311,8 +310,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    padding: 0.85rem 1.7rem;
+    font-size: 0.92rem;
     font-weight: 500;
     border-radius: 1.15rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -344,8 +343,8 @@
     gap: 2rem;
     opacity: 0;
     transform: translateY(20px);
-    /* Push stats to the bottom of the hero container */
-    margin-top: auto;
+    /* Group stats below CTA with clean spacing */
+    margin-top: clamp(2.5rem, 5vh, 4rem);
     width: min(100%, 860px);
 }
 
@@ -359,12 +358,12 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    padding: 1.35rem 1.6rem 1.2rem;
-    border-radius: 1.45rem;
-    min-width: 160px;
+    padding: 1rem 1.3rem 0.9rem;
+    border-radius: 1.2rem;
+    min-width: 140px;
     transition: all 0.3s ease;
     box-shadow:
-        0 18px 40px rgba(2, 6, 23, 0.38),
+        0 14px 32px rgba(2, 6, 23, 0.32),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
@@ -392,7 +391,7 @@
 
 .hero-stat-number {
     display: inline;
-    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
     font-weight: 700;
     color: #fff;
     font-variant-numeric: tabular-nums;
@@ -402,7 +401,7 @@
 }
 
 .hero-stat-plus {
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     font-weight: 600;
     color: rgba(191, 219, 254, 0.82);
     position: relative;
@@ -589,11 +588,10 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding-top: 110px;
-        padding-bottom: 140px;
-        gap: 24px;
+        padding-top: 100px;
+        padding-bottom: 110px;
+        gap: 16px;
         max-width: 440px;
-        /* Locks layout to 420px sweet-spot on all mobile */
         width: 100%;
         margin: 0 auto;
         box-sizing: border-box;
@@ -612,19 +610,19 @@
     }
 
     #animated-hero-title {
-        font-size: 34px;
+        font-size: 30px;
         font-weight: 700;
-        line-height: 1.15;
+        line-height: 1.12;
         max-width: 95%;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
 
     .hero-subtitle {
-        max-width: 380px;
-        font-size: 16px;
-        line-height: 1.6;
-        margin-top: 10px;
-        margin-bottom: 0px;
+        max-width: 360px;
+        font-size: 15px;
+        line-height: 1.55;
+        margin-top: 4px;
+        margin-bottom: 0;
         padding: 0;
     }
 
@@ -667,7 +665,7 @@
         gap: 8px;
         flex-wrap: nowrap;
         justify-content: center;
-        margin-top: auto;
+        margin-top: 1.5rem;
         width: 100%;
     }
 
