@@ -3288,6 +3288,11 @@ body:not([data-highlight]) .text-highlight,
     gap: 8px;
 }
 
+.footer-logo .fefu-brand-mark {
+    width: 42px;
+    height: 42px;
+}
+
 .footer-brand-name {
     font-weight: 600;
     color: #fff;

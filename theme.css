@@ -347,13 +347,13 @@ html.low-end-device[data-theme="light"] .hero-eyebrow {
 }
 
 [data-theme="light"] .sleek-text-path {
-    stroke: #1A2530;
-    animation: drawText 3s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards,
-               fillInTextLight 1.5s ease 2s forwards;
+    fill: #142033;
+    stroke: none;
+    animation: none;
 }
 
 [data-theme="light"] .sidebar-logo:hover .sleek-text-path {
-    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.2));
+    filter: none;
 }
 
 @keyframes fillInTextLight {

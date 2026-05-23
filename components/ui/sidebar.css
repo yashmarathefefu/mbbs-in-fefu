@@ -66,9 +66,9 @@ body {
 .sidebar-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 9px;
     margin-bottom: 2.5rem;
-    padding: 0.5rem 0.65rem;
+    padding: 0.45rem 0.45rem;
     white-space: nowrap;
     transition: transform 0.3s ease;
     cursor: pointer;
@@ -76,9 +76,20 @@ body {
 
 .sleek-logo-icon {
     color: var(--sidebar-accent);
-    filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.4));
-    transition: all 0.4s ease;
+    filter: none;
+    transition: transform 0.25s ease, filter 0.25s ease;
     flex-shrink: 0;
+}
+
+.fefu-brand-mark {
+    display: block;
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 0;
+    background: transparent;
+    color: initial;
+    filter: drop-shadow(0 8px 16px rgba(13, 77, 165, 0.18));
 }
 
 .globe-path {
@@ -88,23 +99,22 @@ body {
 }
 
 .sleek-text-path {
-    fill: transparent;
-    stroke: #fff;
-    stroke-width: 0.8px;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation: drawText 3s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards,
-               fillInText 1.5s ease 2s forwards;
+    fill: #f8fbff;
+    stroke: none;
+    stroke-width: 0;
+    letter-spacing: 0;
+    animation: none;
+    paint-order: normal;
 }
 
 .sidebar-logo:hover .sleek-logo-icon {
-    transform: rotate(15deg) scale(1.1);
-    filter: drop-shadow(0 0 12px rgba(167, 139, 250, 0.8));
+    transform: translateY(-1px) scale(1.03);
+    filter: drop-shadow(0 10px 18px rgba(13, 77, 165, 0.32));
     color: #e879f9;
 }
 
 .sidebar-logo:hover .sleek-text-path {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.3));
+    filter: none;
 }
 
 @keyframes drawIcon {
@@ -122,9 +132,15 @@ body {
 
 .sidebar-logo span.sidebar-label-container {
     font-family: inherit;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     display: flex;
     align-items: center;
+}
+
+.sleek-logo-text-svg {
+    display: block;
+    height: 26px;
+    max-width: 158px;
 }
 
 /* Mobile Sidebar Top Bar — Premium Glassmorphism */
@@ -171,7 +187,7 @@ body {
 }
 
 .sidebar-mobile-label-container {
-    margin-left: 12px;
+    margin-left: 8px;
     transform: none;
     opacity: 1;
 }
@@ -353,6 +369,26 @@ body {
         display: flex;
     }
 
+    .sidebar-mobile .sidebar-logo {
+        gap: 8px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sidebar-mobile .fefu-brand-mark,
+    .sidebar-mobile-drawer .fefu-brand-mark {
+        width: 50px;
+        height: 50px;
+        border-radius: 0;
+    }
+
+    .sidebar-mobile .sleek-logo-text-svg,
+    .sidebar-mobile-drawer .sleek-logo-text-svg {
+        width: 132px;
+        height: 22px;
+        max-width: calc(100vw - 190px);
+    }
+
     body {
         padding-top: 4rem;
         padding-left: 0;
@@ -379,6 +415,42 @@ body {
         z-index: 9999;
         animation: fadeIn 0.4s forwards;
         pointer-events: auto;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sidebar-desktop {
+        display: none;
+    }
+
+    .sidebar-mobile {
+        display: flex;
+    }
+
+    .sidebar-mobile .sidebar-logo {
+        gap: 8px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sidebar-mobile .fefu-brand-mark,
+    .sidebar-mobile-drawer .fefu-brand-mark {
+        width: 50px;
+        height: 50px;
+        border-radius: 0;
+    }
+
+    .sidebar-mobile .sleek-logo-text-svg,
+    .sidebar-mobile-drawer .sleek-logo-text-svg {
+        width: 132px;
+        height: 22px;
+        max-width: calc(100vw - 190px);
+    }
+
+    body {
+        padding-top: 4rem;
+        padding-left: 0;
+        overflow-x: hidden;
     }
 }
 
