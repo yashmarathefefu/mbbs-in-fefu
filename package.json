@@ -14,7 +14,8 @@
   },
   "scripts": {
     "start": "http-server .",
-    "test": "node test-links.js"
+    "test": "node test-links.js",
+    "seo": "node seo-check.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
