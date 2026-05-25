@@ -351,21 +351,10 @@ document.addEventListener('DOMContentLoaded', () => {
         titleEl.style.color = "transparent";
     }
 
-    if (document.getElementById('shader-loader')) {
-        document.addEventListener('loader-finished', () => {
-            const hero = document.getElementById('hero');
-            if (hero) hero.classList.add('revealed');
+    const hero = document.getElementById('hero');
+    if (hero) hero.classList.add('revealed');
 
-            initHeroBackground();
-            if (titleEl) titleEl.style.color = "";
-            startHeroTextAnimations();
-        });
-    } else {
-        const hero = document.getElementById('hero');
-        if (hero) hero.classList.add('revealed');
-
-        initHeroBackground();
-        if (titleEl) titleEl.style.color = "";
-        startHeroTextAnimations();
-    }
+    initHeroBackground();
+    if (titleEl) titleEl.style.color = "";
+    startHeroTextAnimations();
 });

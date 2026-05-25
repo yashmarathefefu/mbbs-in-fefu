@@ -1286,6 +1286,25 @@ html.low-end-device[data-theme="light"] .hero-eyebrow {
     background-clip: text;
 }
 
+[data-theme="light"] .gallery-hero-subtitle {
+    color: #4a5568;
+}
+
+[data-theme="light"] .gallery-hero-copy {
+    color: #4a5568;
+}
+
+[data-theme="light"] .gallery-hero-copy-toggle {
+    color: #1A2530;
+    border-color: rgba(26, 37, 48, 0.2);
+    background: rgba(26, 37, 48, 0.06);
+}
+
+[data-theme="light"] .gallery-hero-copy-toggle:hover {
+    background: rgba(26, 37, 48, 0.1);
+    border-color: rgba(26, 37, 48, 0.35);
+}
+
 [data-theme="light"] .gallery-tab {
     border-color: rgba(0, 0, 0, 0.12);
 }

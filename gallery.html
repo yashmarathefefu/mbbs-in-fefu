@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-shell">
 
 <head>
     <meta charset="UTF-8">
@@ -129,11 +129,17 @@
         <div class="container">
             <h1 class="gallery-hero-title">FEFU Campus & Student Life Gallery</h1>
             <p class="gallery-hero-subtitle">Explore Far Eastern Federal University - Your Future Medical School</p>
-            <div class="gallery-hero-copy">
-                <p>These FEFU gallery photos help Indian students and parents understand the real study environment before choosing an MBBS abroad option. The page includes views of the Russky Island campus, student hostels, lecture halls, library spaces, sports areas, city surroundings, and natural scenery around Vladivostok.</p>
-                <p>For families comparing MBBS in Russia, visuals matter because the decision is not only about tuition or admission documents. Students live on campus for years, so hostel quality, classroom infrastructure, campus movement, safety, and daily comfort should be checked carefully. Use this gallery with the FEFU admission guide, hostel information, and fee details to build a clearer picture of student life before applying.</p>
-                <p>The images are grouped by category so visitors can quickly compare academic facilities, dormitory rooms, campus buildings, outdoor spaces, and the surrounding city. This also gives search engines clearer context about what the gallery represents: FEFU campus life for international medical students, especially Indian applicants planning a long-term General Medicine program in Russia.</p>
-                <p>Parents can review the hostel and campus sections before asking counselling questions about rooms, food access, weather, travel, and daily routines. Students can use the lecture hall, library, sports, and city photos to imagine how study hours, personal time, and weekend movement may feel after arrival in Vladivostok during their first year.</p>
+            <div class="gallery-hero-copy-wrap" id="gallery-hero-copy-wrap">
+                <div class="gallery-hero-copy" id="gallery-hero-copy">
+                    <p>These FEFU gallery photos help Indian students and parents understand the real study environment before choosing an MBBS abroad option. The page includes views of the Russky Island campus, student hostels, lecture halls, library spaces, sports areas, city surroundings, and natural scenery around Vladivostok.</p>
+                    <p>For families comparing MBBS in Russia, visuals matter because the decision is not only about tuition or admission documents. Students live on campus for years, so hostel quality, classroom infrastructure, campus movement, safety, and daily comfort should be checked carefully. Use this gallery with the FEFU admission guide, hostel information, and fee details to build a clearer picture of student life before applying.</p>
+                    <p>The images are grouped by category so visitors can quickly compare academic facilities, dormitory rooms, campus buildings, outdoor spaces, and the surrounding city. This also gives search engines clearer context about what the gallery represents: FEFU campus life for international medical students, especially Indian applicants planning a long-term General Medicine program in Russia.</p>
+                    <p>Parents can review the hostel and campus sections before asking counselling questions about rooms, food access, weather, travel, and daily routines. Students can use the lecture hall, library, sports, and city photos to imagine how study hours, personal time, and weekend movement may feel after arrival in Vladivostok during their first year.</p>
+                </div>
+                <button type="button" class="gallery-hero-copy-toggle" id="gallery-hero-copy-toggle"
+                    aria-expanded="false" aria-controls="gallery-hero-copy" aria-label="Show full description">
+                    <i data-lucide="chevron-down" class="gallery-hero-copy-toggle-icon" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -490,6 +496,52 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.lucide) {
                 lucide.createIcons();
+            }
+
+            const copyWrap = document.getElementById('gallery-hero-copy-wrap');
+            const copyToggle = document.getElementById('gallery-hero-copy-toggle');
+            const copyEl = document.getElementById('gallery-hero-copy');
+
+            function logGalleryHero(state, hypothesisId) {
+                if (!copyWrap || !copyEl) return;
+                const cs = getComputedStyle(copyEl);
+                const toggleCs = copyToggle ? getComputedStyle(copyToggle) : null;
+                // #region agent log
+                fetch('http://127.0.0.1:7633/ingest/ba440378-5827-45bd-9217-2c33f7db32dc', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'd6d33e' }, body: JSON.stringify({ sessionId: 'd6d33e', runId: 'pre-fix', hypothesisId, location: 'gallery.html:hero-copy', message: state, data: { viewport: window.innerWidth, theme: document.documentElement.getAttribute('data-theme') || 'dark', expanded: copyWrap.classList.contains('is-expanded'), copyScrollHeight: copyEl.scrollHeight, copyClientHeight: copyEl.clientHeight, copyColor: cs.color, copyDisplay: cs.display, webkitLineClamp: cs.webkitLineClamp || cs.getPropertyValue('-webkit-line-clamp'), toggleDisplay: toggleCs ? toggleCs.display : null, toggleColor: toggleCs ? toggleCs.color : null, hasChevron: !!copyWrap.querySelector('.gallery-hero-copy-toggle-icon svg, .gallery-hero-copy-toggle-icon') }, timestamp: Date.now() }) }).catch(() => {});
+                // #endregion
+            }
+
+            if (copyWrap && copyToggle && copyEl) {
+                const syncToggleVisibility = () => {
+                    const needsClamp = window.matchMedia('(max-width: 1024px)').matches;
+                    if (!needsClamp) {
+                        copyWrap.classList.remove('is-expanded');
+                        copyToggle.hidden = true;
+                        return;
+                    }
+                    copyToggle.hidden = false;
+                    if (!copyWrap.classList.contains('is-expanded')) {
+                        const overflows = copyEl.scrollHeight > copyEl.clientHeight + 2;
+                        copyToggle.hidden = !overflows;
+                    }
+                };
+
+                copyToggle.addEventListener('click', () => {
+                    const expanded = copyWrap.classList.toggle('is-expanded');
+                    copyToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                    copyToggle.setAttribute('aria-label', expanded ? 'Show less description' : 'Show full description');
+                    logGalleryHero('toggle-click', 'B');
+                });
+
+                syncToggleVisibility();
+                window.addEventListener('resize', syncToggleVisibility);
+                logGalleryHero('init', 'A');
+                logGalleryHero('init', 'C');
+                logGalleryHero('init', 'D');
+            } else {
+                // #region agent log
+                fetch('http://127.0.0.1:7633/ingest/ba440378-5827-45bd-9217-2c33f7db32dc', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'd6d33e' }, body: JSON.stringify({ sessionId: 'd6d33e', runId: 'pre-fix', hypothesisId: 'B', location: 'gallery.html:hero-copy', message: 'missing-elements', data: { hasWrap: !!copyWrap, hasToggle: !!copyToggle, hasCopy: !!copyEl }, timestamp: Date.now() }) }).catch(() => {});
+                // #endregion
             }
         });
     </script>

@@ -467,17 +467,8 @@ if (document.readyState === 'loading') {
 // PAGE LOAD ANIMATIONS
 // ========================================
 
-// Handle initial scroll state
-// NOTE: On homepage, loader.js handles the overflow lock/unlock.
-// Only unlock on non-homepage pages (gallery, blog, etc.) where no loader exists.
-if (!document.getElementById('hero-particles') && !document.getElementById('shader-loader')) {
-    document.body.style.overflow = '';
-}
-
-// Reveal hero section explicitly after loader finishes
-// NOTE: The actual hero text animations (FEFU letter-split, eyebrow, subtitle, stats)
-// are handled by background-paths.js — do NOT add competing GSAP animations here.
-document.addEventListener('loader-finished', () => {
+// Reveal hero section on load (text animations handled by background-paths.js)
+document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
     if (heroSection) heroSection.classList.add('revealed');
 });
@@ -718,15 +709,10 @@ function initCampusSlideShow(el) {
     updateUI(0);
 }
 
-// Initialize on DOMContentLoaded or loader-finished
 function startCarouselInit() {
     initCampusSlideShow(document.getElementById('campusCarousel'));
 }
-if (document.getElementById('shader-loader')) {
-    document.addEventListener('loader-finished', startCarouselInit);
-} else {
-    document.addEventListener('DOMContentLoaded', startCarouselInit);
-}
+document.addEventListener('DOMContentLoaded', startCarouselInit);
 
 
 // ========================================
@@ -1227,10 +1213,7 @@ if (document.readyState === 'loading') {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     }
 
-    // Kick off after loader or DOMContentLoaded
-    if (document.getElementById('shader-loader')) {
-        document.addEventListener('loader-finished', init);
-    } else if (document.readyState === 'loading') {
+    if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
         init();
