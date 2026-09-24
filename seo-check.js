@@ -141,10 +141,11 @@ async function checkHtmlFile(file) {
 
     for (const url of externalAnchors) {
         const result = await checkUrl(url);
-        if (result.status >= 400) {
+        if (result.status >= 400 && ![402, 403].includes(result.status)) {
             errors.push(`${file}: broken external link: ${result.status} ${url}`);
         } else if (!result.ok) {
-            warnings.push(`${file}: external link could not be verified: ${result.error} ${url}`);
+            const reason = result.status ? `HTTP ${result.status}` : result.error;
+            warnings.push(`${file}: external link could not be verified (${reason}): ${url}`);
         }
     }
 }

@@ -59,7 +59,6 @@ h3 {
 }
 
 /* Tabular nums for stat counters (prevents jitter during animation) */
-.hero-stat-number,
 .stat-number {
     font-variant-numeric: tabular-nums;
 }
@@ -288,7 +287,7 @@ body:not([data-highlight]) .text-highlight,
     position: relative;
     overflow: hidden;
     background: #000000;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.8s ease-in-out;
 }
 
@@ -3405,7 +3404,7 @@ body:not([data-highlight]) .text-highlight,
     height: 20px;
 }
 
-.footer-newsletter-copy {
+.footer-contact-copy {
     font-size: 14px;
     color: var(--text-secondary);
     margin-bottom: 20px;
@@ -3642,68 +3641,29 @@ body:not([data-highlight]) .text-highlight,
     box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* Newsletter Section */
-.footer-newsletter {
+/* Footer contact CTA */
+.footer-contact {
     max-width: 400px;
 }
 
-.newsletter-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.newsletter-input-group {
-    position: relative;
-    display: flex;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 5px;
-    transition: all 0.3s ease;
-}
-
-.newsletter-input-group:focus-within {
-    border-color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.1);
-}
-
-.newsletter-input-group input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 10px 15px;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-}
-
-.newsletter-btn {
-    background: var(--primary-color);
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    cursor: pointer;
+.footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(147, 197, 253, 0.32);
+    border-radius: 999px;
+    background: rgba(59, 130, 246, 0.12);
+    color: #dbeafe;
+    font-size: 0.92rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.newsletter-btn:hover {
-    background: #1d4ed8;
-    transform: scale(1.02);
-}
-
-.newsletter-note {
-    display: none;
-    font-size: 12px;
-    color: rgba(191, 219, 254, 0.9);
-}
-
-.newsletter-form.is-sent + .newsletter-note {
-    display: block;
+.footer-contact-link:hover {
+    background: rgba(59, 130, 246, 0.22);
+    transform: translateY(-1px);
 }
 
 /* Trust Badges */
@@ -6225,23 +6185,6 @@ textarea:focus-visible,
 
 .section-header-tight {
     margin-bottom: 1rem;
-}
-
-.fmge-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(24px, 3vw, 32px);
-    font-weight: 700;
-    margin-bottom: 10px;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.fmge-subcopy {
-    color: var(--text-secondary);
-    font-size: 16px;
-    line-height: 1.6;
 }
 
 .vtour-form input {

@@ -1,23 +1,21 @@
 // ============================================
-// Hero Section — Static Stars, Title Animation,
-// Globe Animation, Stats Counter
+// Hero Section — FEFU-focused title and globe entrance
 // ============================================
-
-function initHeroBackground() {
-    const heroSection = document.querySelector('.hero-section');
-
-    // ---- 1. Static Stars (CSS-only, dark mode) ----
-    // Stars are handled purely via CSS on .hero-stars-layer
-    // No JS needed — just tiny white dots via box-shadow
-    // They auto-hide in light mode via theme.css
-
-    // Nothing else to initialize for the background.
-    // SVG paths and canvas particles have been removed for performance.
-}
 
 function startHeroTextAnimations() {
     const titleEl = document.getElementById('animated-hero-title');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion || typeof gsap === 'undefined') {
+        if (prefersReducedMotion) {
+            window.globeSettings = window.globeSettings || {};
+            window.globeSettings.speed = 0;
+        }
+        return;
+    }
+
     if (titleEl) {
+        const titleWords = titleEl.textContent.trim().split(/\s+/);
 
         titleEl.style.webkitTextFillColor = 'unset';
         titleEl.style.color = '#fff';
@@ -25,43 +23,18 @@ function startHeroTextAnimations() {
 
         // Create container for the expanding text
         const textWrapper = document.createElement('div');
-        textWrapper.className = 'fefu-expand-wrapper';
+        textWrapper.className = 'hero-title-words';
         textWrapper.style.display = 'flex';
         textWrapper.style.justifyContent = 'center';
         textWrapper.style.flexWrap = 'wrap';
         titleEl.appendChild(textWrapper);
 
-        // Define the words and their target states
-        const wordsData = [
-            { letter: 'F', rest: 'ar', full: 'Far' },
-            { letter: 'E', rest: 'astern', full: 'Eastern' },
-            { letter: 'F', rest: 'ederal', full: 'Federal' },
-            { letter: 'U', rest: 'niversity', full: 'University' }
-        ];
-
-        wordsData.forEach((wData, index) => {
-            const wordContainer = document.createElement('div');
-            wordContainer.style.display = 'inline-flex';
-            wordContainer.style.marginRight = index < 3 ? '0em' : '0';
-            wordContainer.className = 'fefu-word-container';
-
-            const mainLetter = document.createElement('span');
-            mainLetter.textContent = wData.letter;
-            mainLetter.className = 'fefu-main-letter';
-            mainLetter.style.display = 'inline-block';
-            mainLetter.style.opacity = '0';
-
-            const restOfWord = document.createElement('span');
-            restOfWord.textContent = wData.rest;
-            restOfWord.className = 'fefu-rest-word';
-            restOfWord.style.display = 'inline-block';
-            restOfWord.style.opacity = '0';
-            restOfWord.style.width = '0px';
-            restOfWord.style.overflow = 'hidden';
-
-            wordContainer.appendChild(mainLetter);
-            wordContainer.appendChild(restOfWord);
-            textWrapper.appendChild(wordContainer);
+        titleWords.forEach((word, index) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.textContent = word;
+            wordSpan.className = 'hero-title-word';
+            wordSpan.style.marginRight = index < titleWords.length - 1 ? '0.24em' : '0';
+            textWrapper.appendChild(wordSpan);
         });
     }
 
@@ -101,16 +74,21 @@ function startHeroTextAnimations() {
             subtitleSpans = splitTextIntoSpans(subtitle);
         }
 
+        const ctaRow = document.querySelector('.hero-cta-row');
+        const proofRow = document.querySelector('.hero-proof-row');
+        gsap.set([ctaRow, proofRow].filter(Boolean), { opacity: 0, y: 20 });
+
         // Setup 3D Perspective for the massive title
-        gsap.set('.fefu-expand-wrapper', { perspective: 800 });
+        gsap.set('.hero-title-word', { transformPerspective: 800, transformOrigin: '50% 50% -50px' });
 
         // 0. Reveal Eyebrow stagger
         if (eyebrowSpans.length > 0) {
             tl.to(eyebrowSpans, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, 'start');
         }
 
-        // 1. Reveal "F E F U" with a cinematic 3D focus pull
-        tl.fromTo('.fefu-main-letter', {
+        // 1. Reveal each complete word with a cinematic 3D focus pull.
+        // Keeping the full word intact avoids a blank or partial heading if a tween is interrupted.
+        tl.fromTo('.hero-title-word', {
             y: 60,
             opacity: 0,
             rotateX: -80,
@@ -125,7 +103,7 @@ function startHeroTextAnimations() {
             scale: 1,
             duration: 1.6,
             ease: "expo.out",
-            stagger: 0.15
+            stagger: 0.1
         }, 'start+=0.2');
 
         // 2. Pause to build anticipation
@@ -135,8 +113,6 @@ function startHeroTextAnimations() {
         // pointer:coarse = any touch device (phone, tablet, iPad in any orientation)
         // pointer:fine   = mouse/trackpad = desktop
         const isTouchDevice = navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
-        const isMobile = window.innerWidth <= 768;          // phones (touch + small screen)
-        const isTablet = isTouchDevice && !isMobile;        // any touch device larger than a phone
         const isDesktop = !isTouchDevice;                   // mouse/trackpad device
 
         // GLOBE ANIMATION (Deep Space Zoom + Fast-to-Slow Spin)
@@ -179,7 +155,7 @@ function startHeroTextAnimations() {
 
             // Phase 2: Snap into final position
             tl.to('.globe-container', {
-                opacity: 0.90,
+                opacity: 0.28,
                 filter: "blur(0px)",
                 duration: 1.1,
                 ease: "expo.inOut"
@@ -197,7 +173,7 @@ function startHeroTextAnimations() {
             // ── TOUCH (tablet / mobile): container is full-screen, GSAP moves container
             gsap.set('.globe-container', {
                 x: 6,
-                y: isMobile ? -54 : -54,
+                y: -54,
                 xPercent: -50,
                 scale: 0.1,
                 rotate: 0,
@@ -222,7 +198,7 @@ function startHeroTextAnimations() {
                 xPercent: -50,
                 scale: 1.46,
                 rotate: 0,
-                opacity: 0.90,
+                opacity: 0.28,
                 filter: "blur(0px)",
                 duration: 1.1,
                 ease: "expo.inOut"
@@ -256,73 +232,20 @@ function startHeroTextAnimations() {
             ease: "expo.out"
         }, 'start');
 
-        // 3. Expand the words gracefully
-        tl.to('.fefu-word-container', {
-            marginRight: (i) => i < 3 ? '0.35em' : '0',
-            duration: 1.1,
-            ease: "power4.inOut"
-        }, 'expand');
-
-        // 4. Reveal the rest of the letters
-        tl.fromTo('.fefu-rest-word', {
-            width: '0px',
-            opacity: 0,
-            filter: "blur(6px)",
-            color: "#6b96e6"
-        }, {
-            width: 'auto',
-            opacity: 1,
-            filter: "blur(0px)",
-            color: "#ffffff",
-            duration: 1.1,
-            ease: "power4.inOut"
-        }, 'expand');
-
-        // 5. Reveal Subtitle words elegantly
+        // 3. Reveal Subtitle words elegantly
         if (subtitleSpans.length > 0) {
             tl.fromTo(subtitleSpans,
                 { opacity: 0, y: 15, filter: "blur(4px)" },
                 { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, stagger: 0.03, ease: 'power2.out' }, 'expand+=0.5');
         }
 
-        const ctaRow = document.querySelector('.hero-cta-row');
         if (ctaRow) tl.to(ctaRow, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 'expand+=1.0');
-
-        const statsRow = document.getElementById('hero-stats-row');
-        if (statsRow) tl.to(statsRow, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 'expand+=1.2');
+        if (proofRow) tl.to(proofRow, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 'expand+=1.15');
 
         const scrollInd = document.getElementById('hero-scroll-indicator');
         const swipeInd = document.querySelector('.hero-swipe-indicator');
         if (scrollInd) tl.to(scrollInd, { opacity: 1, duration: 0.5 }, 'expand+=1.5');
         if (swipeInd) tl.to(swipeInd, { opacity: 1, duration: 0.5 }, 'expand+=1.5');
-
-        // ---- Stats Counter ----
-        tl.add(() => {
-            let isReload = false;
-            if (performance.navigation && performance.navigation.type === 1) {
-                isReload = true;
-            } else if (window.performance && performance.getEntriesByType && performance.getEntriesByType("navigation").length > 0) {
-                isReload = performance.getEntriesByType("navigation")[0].type === "reload";
-            }
-            
-            const isAlreadyAnimated = !isReload && sessionStorage.getItem('heroAnimated');
-            const statNumbers = document.querySelectorAll('.hero-stat-number[data-count]');
-            statNumbers.forEach(el => {
-                const target = parseInt(el.getAttribute('data-count'), 10);
-                if (isAlreadyAnimated) {
-                    el.textContent = target.toLocaleString();
-                } else {
-                    const obj = { val: 0 };
-                    gsap.to(obj, {
-                        val: target, duration: 1.5,
-                        ease: 'power2.out',
-                        onUpdate: () => {
-                            el.textContent = Math.round(obj.val).toLocaleString();
-                        }
-                    });
-                }
-            });
-        }, 'expand+=1.2');
 
         // Check if the user explicitly refreshed/reloaded the page
         let isReload = false;
@@ -345,16 +268,10 @@ function startHeroTextAnimations() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Hide original text to avoid flicker
     const titleEl = document.getElementById('animated-hero-title');
-    if (titleEl && !titleEl.innerHTML.includes('anim-word')) {
-        titleEl.style.color = "transparent";
-    }
 
     const hero = document.getElementById('hero');
     if (hero) hero.classList.add('revealed');
 
-    initHeroBackground();
-    if (titleEl) titleEl.style.color = "";
     startHeroTextAnimations();
 });

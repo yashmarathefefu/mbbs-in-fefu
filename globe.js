@@ -3,13 +3,12 @@
 // FEFU Contact section background
 // ============================================
 
-import createGlobe from 'https://cdn.jsdelivr.net/npm/cobe@0.6.5/+esm';
-
-function initGlobe() {
+async function initGlobe() {
     const canvas = document.getElementById('globe-canvas');
     if (!canvas) return;
 
     let isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const lowEndDevice = isMobile && (
         (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
         (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
@@ -18,6 +17,20 @@ function initGlobe() {
 
     if (lowEndDevice) {
         document.documentElement.classList.add('low-end-device');
+    }
+
+    if (prefersReducedMotion || lowEndDevice) {
+        canvas.remove();
+        return;
+    }
+
+    let createGlobe;
+    try {
+        ({ default: createGlobe } = await import('https://cdn.jsdelivr.net/npm/cobe@0.6.5/+esm'));
+    } catch (error) {
+        console.warn('The decorative FEFU globe could not be loaded.', error);
+        canvas.remove();
+        return;
     }
 
     let phi = 0;
