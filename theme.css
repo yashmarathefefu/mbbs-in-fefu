@@ -257,41 +257,10 @@ html.theme-transitioning *::after {
 
 
 /* 3. Hero Stat Cards â€” lifted white cards */
-[data-theme="light"] .hero-stat {
-    background: #FFFFFF !important;
-    border: 1px solid rgba(52, 152, 219, 0.12);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06),
-        0 1px 4px rgba(0, 0, 0, 0.03);
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
-    transition: all 0.3s ease;
-}
 
-[data-theme="light"] .hero-stat:hover {
-    background: #FFFFFF !important;
-    border-color: rgba(52, 152, 219, 0.30);
-    box-shadow: 0 8px 30px rgba(52, 152, 219, 0.10),
-        0 2px 6px rgba(0, 0, 0, 0.04);
-    transform: translateY(-4px);
-}
 
-[data-theme="light"] .hero-stat-number {
-    color: #1A2530;
-    font-weight: 800;
-}
 
-[data-theme="light"] .hero-stat-plus {
-    color: #2563EB;
-    font-weight: 700;
-}
 
-[data-theme="light"] .hero-stat-label {
-    color: #000000;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-}
 
 [data-theme="light"] .hero-proof-pill {
     background: rgba(255, 255, 255, 0.92);
@@ -301,7 +270,6 @@ html.theme-transitioning *::after {
 }
 
 html.low-end-device[data-theme="light"] .hero-proof-pill,
-html.low-end-device[data-theme="light"] .hero-stat,
 html.low-end-device[data-theme="light"] .hero-eyebrow {
     box-shadow: none !important;
     backdrop-filter: none !important;

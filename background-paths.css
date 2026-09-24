@@ -122,8 +122,8 @@
     text-transform: uppercase;
     color: #a3c2fa;
     margin-bottom: 0.75rem;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
     border: 1px solid rgba(163, 194, 250, 0.35);
     padding: 0.5rem 1.1rem;
     border-radius: 999px;
@@ -170,8 +170,8 @@
     max-width: 680px;
     margin: 0 auto 2.2rem;
     line-height: 1.6;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
     text-shadow: 0 0 0 rgba(0, 0, 0, 0);
 }
 
@@ -182,8 +182,8 @@
     justify-content: center;
     gap: 1rem;
     margin-bottom: 0;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
 }
 
 .hero-proof-row {
@@ -193,8 +193,8 @@
     gap: 0.7rem;
     flex-wrap: wrap;
     margin-top: 1.25rem;
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: none;
 }
 
 .hero-proof-pill {
@@ -335,92 +335,6 @@
     transition-duration: 0.1s;
 }
 
-/* ---- Stats Row ---- */
-.hero-stats-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    /* Group stats below CTA with clean spacing */
-    margin-top: clamp(2.5rem, 5vh, 4rem);
-    width: min(100%, 860px);
-}
-
-.hero-stat {
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-        linear-gradient(145deg, rgba(8, 15, 28, 0.88), rgba(12, 21, 36, 0.76));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 1rem 1.3rem 0.9rem;
-    border-radius: 1.2rem;
-    min-width: 140px;
-    transition: all 0.3s ease;
-    box-shadow:
-        0 14px 32px rgba(2, 6, 23, 0.32),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.hero-stat::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 18% 18%, rgba(125, 211, 252, 0.16), transparent 28%),
-        radial-gradient(circle at 82% 85%, rgba(56, 189, 248, 0.12), transparent 32%);
-    pointer-events: none;
-    opacity: 0.92;
-}
-
-.hero-stat:hover {
-    transform: translateY(-5px);
-    border-color: rgba(191, 219, 254, 0.26);
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-        linear-gradient(145deg, rgba(10, 18, 32, 0.92), rgba(14, 26, 44, 0.82));
-    box-shadow:
-        0 22px 46px rgba(2, 6, 23, 0.46),
-        0 0 34px rgba(59, 130, 246, 0.12);
-}
-
-.hero-stat-number {
-    display: inline;
-    font-size: clamp(1.3rem, 2vw, 1.7rem);
-    font-weight: 700;
-    color: #fff;
-    font-variant-numeric: tabular-nums;
-    position: relative;
-    z-index: 1;
-    text-shadow: 0 0 16px rgba(96, 165, 250, 0.12);
-}
-
-.hero-stat-plus {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    font-weight: 600;
-    color: rgba(191, 219, 254, 0.82);
-    position: relative;
-    z-index: 1;
-}
-
-.hero-stat-label {
-    display: block;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    color: rgba(226, 232, 240, 0.72);
-    margin-top: 0.45rem;
-    position: relative;
-    z-index: 1;
-    text-transform: uppercase;
-}
-
-
-
 /* ---- FEFU Title Shimmer ---- */
 @keyframes titleShimmer {
     0% {
@@ -432,9 +346,16 @@
     }
 }
 
-/* Individual letter spans get the gradient text effect */
-.fefu-main-letter,
-.fefu-rest-word {
+/* Keep each animated word intact and legible throughout the entrance. */
+.hero-title-words {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-title-word {
+    display: inline-block;
+    white-space: nowrap;
     background: linear-gradient(90deg,
             #ffffff 0%,
             #ffffff 35%,
@@ -445,7 +366,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: titleShimmer 5s ease-in-out 4s infinite;
+    animation: titleShimmer 6s ease-in-out 2s 1;
 }
 
 /* ========================================
@@ -513,19 +434,17 @@
         margin-bottom: 0px;
     }
 
+    .btn-discover-wrap {
+        padding: 0;
+        margin: 0;
+    }
+
     .btn-discover,
     .btn-ghost {
         font-size: 16px;
         padding: 14px 28px;
     }
 
-    .hero-stats-row {
-        gap: 12px;
-        flex-wrap: nowrap;
-        justify-content: center;
-        margin-top: 24px;
-        width: 100%;
-    }
 
     .hero-proof-row {
         margin-top: 12px;
@@ -538,25 +457,9 @@
         letter-spacing: 0.06em;
     }
 
-    .hero-stat {
-        padding: 16px 12px;
-        min-width: 0;
-        flex: 1;
-        border-radius: 16px;
-    }
 
-    .hero-stat-number {
-        font-size: 24px;
-    }
 
-    .hero-stat-label {
-        font-size: 10px;
-        letter-spacing: 0;
-    }
 
-    .hero-stat-plus {
-        font-size: 18px;
-    }
 }
 
 /* ========================================
@@ -661,36 +564,10 @@
         box-shadow: none;
     }
 
-    .hero-stats-row {
-        gap: 8px;
-        flex-wrap: nowrap;
-        justify-content: center;
-        margin-top: 1.5rem;
-        width: 100%;
-    }
 
-    .hero-stat {
-        padding: 12px 6px;
-        min-width: 0;
-        flex: 1;
-        border-radius: 16px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        box-shadow: 0 10px 24px rgba(2, 6, 23, 0.22);
-    }
 
-    .hero-stat-number {
-        font-size: 20px;
-    }
 
-    .hero-stat-label {
-        font-size: 9.5px;
-        letter-spacing: 0;
-    }
 
-    .hero-stat-plus {
-        font-size: 16px;
-    }
 
     /* Utility toggles */
     .desktop-only {
@@ -789,13 +666,11 @@ html.low-end-device .hero-radial-glow {
 }
 
 html.low-end-device .hero-eyebrow,
-html.low-end-device .hero-stat,
 html.low-end-device .hero-proof-pill {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
 }
 
-html.low-end-device .hero-stat,
 html.low-end-device .hero-proof-pill,
 html.low-end-device .btn-discover,
 html.low-end-device .btn-ghost {
@@ -808,8 +683,4 @@ html.low-end-device .btn-discover::before {
 
 html.low-end-device .hero-content {
     gap: 18px;
-}
-
-html.low-end-device .hero-stat::before {
-    display: none;
 }
