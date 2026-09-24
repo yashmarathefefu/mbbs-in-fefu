@@ -2,7 +2,9 @@
   "scripts": {
     "start": "http-server .",
     "test": "node test-links.js",
-    "seo": "node seo-check.js"
+    "seo": "node seo-check.js",
+    "sitemap": "node generate-sitemap.js",
+    "blog:index": "node generate-blog-index.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
