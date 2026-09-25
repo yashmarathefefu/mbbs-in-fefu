@@ -21,8 +21,8 @@ function startHeroTextAnimations() {
         titleEl.style.color = '#fff';
         titleEl.innerHTML = '';
 
-        // Create container for the expanding text
-        const textWrapper = document.createElement('div');
+        // Keep the generated markup valid inside the h1.
+        const textWrapper = document.createElement('span');
         textWrapper.className = 'hero-title-words';
         textWrapper.style.display = 'flex';
         textWrapper.style.justifyContent = 'center';
@@ -78,32 +78,20 @@ function startHeroTextAnimations() {
         const proofRow = document.querySelector('.hero-proof-row');
         gsap.set([ctaRow, proofRow].filter(Boolean), { opacity: 0, y: 20 });
 
-        // Setup 3D Perspective for the massive title
-        gsap.set('.hero-title-word', { transformPerspective: 800, transformOrigin: '50% 50% -50px' });
-
         // 0. Reveal Eyebrow stagger
         if (eyebrowSpans.length > 0) {
             tl.to(eyebrowSpans, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, 'start');
         }
 
-        // 1. Reveal each complete word with a cinematic 3D focus pull.
-        // Keeping the full word intact avoids a blank or partial heading if a tween is interrupted.
+        // 1. Reveal each complete word with a simple opacity fade.
+        // Stagger controls timing; the heading has no rise, rotation, blur, or scale.
         tl.fromTo('.hero-title-word', {
-            y: 60,
-            opacity: 0,
-            rotateX: -80,
-            transformOrigin: "50% 50% -50px",
-            filter: "blur(15px)",
-            scale: 1.2
+            opacity: 0
         }, {
-            y: 0,
             opacity: 1,
-            rotateX: 0,
-            filter: "blur(0px)",
-            scale: 1,
-            duration: 1.6,
-            ease: "expo.out",
-            stagger: 0.1
+            duration: 0.28,
+            ease: 'power1.out',
+            stagger: 0.22
         }, 'start+=0.2');
 
         // 2. Pause to build anticipation
@@ -213,7 +201,7 @@ function startHeroTextAnimations() {
         }, 'expand');
 
         // Add contrast to supporting copy while the globe expands. The title
-        // uses one animation only: the word-by-word reveal above.
+        // uses only the opacity-based word-by-word reveal above.
         tl.to('.hero-subtitle', { 
             textShadow: '0px 2px 12px rgba(0,0,0,0.7)', 
             duration: 1.1, 
@@ -262,10 +250,5 @@ function startHeroTextAnimations() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const titleEl = document.getElementById('animated-hero-title');
-
-    const hero = document.getElementById('hero');
-    if (hero) hero.classList.add('revealed');
-
     startHeroTextAnimations();
 });
