@@ -287,12 +287,6 @@ body:not([data-highlight]) .text-highlight,
     position: relative;
     overflow: hidden;
     background: #000000;
-    opacity: 1;
-    transition: opacity 0.8s ease-in-out;
-}
-
-.hero-section.revealed {
-    opacity: 1;
 }
 
 

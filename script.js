@@ -464,22 +464,9 @@ if (document.readyState === 'loading') {
 }
 
 // ========================================
-// PAGE LOAD ANIMATIONS
-// ========================================
-
-// Reveal hero section on load (text animations handled by background-paths.js)
-document.addEventListener('DOMContentLoaded', () => {
-    const heroSection = document.getElementById('hero');
-    if (heroSection) heroSection.classList.add('revealed');
-});
-
-// ========================================
 // PREMIUM HERO PARALLAX & MAGNETIC BUTTON
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-    const heroSection = document.getElementById('hero');
-    const heroContent = document.querySelector('.hero-content');
-    const heroParticles = document.getElementById('hero-particles');
     const btnDiscoverWrap = document.querySelector('.btn-discover-wrap');
     const btnDiscover = document.querySelector('.btn-discover');
 
