@@ -2,15 +2,32 @@
    ACADEMIC HIGHLIGHT
    ======================================== */
 .academic-highlight {
+    --academic-surface: #10151b;
+    --academic-border: rgba(255, 255, 255, 0.09);
+    --academic-heading: #f5f8fc;
+    --academic-copy: #c1cad6;
+    --academic-badge-bg: rgba(255, 255, 255, 0.08);
+    --academic-badge-text: #d9e4f2;
+    --academic-tile-bg: rgba(255, 255, 255, 0.035);
+    --academic-tile-hover: rgba(255, 255, 255, 0.07);
+    --academic-stat: #ffffff;
+    --academic-label: #c1cad6;
+    --academic-action-bg: #e9f1fb;
+    --academic-action-text: #13263b;
+    --academic-secondary-bg: rgba(255, 255, 255, 0.06);
+    --academic-secondary-text: #f5f8fc;
+    --academic-caption-bg: rgba(5, 12, 22, 0.82);
+    --academic-caption-text: #ffffff;
+    --academic-caption-border: rgba(255, 255, 255, 0.18);
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    gap: clamp(24px, 4vw, 44px);
+    background: var(--academic-surface);
+    border: 1px solid var(--academic-border);
     border-radius: 24px;
-    padding: 30px;
-    margin-bottom: 50px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    padding: clamp(22px, 4vw, 50px);
+    margin-bottom: clamp(32px, 5vw, 50px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     position: relative;
     overflow: hidden;
 }
@@ -22,7 +39,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 60%);
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.055), transparent 62%);
     pointer-events: none;
 }
 
@@ -35,104 +52,231 @@
 .academic-badge {
     display: inline-block;
     padding: 6px 16px;
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: var(--academic-badge-bg);
+    color: var(--academic-badge-text);
+    border: 1px solid var(--academic-border);
     border-radius: 30px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    margin-bottom: 18px;
+    letter-spacing: 0.04em;
 }
 
 .academic-content h3 {
     font-family: var(--font-heading);
-    font-size: clamp(28px, 4vw, 40px);
+    font-size: clamp(28px, 3.3vw, 42px);
     font-weight: 700;
-    margin-bottom: 20px;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--academic-heading);
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    line-height: 1.14;
+    text-wrap: balance;
 }
 
 .academic-content p {
-    color: var(--text-secondary);
-    font-size: 18px;
-    line-height: 1.7;
-    margin-bottom: 25px;
+    color: var(--academic-copy);
+    font-size: clamp(16px, 1.35vw, 18px);
+    line-height: 1.65;
+    margin-bottom: 20px;
 }
 
 .academic-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 24px;
 }
 
 .ac-stat-item {
-    background: rgba(255, 255, 255, 0.02);
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: var(--academic-tile-bg);
+    padding: clamp(12px, 1.8vw, 20px);
+    border-radius: 14px;
+    border: 1px solid var(--academic-border);
     text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.ac-stat-item:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.05);
 }
 
 .ac-stat-number {
-    font-size: 32px;
+    font-size: clamp(18px, 2.25vw, 32px);
     font-weight: 800;
-    color: var(--text-primary);
+    color: var(--academic-stat);
     margin-bottom: 5px;
     font-family: var(--font-heading);
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.ac-stat-code {
+    font-size: clamp(16px, 1.9vw, 24px);
+    letter-spacing: -0.035em;
+    white-space: nowrap;
 }
 
 .ac-stat-label {
-    font-size: 14px;
-    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--academic-label);
     font-weight: 500;
+}
+
+.academic-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.academic-action-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 11px 16px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.academic-action-primary {
+    background: var(--academic-action-bg);
+    color: var(--academic-action-text);
+}
+
+.academic-action-secondary {
+    background: var(--academic-secondary-bg);
+    color: var(--academic-secondary-text);
+    border-color: var(--academic-border);
+}
+
+.academic-action-link:focus-visible {
+    outline: 3px solid #2f80ed;
+    outline-offset: 3px;
+}
+
+.academic-source-note {
+    margin: 12px 0 0 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
 }
 
 .academic-image-container {
     flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    margin: 0;
     border-radius: 20px;
     overflow: hidden;
     position: relative;
     z-index: 2;
-    min-height: 250px;
+    min-height: 260px;
+    aspect-ratio: 1200 / 774;
+    background: #202c3a;
 }
 
 .academic-image-container img {
     width: 100%;
     height: 100%;
+    min-height: inherit;
     object-fit: cover;
-    transition: transform 0.7s ease;
+    display: block;
 }
 
-.academic-image-container:hover img {
-    transform: scale(1.05);
+.academic-image-caption {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    max-width: calc(100% - 32px);
+    padding: 9px 12px;
+    border: 1px solid var(--academic-caption-border);
+    border-radius: 10px;
+    background: var(--academic-caption-bg);
+    color: var(--academic-caption-text);
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.35;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.about-section .fefu-cards-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+}
+
+.about-section .fefu-cards-grid > .fefu-card {
+    grid-column: auto;
+    grid-row: auto;
+}
+
+@media (min-width: 768px) {
+    .about-section .fefu-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (min-width: 992px) {
     .academic-highlight {
         flex-direction: row;
         align-items: center;
-        padding: 50px;
         margin-left: 20px;
         margin-right: 20px;
     }
 
     .academic-image-container {
-        min-height: 400px;
+        min-height: 380px;
+    }
+}
+
+@media (max-width: 480px) {
+    .academic-highlight {
+        border-radius: 18px;
+    }
+
+    .academic-stats {
+        gap: 8px;
+    }
+
+    .ac-stat-label {
+        font-size: 11px;
+    }
+
+    .academic-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .ac-stat-item {
+        transition: transform 180ms ease, background-color 180ms ease;
+    }
+
+    .ac-stat-item:hover {
+        transform: translateY(-3px);
+        background: var(--academic-tile-hover);
+    }
+
+    .academic-image-container img {
+        transition: transform 550ms cubic-bezier(0.2, 0.7, 0.25, 1);
+    }
+
+    .academic-image-container:hover img {
+        transform: scale(1.025);
+    }
+
+    .academic-action-primary:hover {
+        background: #ffffff;
+    }
+
+    .academic-action-secondary:hover {
+        background: var(--academic-tile-hover);
     }
 }

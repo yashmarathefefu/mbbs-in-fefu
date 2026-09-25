@@ -120,7 +120,6 @@ function startHeroTextAnimations() {
         window.globeSettings.speed = 0.3;
 
         // Shared initial states (all devices)
-        gsap.set('#animated-hero-title', { filter: 'drop-shadow(0px 0px 0px rgba(0,0,0,0))' });
         gsap.set('.hero-subtitle', { textShadow: '0px 0px 0px rgba(0,0,0,0)' });
         gsap.set('.hero-stars-layer', { scale: 0.85, opacity: 0, rotate: -5 });
 
@@ -213,12 +212,8 @@ function startHeroTextAnimations() {
             ease: "expo.out"
         }, 'expand');
 
-        // Restore text shadows and theme toggle slowly as globe expands
-        tl.to('#animated-hero-title', { 
-            filter: 'drop-shadow(0px 2px 20px rgba(0,0,0,0.8))', 
-            duration: 1.1, 
-            ease: "power2.inOut" 
-        }, 'expand');
+        // Add contrast to supporting copy while the globe expands. The title
+        // uses one animation only: the word-by-word reveal above.
         tl.to('.hero-subtitle', { 
             textShadow: '0px 2px 12px rgba(0,0,0,0.7)', 
             duration: 1.1, 
@@ -257,8 +252,7 @@ function startHeroTextAnimations() {
 
         if (!isReload && sessionStorage.getItem('heroAnimated')) {
             tl.progress(1);
-            // On instant skip, ensure toggles/shadows are fully restored
-            gsap.set('#animated-hero-title', { filter: 'drop-shadow(0px 2px 20px rgba(0,0,0,0.8))' });
+            // On instant skip, ensure supporting text and controls are restored.
             gsap.set('.hero-subtitle', { textShadow: '0px 2px 12px rgba(0,0,0,0.7)' });
             gsap.set('.theme-toggle', { opacity: 1, pointerEvents: 'auto' });
         } else {
