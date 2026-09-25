@@ -83,15 +83,15 @@ function startHeroTextAnimations() {
             tl.to(eyebrowSpans, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, 'start');
         }
 
-        // 1. Reveal each complete word with a simple opacity fade.
-        // Stagger controls timing; the heading has no rise, rotation, blur, or scale.
+        // 1. Reveal each complete word with a soft, overlapping opacity fade.
+        // The shared fade stays calm and consistent in both color themes.
         tl.fromTo('.hero-title-word', {
             opacity: 0
         }, {
             opacity: 1,
-            duration: 0.28,
-            ease: 'power1.out',
-            stagger: 0.22
+            duration: 0.46,
+            ease: 'sine.out',
+            stagger: 0.15
         }, 'start+=0.2');
 
         // 2. Pause to build anticipation
