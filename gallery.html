@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>FEFU Campus Gallery - Facilities & Student Life | MBBS Abroads</title>
     <meta name="description" content="View FEFU campus, hostel, student life, classrooms, nature, and Vladivostok gallery photos for Indian MBBS aspirants and parents.">
     <link rel="canonical" href="https://mbbsabroads.com/gallery.html">
@@ -30,6 +31,29 @@
     <link rel="stylesheet" href="components/ui/sidebar.css?v=seo-fix-1">
     <link rel="stylesheet" href="theme.css?v=seo-fix-1">
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "ImageGallery",
+                "@id": "https://mbbsabroads.com/gallery.html",
+                "url": "https://mbbsabroads.com/gallery.html",
+                "name": "FEFU Campus & Student Life Gallery",
+                "description": "Visual gallery of FEFU campus, dormitories, lecture halls, and Vladivostok."
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbbsabroads.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "Gallery", "item": "https://mbbsabroads.com/gallery.html" }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
@@ -137,6 +161,11 @@
     <!-- Gallery Page Hero -->
     <section class="gallery-hero">
         <div class="container">
+            <nav aria-label="Breadcrumb" class="breadcrumb" style="display:flex; align-items:center; justify-content:center; gap:8px; font-size:0.88rem; color:rgba(255,255,255,0.5); margin-bottom:16px;">
+                <a href="index.html" style="color:rgba(255,255,255,0.7); text-decoration:none;">Home</a>
+                <span style="opacity:0.4;">/</span>
+                <span aria-current="page" style="color:#a78bfa;">Gallery</span>
+            </nav>
             <h1 class="gallery-hero-title">FEFU Campus & Student Life Gallery</h1>
             <p class="gallery-hero-subtitle">Explore Far Eastern Federal University - Your Future Medical School</p>
             <div class="gallery-hero-copy-wrap" id="gallery-hero-copy-wrap">
@@ -516,9 +545,7 @@
                 if (!copyWrap || !copyEl) return;
                 const cs = getComputedStyle(copyEl);
                 const toggleCs = copyToggle ? getComputedStyle(copyToggle) : null;
-                // #region agent log
-                fetch('http://127.0.0.1:7633/ingest/ba440378-5827-45bd-9217-2c33f7db32dc', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'd6d33e' }, body: JSON.stringify({ sessionId: 'd6d33e', runId: 'pre-fix', hypothesisId, location: 'gallery.html:hero-copy', message: state, data: { viewport: window.innerWidth, theme: document.documentElement.getAttribute('data-theme') || 'dark', expanded: copyWrap.classList.contains('is-expanded'), copyScrollHeight: copyEl.scrollHeight, copyClientHeight: copyEl.clientHeight, copyColor: cs.color, copyDisplay: cs.display, webkitLineClamp: cs.webkitLineClamp || cs.getPropertyValue('-webkit-line-clamp'), toggleDisplay: toggleCs ? toggleCs.display : null, toggleColor: toggleCs ? toggleCs.color : null, hasChevron: !!copyWrap.querySelector('.gallery-hero-copy-toggle-icon svg, .gallery-hero-copy-toggle-icon') }, timestamp: Date.now() }) }).catch(() => {});
-                // #endregion
+                
             }
 
             if (copyWrap && copyToggle && copyEl) {
@@ -549,9 +576,7 @@
                 logGalleryHero('init', 'C');
                 logGalleryHero('init', 'D');
             } else {
-                // #region agent log
-                fetch('http://127.0.0.1:7633/ingest/ba440378-5827-45bd-9217-2c33f7db32dc', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': 'd6d33e' }, body: JSON.stringify({ sessionId: 'd6d33e', runId: 'pre-fix', hypothesisId: 'B', location: 'gallery.html:hero-copy', message: 'missing-elements', data: { hasWrap: !!copyWrap, hasToggle: !!copyToggle, hasCopy: !!copyEl }, timestamp: Date.now() }) }).catch(() => {});
-                // #endregion
+                
             }
         });
     </script>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-shell">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <title>404 - Page Not Found | FEFU MBBS Admission Support</title>
+    <meta name="description" content="The requested page could not be found. Navigate back to FEFU General Medicine admission guides, hostel information, campus gallery, or contact support.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://mbbsabroads.com/404.html">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="404 - Page Not Found | FEFU MBBS Admission Support">
+    <meta property="og:description" content="The page you requested could not be found. Explore FEFU General Medicine guidance, hostel details, gallery, and contact information.">
+    <meta property="og:image" content="https://mbbsabroads.com/assets/fefu_academic_lab.png">
+    <meta property="og:url" content="https://mbbsabroads.com/404.html">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="404 - Page Not Found | FEFU MBBS Support">
+    <meta name="twitter:description" content="The page you requested could not be found. Explore FEFU General Medicine guidance.">
+    <meta name="twitter:image" content="https://mbbsabroads.com/assets/fefu_academic_lab.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="cookie-consent.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components/ui/sidebar.css?v=seo-fix-1">
+    <link rel="stylesheet" href="theme.css?v=seo-fix-1">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://mbbsabroads.com/404.html",
+                "url": "https://mbbsabroads.com/404.html",
+                "name": "404 Page Not Found",
+                "description": "404 Error page for MBBS Abroads FEFU admissions support portal."
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://mbbsabroads.com/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "404 Not Found",
+                        "item": "https://mbbsabroads.com/404.html"
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+    <style>
+        .error-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .error-card {
+            max-width: 680px;
+            width: 100%;
+            background: var(--bg-secondary, rgba(14, 20, 36, 0.95));
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 28px;
+            padding: 50px 36px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #7c3aed, #2563EB, #10b981);
+        }
+
+        .error-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 99px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        .error-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .error-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary-custom {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #7c3aed, #2563EB);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.45);
+        }
+
+        .btn-secondary-custom {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        .error-links-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 16px;
+        }
+
+        .error-quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .error-quick-link {
+            color: #a78bfa;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            background: rgba(167, 139, 250, 0.08);
+            border-radius: 99px;
+            transition: all 0.2s ease;
+        }
+
+        .error-quick-link:hover {
+            background: rgba(167, 139, 250, 0.2);
+            color: #fff;
+        }
+
+        /* Visual Breadcrumbs */
+        .breadcrumb-container {
+            max-width: 680px;
+            margin: 0 auto 20px;
+            text-align: left;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 0 10px;
+        }
+
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #a78bfa;
+        }
+
+        .breadcrumb-separator {
+            opacity: 0.4;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-link skip-link-shell">Skip to content</a>
+
+    <!-- Navigation (Sidebar) -->
+    <aside class="sidebar-desktop" id="sidebar">
+        <div class="sidebar-logo">
+            <img class="sleek-logo-icon fefu-brand-mark" src="icon/fefu-uploaded-logo.svg" alt="FEFU Admissions" width="32" height="32">
+            <span class="sidebar-label-container">
+                <svg class="sleek-logo-text-svg" viewBox="0 0 180 30" width="160" height="26">
+                    <text x="0" y="22" font-family="'Outfit', sans-serif" font-weight="700" font-size="20" class="sleek-text-path">FEFU Admissions</text>
+                </svg>
+            </span>
+        </div>
+
+        <nav class="sidebar-links mt-8">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Home</span></span>
+            </a>
+            <a href="index.html#about" class="sidebar-link">
+                <i data-lucide="building-2" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">About FEFU</span></span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Gallery</span></span>
+            </a>
+            <a href="blog.html" class="sidebar-link">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Blog</span></span>
+            </a>
+            <a href="index.html#hostels" class="sidebar-link">
+                <i data-lucide="bed-double" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Hostels</span></span>
+            </a>
+            <a href="index.html#admission" class="sidebar-link">
+                <i data-lucide="file-text" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Admission</span></span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label-container"><span class="sidebar-label">Contact</span></span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Mobile Sidebar -->
+    <div class="sidebar-mobile">
+        <div class="sidebar-logo sidebar-logo-mobile">
+            <img class="sleek-logo-icon fefu-brand-mark" src="icon/fefu-uploaded-logo.svg" alt="FEFU Admissions" width="32" height="32">
+            <span class="sidebar-label-container sidebar-mobile-label-container">
+                <svg class="sleek-logo-text-svg" viewBox="0 0 180 30" width="140" height="24">
+                    <text x="0" y="22" font-family="'Outfit', sans-serif" font-weight="700" font-size="20" class="sleek-text-path">FEFU Admissions</text>
+                </svg>
+            </span>
+        </div>
+    </div>
+
+    <div class="sidebar-mobile-drawer" id="sidebar-mobile-drawer">
+        <div class="sidebar-mobile-drawer-header">
+            <div class="sidebar-logo sidebar-logo-mobile">
+                <img class="sleek-logo-icon fefu-brand-mark" src="icon/fefu-uploaded-logo.svg" alt="FEFU Admissions" width="32" height="32">
+                <span class="sidebar-label-container sidebar-mobile-label-container">
+                    <svg class="sleek-logo-text-svg" viewBox="0 0 180 30" width="140" height="24">
+                        <text x="0" y="22" font-family="'Outfit', sans-serif" font-weight="700" font-size="20" class="sleek-text-path">FEFU Admissions</text>
+                    </svg>
+                </span>
+            </div>
+            <button id="sidebar-close-toggle" aria-label="Close menu" class="sidebar-close-toggle">
+                <i data-lucide="x" class="sidebar-icon"></i>
+            </button>
+        </div>
+        <nav class="sidebar-links sidebar-mobile-links">
+            <a href="index.html" class="sidebar-link">
+                <i data-lucide="home" class="sidebar-icon"></i>
+                <span class="sidebar-label sidebar-mobile-link-label">Home</span>
+            </a>
+            <a href="gallery.html" class="sidebar-link">
+                <i data-lucide="image" class="sidebar-icon"></i>
+                <span class="sidebar-label sidebar-mobile-link-label">Gallery</span>
+            </a>
+            <a href="blog.html" class="sidebar-link">
+                <i data-lucide="book-open" class="sidebar-icon"></i>
+                <span class="sidebar-label sidebar-mobile-link-label">Blog</span>
+            </a>
+            <a href="index.html#contact" class="sidebar-link">
+                <i data-lucide="phone" class="sidebar-icon"></i>
+                <span class="sidebar-label sidebar-mobile-link-label">Contact</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="error-hero">
+        <div class="container">
+            <!-- Visual Breadcrumb -->
+            <div class="breadcrumb-container">
+                <nav aria-label="Breadcrumb" class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">404 Not Found</span>
+                </nav>
+            </div>
+
+            <div class="error-card">
+                <div class="error-badge">
+                    <i data-lucide="alert-triangle" width="16" height="16"></i> Error 404
+                </div>
+                <h1 class="error-title">Page Not Found</h1>
+                <p class="error-desc">The page you were looking for doesn't exist, was moved, or has an updated link. You can navigate back to our homepage or browse key FEFU admission resources below.</p>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="btn-primary-custom">
+                        <i data-lucide="home" width="18" height="18"></i> Return to Homepage
+                    </a>
+                    <a href="blog.html" class="btn-secondary-custom">
+                        <i data-lucide="book-open" width="18" height="18"></i> Read Medical Blog
+                    </a>
+                </div>
+
+                <div class="error-links-title">Popular Admission Destinations</div>
+                <div class="error-quick-links">
+                    <a href="index.html#about" class="error-quick-link">About FEFU</a>
+                    <a href="index.html#hostels" class="error-quick-link">Hostel & Dorms</a>
+                    <a href="index.html#admission" class="error-quick-link">Admission Steps</a>
+                    <a href="gallery.html" class="error-quick-link">Campus Gallery</a>
+                    <a href="index.html#contact" class="error-quick-link">Talk to Adviser</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 MBBS Abroads. All rights reserved.</p>
+            <p><a href="index.html" style="color: var(--primary-color, #a78bfa);">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="components/ui/sidebar-vanilla.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+
+</html>

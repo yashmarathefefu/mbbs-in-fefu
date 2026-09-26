@@ -5,10 +5,11 @@ Allow: /
 Disallow: /node_modules/
 Disallow: /lib/
 
-# Exclude admin and template files
+# Exclude admin and utility template files
 Disallow: /admin.html
 Disallow: /admin.js
 Disallow: /blog-post.html
+Disallow: /404.html
 
 Sitemap: https://mbbsabroads.com/sitemap.xml
 
@@ -17,3 +18,17 @@ User-agent: Googlebot
 Allow: /
 Disallow: /admin.html
 Disallow: /blog-post.html
+Disallow: /404.html
+
+# Optimized for AI & Search Scrapers
+User-agent: GPTBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin.html

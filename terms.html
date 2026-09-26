@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>Terms of Service | MBBS Abroads</title>
     <meta name="description" content="Terms of service for MBBS Abroads counseling, FEFU admission guidance, website use, and inquiry submissions.">
     <meta name="robots" content="noindex, follow">
@@ -51,9 +52,36 @@
         .back-link:hover { opacity: 0.8; }
         footer { margin-top: 40px; text-align: center; color: var(--text-muted); font-size: 13px; }
     </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://mbbsabroads.com/terms.html",
+                "url": "https://mbbsabroads.com/terms.html",
+                "name": "Terms of Service | MBBS Abroads",
+                "description": "Terms of service for MBBS Abroads."
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mbbsabroads.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "Terms of Service", "item": "https://mbbsabroads.com/terms.html" }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <div class="container">
+        <nav aria-label="Breadcrumb" class="breadcrumb" style="display:flex; align-items:center; gap:8px; font-size:0.88rem; color:rgba(255,255,255,0.5); margin-bottom:16px;">
+            <a href="index.html" style="color:rgba(255,255,255,0.7); text-decoration:none;">Home</a>
+            <span style="opacity:0.4;">/</span>
+            <span aria-current="page" style="color:#a78bfa;">Terms of Service</span>
+        </nav>
         <a href="index.html" class="back-link">&larr; Back to Website</a>
         <h1>Terms of Service</h1>
         <div class="last-updated">Last Updated: April 2026</div>
