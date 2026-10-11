@@ -1,12 +1,14 @@
 {
   "scripts": {
-    "start": "http-server .",
+    "start": "http-server dist",
+    "build": "node build-site.js && pagefind --site dist --glob \"blogs/**/*.html\"",
     "test": "node test-links.js",
     "seo": "node seo-check.js",
     "sitemap": "node generate-sitemap.js",
     "blog:index": "node generate-blog-index.js"
   },
   "devDependencies": {
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "pagefind": "1.5.2"
   }
 }

@@ -10,7 +10,7 @@ Static website for an FEFU-only consultancy that helps students pursuing General
 - `blogs/`, `blog.html`, and `blog-post.html` — student information articles
 - `assets/`, `icon/`, and `hostel-animation/` — site imagery and icons
 
-The site is served as static files; there is no frontend build step.
+The site is served as static files. A small Node build step copies public files into `dist/` and generates the Pagefind search index for the blog articles.
 
 ## Local preview
 
@@ -18,10 +18,13 @@ Requires Node.js and npm.
 
 ```sh
 npm ci
+npm run build
 npm start
 ```
 
 Open `http://localhost:8080` in a browser.
+
+The build creates the Pagefind full-text index used by the blog search. Vercel runs the same build before deploying.
 
 ## Checks
 

@@ -1,0 +1,66 @@
+/* Keep Pagefind's generated search UI legible in both site themes. */
+:root {
+    --pf-font: 'Inter', sans-serif;
+    --pf-text: #f5f2fa;
+    --pf-text-secondary: #c8c1d3;
+    --pf-text-muted: #aaa2b6;
+    --pf-background: #17141e;
+    --pf-border: #3a3545;
+    --pf-border-focus: #a78bfa;
+    --pf-hover: #24202e;
+    --pf-mark: #f5f2fa;
+    --pf-outline-focus: #b9a2ff;
+    --pf-modal-backdrop: rgba(5, 4, 10, 0.76);
+    --pf-modal-max-width: min(660px, calc(100vw - 32px));
+    --pf-modal-max-height: min(82dvh, 760px);
+    --pf-input-font-size: 16px;
+}
+
+:root[data-theme="light"] {
+    --pf-text: #211b2c;
+    --pf-text-secondary: #5f566e;
+    --pf-text-muted: #756d82;
+    --pf-background: #ffffff;
+    --pf-border: #e1dce9;
+    --pf-border-focus: #7356b5;
+    --pf-hover: #f5f2f9;
+    --pf-mark: #211b2c;
+    --pf-outline-focus: #6245a8;
+    --pf-modal-backdrop: rgba(25, 19, 36, 0.48);
+}
+
+.search-fulltext {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: -8px auto 24px;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.68));
+    font-size: 0.9rem;
+}
+
+.search-fulltext-label {
+    margin: 0;
+}
+
+.search-fulltext pagefind-modal-trigger {
+    display: inline-flex;
+    min-width: 220px;
+}
+
+@media (max-width: 520px) {
+    .search-fulltext {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .search-fulltext pagefind-modal-trigger {
+        width: min(100%, 320px);
+    }
+
+    :root {
+        --pf-modal-max-width: calc(100vw - 16px);
+        --pf-modal-max-height: min(88dvh, 760px);
+    }
+}

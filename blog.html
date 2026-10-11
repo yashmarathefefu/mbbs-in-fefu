@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="components/ui/sidebar.css?v=seo-fix-1">
     <link rel="stylesheet" href="theme.css?v=seo-fix-1">
+    <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css">
+    <link rel="stylesheet" href="pagefind-theme.css">
+    <script src="/pagefind/pagefind-component-ui.js" type="module"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Schema Markup -->
@@ -946,6 +949,10 @@
                         <i data-lucide="search"></i>
                         <input type="text" id="searchInput" class="search-input" placeholder="Search articles by title or keyword...">
                     </div>
+                    <div class="search-fulltext">
+                        <span class="search-fulltext-label">Looking for a detail inside a guide?</span>
+                        <pagefind-modal-trigger placeholder="Search full FEFU guides" hide-shortcut></pagefind-modal-trigger>
+                    </div>
                     <div class="filter-row" id="filterRow">
                         <button class="filter-btn active" data-filter="all">All Articles</button>
                         <button class="filter-btn" data-filter="fefu-guide">FEFU Guide</button>
@@ -1802,6 +1809,7 @@
     <script src="blog-handler.js" defer></script>
     <script src="tracker.js" defer></script>
     <script src="cookie-consent.js" defer></script>
+    <pagefind-modal reset-on-close></pagefind-modal>
 </body>
 
 </html>
