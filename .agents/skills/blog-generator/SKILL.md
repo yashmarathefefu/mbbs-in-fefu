@@ -1,24 +1,26 @@
 ---
 name: Blog Generator (Marketing Agent)
-description: Automates researching competitor SEO articles, then writing highly persuasive, human-like blog posts that divert traffic to FEFU.
+description: Researches student search needs and competitor coverage, then writes useful, human-sounding, evidence-backed guides for prospective FEFU medical students.
 ---
 
 # Blog Generator Skill 
 
-This skill defines the workflow for generating SEO-optimized, highly persuasive blog posts that intercept generic medical student searches (e.g., "Best MBBS in Russia") and expertly funnel them toward choosing Far Eastern Federal University (FEFU).
+This skill defines the workflow for creating useful, search-friendly guides for students considering medicine at Far Eastern Federal University (FEFU). Answer the student's question accurately and help them make an informed decision; do not force a sales pitch or claim FEFU is best without comparable evidence.
 
 ## Reference: First Blog Post
 Our first blog post is `blogs/mbbs-in-russia-fefu-2026.html`. **ALL future blog posts MUST follow the same file structure, CSS patterns, JS logic, and section order.** When creating a new blog, use this file as a direct template.
 
-## The "FEFU Advantage" Cheat Sheet
-When generating content, the agent MUST continually reference and weave in these undeniable facts about FEFU to prove it is superior to whatever the competitors are offering:
+## FEFU facts and claims: verify before use
+The topics below are research prompts, not approved claims. Verify each detail against current primary sources before publishing it. Cite the source near the claim and record the relevant year or intake. If reliable evidence is unavailable, leave the claim out.
 
-1.  **The Mega-Campus**: FEFU is the only university in Russia with a sprawling, ultra-modern **328-acre island campus** (Russky Island) that overlooks the ocean. Everything a student needs is completely contained within this one beautiful location.
-2.  **Premium Dormitories**: Remind students that unlike old, Soviet-style hostels found elsewhere, FEFU offers hotel-standard, modern dormitories with attached bathrooms, housekeeping, and gorgeous ocean views.
-3.  **World-Class Academics & Technology**: FEFU isn't just a medical school; it's a tech hub. We house a State-of-the-Art Medical Center with robotic surgery and AI-driven diagnostics that students actually get to observe.
-4.  **Unbeatable Safety**: The campus is a closed, highly secure environment. It is considered one of the safest university campuses in all of Russia, providing extreme peace of mind for international students and their parents.
-5.  **FMGE Success**: FEFU graduates have a **50%+ FMGE passing rate** for 2025, significantly higher than the national average.
-6.  **Affordable Fees**: Total fees stay **well under 30 Lakhs INR** for the complete 6-year program — no hidden charges, no OTC fees.
+1. **Campus**: Check the official FEFU description for location, size, facilities, and which services are on campus. Do not use "only" or similar superlatives without proof.
+2. **Accommodation**: Confirm current dormitory types, room amenities, services, prices, and availability from FEFU sources. Do not generalize across rooms or promise views or hotel-style service.
+3. **Teaching and clinical exposure**: Verify the current program, facilities, and what medical students can actually observe or access. Do not imply access to equipment or procedures without evidence.
+4. **Safety**: Describe documented security arrangements precisely. Avoid ranking FEFU as one of the safest unless a reliable, comparable source supports that claim.
+5. **FMGE/NExT outcomes**: Use current official or otherwise clearly attributable results, define the cohort and denominator, and compare like with like. Do not present an unsourced pass rate or imply a guaranteed outcome.
+6. **Costs**: Use the current official fee schedule and state its year, currency, and included items. Separate university charges, living and travel costs, insurance, and the consultancy fee; do not imply that third-party costs are included or fixed.
+
+Never describe any of these topics as an "undeniable fact" until verified. Apply the same source and comparison standard to competitor information. Avoid unsupported claims such as "best," "safest," "cheapest," or "outclasses."
 
 ## Workflow Execution Steps
 
@@ -38,14 +40,14 @@ When asked to "generate a blog post about [Topic/Keyword]", follow these exact s
 1. Use `mcp_notebooklm_report_create` (format: "Blog Post") or `mcp_notebooklm_notebook_query`. 
 2. **Crucial Prompt Instructions to NotebookLM**:
    - **Tone (Trust over Promotion)**: Must be 100% "Humanized" and **Objective**. Write as a knowledgeable, empathetic educational counselor. **Avoid sounding like a biased advertisement**.
-   - **The Pivot (Natural Transition)**: Start by genuinely and objectively answering the user's base question (e.g., listing the general top universities). **If generating a Top list, FEFU MUST ALWAYS be placed at the #1 spot.** Afterwards, transition naturally into why FEFU is emerging as a particularly strong, modern choice.
-   - **The Comparison Table**: ALWAYS include a detailed Markdown comparison table. **Format with alternating row colors (CSS handled) and clear headers.** Columns must include: `University`, `City`, `Approx Fees`, `Indian Students`, and `Key Advantage`. 
+   - **The Answer**: Address the student's question directly and explain the criteria behind any recommendation or ranking. Do not preselect FEFU as the winner. Include it when the available evidence and stated criteria support doing so.
+   - **The Comparison Table**: Add a comparison table only when it helps the reader decide. Use the same criteria for each university and cite sources for fees, student counts, and other factual claims. Label unavailable information instead of estimating it; state the year and what each fee includes.
    - **Authority References (SEO)**: Naturally mention and reference external authorities like the National Medical Commission (NMC) and World Health Organization (WHO).
-   - **High-Intensity Highlighting**: Highlighting is key for readability. **EVERY important keyword, data point, or crucial phrase MUST be wrapped in `<span class="text-highlight">...</span>`.** Do not be stingy—aim for 1-2 highlights per paragraph.
-   - **The Comparison**: When highlighting FEFU, use the *FEFU Advantage Cheat Sheet* above to systematically prove why it outclasses the rest. 
+   - **Highlighting**: Use `<span class="text-highlight">...</span>` sparingly for a key verified figure or decision point. Do not highlight every keyword or target phrase, and do not add emphasis to compensate for thin content.
+   - **The Comparison**: Compare universities using the same criteria and current, cited sources. Do not use the comparison to force a predetermined winner.
    - **Length & Structure**: Aim for a **medium length** (not excessively long or too short). It should be packed with value but concise.
    - **Clarity & Readability**: Content must be **very informative** yet **easy to understand** for a 12th-grade student. Use sub-headings, bullet points, and short paragraphs to maintain flow.
-   - **SEO Title**: Ensure the exact searched keyword is used in the main `<h1>` title and an `<h2>` sub-header.
+   - **SEO Title**: Write a clear title and `<h1>` that match the reader's search intent. Include the main topic naturally; do not force exact-match repetitions into headings.
 
 ### 4. Formatting Phase (HTML & CSS)
 
