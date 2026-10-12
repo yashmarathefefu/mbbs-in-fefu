@@ -81,7 +81,7 @@ body {
     flex-shrink: 0;
 }
 
-.fefu-brand-mark {
+.brand-mark {
     display: block;
     width: 52px;
     height: 52px;
@@ -375,8 +375,8 @@ body {
         padding-right: 0;
     }
 
-    .sidebar-mobile .fefu-brand-mark,
-    .sidebar-mobile-drawer .fefu-brand-mark {
+    .sidebar-mobile .brand-mark,
+    .sidebar-mobile-drawer .brand-mark {
         width: 50px;
         height: 50px;
         border-radius: 0;
@@ -433,8 +433,8 @@ body {
         padding-right: 0;
     }
 
-    .sidebar-mobile .fefu-brand-mark,
-    .sidebar-mobile-drawer .fefu-brand-mark {
+    .sidebar-mobile .brand-mark,
+    .sidebar-mobile-drawer .brand-mark {
         width: 50px;
         height: 50px;
         border-radius: 0;
