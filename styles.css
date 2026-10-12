@@ -3382,7 +3382,7 @@ body:not([data-highlight]) .text-highlight,
     gap: 8px;
 }
 
-.footer-logo .fefu-brand-mark {
+.footer-logo .brand-mark {
     width: 42px;
     height: 42px;
 }

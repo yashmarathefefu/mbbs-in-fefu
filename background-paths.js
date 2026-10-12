@@ -41,47 +41,15 @@ function startHeroTextAnimations() {
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline();
 
-        // ---- Text Splitting Helper for Eyebrow & Subtitle ----
-        const splitTextIntoSpans = (element) => {
-            if (!element) return [];
-            const text = element.innerText.trim();
-            element.innerHTML = '';
-            const words = text.split(/\s+/);
-            const spans = [];
-            words.forEach((word) => {
-                const span = document.createElement('span');
-                span.style.display = 'inline-block';
-                span.style.marginRight = '0.25em';
-                span.style.opacity = '0';
-                span.innerText = word;
-                element.appendChild(span);
-                spans.push(span);
-            });
-            return spans;
-        };
-
         const eyebrow = document.getElementById('hero-eyebrow');
-        let eyebrowSpans = [];
-        if (eyebrow) {
-            eyebrow.style.opacity = '1';
-            eyebrowSpans = splitTextIntoSpans(eyebrow);
-        }
-
         const subtitle = document.getElementById('hero-subtitle');
-        let subtitleSpans = [];
-        if (subtitle) {
-            subtitle.style.opacity = '1';
-            subtitleSpans = splitTextIntoSpans(subtitle);
-        }
-
         const ctaRow = document.querySelector('.hero-cta-row');
         const proofRow = document.querySelector('.hero-proof-row');
+        gsap.set([eyebrow, subtitle].filter(Boolean), { opacity: 0, y: 8 });
         gsap.set([ctaRow, proofRow].filter(Boolean), { opacity: 0, y: 20 });
 
-        // 0. Reveal Eyebrow stagger
-        if (eyebrowSpans.length > 0) {
-            tl.to(eyebrowSpans, { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.7)' }, 'start');
-        }
+        // Only the H1 receives a word-by-word reveal; supporting copy stays in complete blocks.
+        if (eyebrow) tl.to(eyebrow, { opacity: 1, y: 0, duration: 0.45, ease: 'sine.out' }, 'start');
 
         // 1. Reveal each complete word with a soft, overlapping opacity fade.
         // The shared fade stays calm and consistent in both color themes.
@@ -215,12 +183,8 @@ function startHeroTextAnimations() {
             ease: "expo.out"
         }, 'start');
 
-        // 3. Reveal Subtitle words elegantly
-        if (subtitleSpans.length > 0) {
-            tl.fromTo(subtitleSpans,
-                { opacity: 0, y: 15, filter: "blur(4px)" },
-                { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, stagger: 0.03, ease: 'power2.out' }, 'expand+=0.5');
-        }
+        // Supporting copy fades in as a whole block after the H1 reveal.
+        if (subtitle) tl.to(subtitle, { opacity: 1, y: 0, duration: 0.55, ease: 'sine.out' }, 'expand+=0.5');
 
         if (ctaRow) tl.to(ctaRow, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 'expand+=1.0');
         if (proofRow) tl.to(proofRow, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 'expand+=1.15');
