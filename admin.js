@@ -37,10 +37,69 @@
 
     /* ======== EMAIL TEMPLATES ======== */
     var templates = [
-        { name: 'Admission Info', subject: 'MBBS Admission at FEFU — Details', body: 'Dear {name},\n\nThank you for your interest in MBBS at Far Eastern Federal University (FEFU). Here are the key details:\n\n• Duration: 6 years (including internship)\n• Medium: English\n• Intake: September\n• Eligibility: 12th with Biology, min 50%\n\nWe would be happy to guide you through the application process.\n\nBest regards,\nFEFU Admissions Team' },
-        { name: 'Fee Structure', subject: 'FEFU MBBS Fee Structure', body: 'Dear {name},\n\nPlease find below the fee structure for MBBS at FEFU:\n\n• Tuition Fee: $X,XXX per year\n• Hostel: $XXX per year\n• Insurance: $XXX per year\n\nScholarships are available for eligible students.\n\nFeel free to reach out for more details.\n\nBest regards,\nFEFU Admissions Team' },
-        { name: 'Follow Up', subject: 'Following Up — FEFU MBBS', body: 'Dear {name},\n\nI hope this message finds you well. I wanted to follow up on your recent inquiry about MBBS at FEFU.\n\nDo you have any questions I can help with? We are here to assist you every step of the way.\n\nBest regards,\nFEFU Admissions Team' },
-        { name: 'Visa & Travel', subject: 'Visa & Travel Info — FEFU', body: 'Dear {name},\n\nHere is the visa and travel information for studying at FEFU:\n\n• Visa Type: Student Visa\n• Processing Time: 2-4 weeks\n• Documents: Passport, Invitation Letter, Medical Certificate\n• Nearest Airport: Vladivostok International (VVO)\n\nWe assist with the complete visa process.\n\nBest regards,\nFEFU Admissions Team' }
+        {
+            name: 'Admission Info',
+            subject: 'FEFU General Medicine application — next steps',
+            body: `Dear {name},
+
+Thank you for contacting MBBS Abroads. We are an independent consultancy focused on FEFU General Medicine. FEFU publishes the current intake requirements and makes admission decisions.
+
+The current 2026/27 English-medium program listing is here:
+https://www.dvfu.ru/en/admission/undergraduate/bachelor-s-degree-in-english/
+
+We can guide you through the application and admission paperwork. Before applying, confirm the requirements, deadlines, entrance tests, fees, and application route for your applicant category directly with FEFU.
+
+Regards,
+MBBS Abroads
+Independent FEFU-focused consultancy`
+        },
+        {
+            name: 'Fee Structure',
+            subject: 'FEFU General Medicine costs — current sources',
+            body: `Dear {name},
+
+FEFU's 2026/27 English-medium listing currently shows General Medicine tuition at RUB 500,000 per year. Confirm the amount, payment schedule, and contract terms with FEFU before paying.
+
+FEFU's double-room accommodation page lists room-specific charges per bed per month. Your room assignment and current charge must be confirmed with FEFU:
+https://www.dvfu.ru/about/campus/students/accommodation/double-room.php
+
+Our single consultancy fee and included services are stated separately in the signed agreement. FEFU and other provider charges, including housing, insurance, visa, and travel costs, are separate and should be confirmed with the relevant provider.
+
+The published FEFU pages were checked on 16 October 2026 and may change.
+
+Regards,
+MBBS Abroads
+Independent FEFU-focused consultancy`
+        },
+        {
+            name: 'Follow Up',
+            subject: 'Following up on your FEFU enquiry',
+            body: `Dear {name},
+
+I am following up on your enquiry about General Medicine at FEFU. Is there a particular part of the process you'd like to discuss—application paperwork, invitation and visa documents, travel, FEFU accommodation coordination, arrival, currency exchange, post-arrival paperwork, or settling in at the university?
+
+We can explain the support covered by our written agreement and identify FEFU or other provider costs separately. FEFU and the relevant authorities make their own admission, room, visa, and entry decisions.
+
+Regards,
+MBBS Abroads
+Independent FEFU-focused consultancy`
+        },
+        {
+            name: 'Visa & Travel',
+            subject: 'FEFU invitation, visa documents, and travel planning',
+            body: `Dear {name},
+
+MBBS Abroads can help coordinate the FEFU invitation-document steps, organize visa application documents, and arrange travel. The Russian consular authorities set the current application requirements and decide visa applications; appointment availability and processing times can change.
+
+Check the Russian Ministry of Foreign Affairs' current consular guidance before applying:
+https://www.kdmid.ru/cons/visas/
+
+Please confirm the current invitation steps with FEFU and avoid booking non-refundable travel before your visa is issued. Visa, travel, insurance, and other provider charges are separate from the consultancy fee in our written agreement.
+
+Regards,
+MBBS Abroads
+Independent FEFU-focused consultancy`
+        }
     ];
 
     /* ======== AUTH ======== */

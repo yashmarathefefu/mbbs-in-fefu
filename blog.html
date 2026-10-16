@@ -470,11 +470,25 @@
 
         @media (max-width: 850px) {
             .featured-card {
-                grid-template-columns: 1fr;
+                grid-template-columns: minmax(0, 1fr);
             }
             .featured-cover {
                 border-right: none;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .featured-cover,
+            .featured-sidebar {
+                min-width: 0;
+            }
+            .featured-meta {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .featured-cover,
+            .featured-sidebar {
+                padding: 24px;
             }
         }
 
@@ -817,6 +831,26 @@
                 border-radius: 20px;
             }
         }
+
+        @media (max-width: 520px) {
+            .search-fulltext {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .search-fulltext-label {
+                width: 100%;
+                min-width: 0;
+                text-align: center;
+            }
+
+            .search-fulltext pagefind-modal-trigger {
+                width: min(100%, 320px);
+                min-width: 0;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
     </style>
 
     <script type="application/ld+json">
@@ -986,7 +1020,7 @@
                 <div class="featured-sidebar">
                     <h3 class="featured-bullet-title">What You'll Learn:</h3>
                     <ul class="featured-bullets">
-                        <li>PCB aggregate 50% & NEET eligibility rules</li>
+                        <li>How to verify current FEFU and NEET requirements</li>
                         <li>Fully English-medium 6-year schedule details</li>
                         <li>Hostel questions to verify for the assigned building</li>
                         <li>Payment documents and recipient checks</li>

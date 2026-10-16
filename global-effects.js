@@ -37,15 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- 2. Single IntersectionObserver for all reveals ----
     const allReveal = document.querySelectorAll('.scroll-reveal, .scroll-reveal-stagger');
     if (allReveal.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.02, rootMargin: '100px 0px 0px 0px' });
-        allReveal.forEach(el => observer.observe(el));
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+            allReveal.forEach(el => el.classList.add('is-visible'));
+        } else {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.02, rootMargin: '100px 0px 0px 0px' });
+            allReveal.forEach(el => observer.observe(el));
+        }
     }
 
     // ---- 3. Card Glow Tracking (Mouse-Follow, desktop only) ----
