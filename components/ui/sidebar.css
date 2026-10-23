@@ -14,8 +14,8 @@ body {
     overflow-x: hidden;
 }
 
-/* Mouse/trackpad device — add left space for the sidebar */
-@media (pointer: fine) {
+/* Reserve space only when the desktop sidebar is visible. */
+@media (pointer: fine) and (min-width: 1025px) {
     body {
         padding-left: var(--sidebar-width-collapsed);
         transition: padding-left var(--sidebar-transition);
