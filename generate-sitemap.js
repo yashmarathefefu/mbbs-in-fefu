@@ -4,7 +4,7 @@ const { execFileSync } = require('child_process');
 
 const ROOT = __dirname;
 const SITE = 'https://mbbsabroads.com';
-const FIXED_PAGES = ['index.html', 'blog.html', 'gallery.html', 'editorial-policy.html', 'privacy.html', 'terms.html'];
+const FIXED_PAGES = ['index.html', 'blog.html', 'gallery.html', 'contact.html', 'editorial-policy.html', 'privacy.html', 'terms.html'];
 
 function read(file) {
     return fs.readFileSync(path.join(ROOT, file), 'utf8');

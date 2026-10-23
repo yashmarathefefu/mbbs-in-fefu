@@ -65,7 +65,7 @@ https://www.dvfu.ru/about/campus/students/accommodation/double-room.php
 
 Our single consultancy fee and included services are stated separately in the signed agreement. FEFU and other provider charges, including housing, insurance, visa, and travel costs, are separate and should be confirmed with the relevant provider.
 
-The published FEFU pages were checked on 16 October 2026 and may change.
+The published FEFU pages were checked on 23 October 2026 and may change.
 
 Regards,
 MBBS Abroads
