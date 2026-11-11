@@ -303,7 +303,9 @@ body {
     z-index: 10000;
     padding: 2.5rem 1.5rem;
     transform: translateX(-100%);
-    transition: transform var(--sidebar-transition);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform var(--sidebar-transition), visibility 0s linear 0.4s;
     display: flex;
     flex-direction: column;
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.0);
@@ -337,6 +339,9 @@ body {
 
 .sidebar-mobile-drawer.open {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
     box-shadow: 10px 0 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -457,6 +462,18 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar-mobile,
+    .sidebar-mobile *,
+    .sidebar-mobile-drawer,
+    .sidebar-mobile-drawer *,
+    body.mobile-drawer-open > * {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
 }
 
 /* Sidebar Links */
