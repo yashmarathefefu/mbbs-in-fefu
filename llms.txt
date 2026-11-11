@@ -1,37 +1,41 @@
-# MBBS Abroads - FEFU General Medicine Admission Guidance
+# MBBS Abroads — independent FEFU General Medicine consultancy
 
-> Dedicated consultancy portal for Indian students and families applying to Far Eastern Federal University (FEFU) in Vladivostok, Russia for General Medicine (MBBS equivalent).
+MBBS Abroads is an India-facing independent consultancy focused only on Far Eastern Federal University (FEFU) General Medicine in Vladivostok, Russia. It is not FEFU and does not claim official appointment or representation.
 
-## Overview & Key Information
-- **University**: Far Eastern Federal University (FEFU / ДВФУ)
-- **Location**: Russky Island, Vladivostok, Primorsky Krai, Russian Federation
-- **Faculty / School**: School of Medicine and Life Sciences
-- **Program**: General Medicine (Code: 31.05.01)
-- **Duration**: 6 Years (Full-Time)
-- **Medium of Instruction**: English
-- **Primary Website**: https://mbbsabroads.com
-- **Official FEFU Portal**: https://study.dvfu.ru / https://dvfu.ru
+## Owner-confirmed consultancy support
 
-## Core Services
-1. **Admission Application Guidance**: Verification of 10th/12th marksheets, NEET qualification status, and entrance exam preparation (Biology & Chemistry).
-2. **Document Legalization & Translation**: Support with notarized Russian translations, Ministry of External Affairs (MEA) apostille, and university document submission.
-3. **Visa & Travel Assistance**: Guidance for Russia student visa application, invitation letter tracking, flight routes from India to Vladivostok, and airport pickup.
-4. **Hostel & Campus Onboarding**: Hostel allocation support in FEFU Russky Island dormitories (2-room suites, gym, Indian mess availability, 24/7 security).
+Depending on the written agreement, support can cover application and admission guidance, invitation-letter coordination, visa application and document assistance, travel arrangements, FEFU accommodation coordination, arrival and on-ground help, forex guidance, post-arrival paperwork, and ongoing university-settlement support. FEFU and relevant authorities make their own admission, room, visa, and other official decisions.
 
-## Key Facts & Compliance
-- **NMC / FMGL Compliance**: FEFU General Medicine curriculum aligns with National Medical Commission (NMC) Foreign Medical Graduate Licentiate (FMGL) guidelines 2021 (6-year English track + internship + registration eligibility).
-- **NEET Requirement**: Qualifying score in NEET-UG (in the year of admission or preceding 2 years) is mandatory for Indian students intending to practice in India.
-- **Hostel Cost**: Campus accommodation starts from approx. 3,800 RUB / month (~INR 5,100 / month).
-- **Entrance Examination**: Basic online entry tests in Biology and Chemistry administered by FEFU.
+The written agreement should state the agreed scope and one consultancy fee. FEFU tuition and accommodation, travel, visa-related, insurance, and other provider charges are separate and should be identified by their provider.
 
-## Sitemap Directory
-- **Homepage**: https://mbbsabroads.com/ (Program overview, curriculum details, hostel highlights, fee structure, contact form)
-- **Medical Blog**: https://mbbsabroads.com/blog.html (Comprehensive guides on NEET requirements, student visas, FMGE/NExT preparation, hostel life, NMC guidelines, and cost comparisons)
-- **Campus Gallery**: https://mbbsabroads.com/gallery.html (High-resolution photos of FEFU dormitories, lecture halls, laboratories, sports complex, and Russky Island campus)
-- **Editorial Policy**: https://mbbsabroads.com/editorial-policy.html (Fact-checking criteria, source references, update frequency)
-- **Privacy Policy**: https://mbbsabroads.com/privacy.html (Data retention and student privacy terms)
-- **Terms of Service**: https://mbbsabroads.com/terms.html (Counseling terms and service boundaries)
+## Current official FEFU information
 
-## Contact Information
-- **Website**: https://mbbsabroads.com
-- **Direct Lead / Consultation Form**: https://mbbsabroads.com/#contact
+Checked 12 November 2026. Confirm current intake details and your individual assignment directly with FEFU.
+
+- FEFU's 2024 curriculum lists General Medicine (31.05.01) as a full-time, six-year English-language program: https://postupi.dvfu.ru/upload/medialibrary/ddc/03ffkwggj69cpf1pe2bl9ub2azdn08nk/31.05.01_%D0%9B%D0%94_GM_2024%20%28%D0%9C%D0%9E%D0%9F%29.pdf
+- FEFU's English-medium admissions page is the source for current program, intake, entrance-subject, place, and tuition details: https://www.dvfu.ru/en/admission/undergraduate/bachelor-s-degree-in-english/
+- The published 2026/27 listing shows General Medicine (in English) tuition of RUB 500,000 per academic year. Check the current FEFU listing and contract for the applicable intake and charge.
+- FEFU's official double-room page lists monthly charges per bed, by building and room type: https://www.dvfu.ru/about/campus/students/accommodation/double-room.php
+- Listed double-room charges include RUB 3,100 per bed/month (RUB 3,200 with a mini-fridge) for 18–20 m² rooms in buildings 1.8 and 2.1–2.6, and RUB 3,500–4,100 (RUB 3,600–4,200 with a mini-fridge) for 25–32 m² rooms in buildings 6–11. FEFU confirms actual availability, room assignment, and current charge.
+
+## Student and family resources
+
+- FEFU admissions: https://www.dvfu.ru/en/admission/undergraduate/bachelor-s-degree-in-english/
+- FEFU student information: https://www.dvfu.ru/en/students/
+- FEFU accommodation: https://www.dvfu.ru/about/campus/students/accommodation/double-room.php
+- India Ministry of External Affairs guidance for students abroad: https://www.mea.gov.in/students-abroad.htm
+- India Ministry of External Affairs foreign-travel guidance: https://www.mea.gov.in/dos-and-donts-for-foreign-travel.htm
+
+For Indian regulatory or licensing questions, check current National Medical Commission guidance for the student's admission year. University admission alone does not establish eligibility for medical registration in India.
+
+## Main pages
+
+- Homepage: https://mbbsabroads.com/
+- Admission and program information: https://mbbsabroads.com/#admission
+- Hostel information: https://mbbsabroads.com/#hostels
+- Contact: https://mbbsabroads.com/contact.html
+- Student guides: https://mbbsabroads.com/blog.html
+- Campus gallery: https://mbbsabroads.com/gallery.html
+- Editorial policy: https://mbbsabroads.com/editorial-policy.html
+- Privacy policy: https://mbbsabroads.com/privacy.html
+- Terms: https://mbbsabroads.com/terms.html
