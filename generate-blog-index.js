@@ -4,6 +4,16 @@ const path = require('path');
 const ROOT = __dirname;
 const BLOG_DIR = path.join(ROOT, 'blogs');
 const BLOG_FILE = path.join(ROOT, 'blog.html');
+const blogSource = fs.readFileSync(BLOG_FILE, 'utf8');
+const currentGridStart = blogSource.indexOf('                <div class="blog-grid" id="blogGrid">');
+const currentNoResultsStart = blogSource.indexOf('                <!-- No Results State -->');
+const currentCardMarkup = currentGridStart >= 0 && currentNoResultsStart > currentGridStart
+    ? blogSource.slice(currentGridStart, currentNoResultsStart)
+    : '';
+const existingCardOrder = new Map(
+    [...currentCardMarkup.matchAll(/<a href=["']blogs\/([^"']+\.html)["']/gi)]
+        .map((match, index) => [match[1], index])
+);
 
 function text(html, pattern) {
     return ((html.match(pattern) || [])[1] || '').replace(/\s+/g, ' ').trim();
@@ -27,14 +37,29 @@ const articles = fs.readdirSync(BLOG_DIR)
     .map((file) => {
         const html = fs.readFileSync(path.join(BLOG_DIR, file), 'utf8');
         const title = text(html, /<title>([\s\S]*?)<\/title>/i).replace(/\s*\|\s*MBBS Abroads.*$/i, '');
-        const description = text(html, /<meta\s+name=["']description["']\s+content=["']([^"']*)/i);
+        const descriptionTag = html.match(/<meta\b[^>]*\bname=(?:"description"|'description')[^>]*>/i);
+        const descriptionMatch = descriptionTag?.[0].match(/\bcontent=(?:"([^"]*)"|'([^']*)')/i);
+        const description = (descriptionMatch?.[1] ?? descriptionMatch?.[2] ?? '').replace(/\s+/g, ' ').trim();
         const canonical = text(html, /<link\s+rel=["']canonical["']\s+href=["']([^"']*)/i);
         const published = text(html, /"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"/i) || '2026-01-01';
         const visible = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ');
         const minutes = Math.max(4, Math.ceil(visible.trim().split(/\s+/).length / 200));
         return { file, title, description, canonical, published, minutes, category: categoryFor(file) };
     })
-    .sort((a, b) => b.published.localeCompare(a.published) || a.title.localeCompare(b.title));
+    .sort((a, b) => {
+        const publicationOrder = b.published.localeCompare(a.published);
+        if (publicationOrder) return publicationOrder;
+
+        const aOrder = existingCardOrder.get(a.file);
+        const bOrder = existingCardOrder.get(b.file);
+        if (aOrder !== undefined || bOrder !== undefined) {
+            if (aOrder === undefined) return 1;
+            if (bOrder === undefined) return -1;
+            if (aOrder !== bOrder) return aOrder - bOrder;
+        }
+
+        return a.title.localeCompare(b.title);
+    });
 
 const cards = articles.map(({ file, title, description, published, minutes, category }) => {
     const date = new Date(`${published}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -59,7 +84,7 @@ const cards = articles.map(({ file, title, description, published, minutes, cate
                     </a>`;
 }).join('\n\n');
 
-let blog = fs.readFileSync(BLOG_FILE, 'utf8');
+let blog = blogSource;
 const gridStart = blog.indexOf('                <div class="blog-grid" id="blogGrid">');
 const noResultsStart = blog.indexOf('                <!-- No Results State -->');
 if (gridStart < 0 || noResultsStart < 0) throw new Error('Could not locate blog grid markers.');
